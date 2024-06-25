@@ -40,38 +40,11 @@
             <label for="funcion">Ingrese la función f(t): </label>
             <input type="text" id="funcion" placeholder="e.g., t**2 * exp(-t)" oninput="actualizarVistaPrevia()">
             <div class="botones">
-              <button onclick="insertarTexto('1')">1</button>
-              <button onclick="insertarTexto('t')">t</button>
-              <button onclick="insertarTexto('exp(-t)')">exp(-t)</button>
-              <button onclick="insertarTexto('cos(t)')">cos(t)</button>
-              <button onclick="insertarTexto('sin(t)')">sin(t)</button>
-              <button onclick="insertarTexto('cosh(t)')">cosh(t)</button>
-              <button onclick="insertarTexto('sinh(t)')">sinh(t)</button>
-              <button onclick="insertarTexto('sqrt(t)')">sqrt(t)</button>
-              <button onclick="insertarTexto('1/s')">1/s</button>
+              <button onclick="insertarTexto('sin(kt)')">sen k(t)</button>
+              <button onclick="insertarTexto('sinh(kt)')">senh k(t)</button>
+              <button onclick="insertarTexto('e^{at}cosh(kt)')">e^{at}cosh(kt)</button>
               <button onclick="insertarTexto('t^n')">t^n</button>
-              <button onclick="insertarTexto('e^(s*t)')">e^(s*t)</button>
-              <button onclick="insertarTexto('cos(s*t)')">cos(s*t)</button>
-              <button onclick="insertarTexto('sin(s*t)')">sin(s*t)</button>
-              <button onclick="insertarTexto('cosh(s*t)')">cosh(s*t)</button>
-              <button onclick="insertarTexto('sinh(s*t)')">sinh(s*t)</button>
-              <button onclick="insertarTexto('sqrt(s*t)')">sqrt(s*t)</button>
-              <button onclick="insertarTexto('1/(s-a)')">1/(s-a)</button>
-              <button onclick="insertarTexto('t^(n-1)/(-a)')">t^(n-1)/(-a)</button>
-              <button onclick="insertarTexto('e^(at)')">e^(at)</button>
-              <button onclick="insertarTexto('cos(at)')">cos(at)</button>
-              <button onclick="insertarTexto('sin(at)')">sin(at)</button>
-              <button onclick="insertarTexto('cosh(at)')">cosh(at)</button>
-              <button onclick="insertarTexto('sinh(at)')">sinh(at)</button>
-              <button onclick="insertarTexto('sqrt(at)')">sqrt(at)</button>
-              <button onclick="insertarTexto('1/s+a')">1/s+a</button>
-              <button onclick="insertarTexto('t^n-1/a')">t^n-1/a</button>
-              <button onclick="insertarTexto('e^(-at)')">e^(-at)</button>
-              <button onclick="insertarTexto('cos(-at)')">cos(-at)</button>
-              <button onclick="insertarTexto('sin(-at)')">sin(-at)</button>
-              <button onclick="insertarTexto('cosh(-at)')">cosh(-at)</button>
-              <button onclick="insertarTexto('sinh(-at)')">sinh(-at)</button>
-              <button onclick="insertarTexto('sqrt(-at)')">sqrt(-at)</button>
+              <button onclick="insertarTexto('(e^{at} - e^{bt})/(a-b)')">(e^{at} - e^{bt})/(a-b)</button>
                 <button onclick="calcularLaplace()">Calcular</button>
             </div>
         </div>
