@@ -4,17 +4,14 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Transformadas de Laplace</title>
-  <link rel="stylesheet" href="/css/styles.css">
- 
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="/css/css/bootstrap.min.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/9.5.2/math.min.js"></script>
   <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-  <script src="/js/calcu_transformadas.js" defer></script>
-  <link rel="stylesheet" href="/css/css/bootstrap.min.css">
-
+  <script src="js/calcu_transformadas.js" defer></script>
+  <script src="js/botones.js" defer></script>
 </head>
-
-
 <body>
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark-transparent">
     <div class="container-fluid">
@@ -27,7 +24,7 @@
                 <a class="nav-link active" aria-current="page" href="index.html">Home</a>
                 <a class="nav-link" href="EnfriamientoDeN.html">Enfriamiento de Newton</a>
                 <a class="nav-link" href="Transformadas.html">Transformadas</a>
-                <a class="nav-link disabled" aria-disabled="true">Disabled</a>
+                
             </div>
         </div>
     </div>
@@ -42,7 +39,41 @@
         <div>
             <label for="funcion">Ingrese la función f(t): </label>
             <input type="text" id="funcion" placeholder="e.g., t**2 * exp(-t)" oninput="actualizarVistaPrevia()">
-            <button onclick="calcularLaplace()">Calcular</button>
+            <div class="botones">
+              <button onclick="insertarTexto('1')">1</button>
+              <button onclick="insertarTexto('t')">t</button>
+              <button onclick="insertarTexto('exp(-t)')">exp(-t)</button>
+              <button onclick="insertarTexto('cos(t)')">cos(t)</button>
+              <button onclick="insertarTexto('sin(t)')">sin(t)</button>
+              <button onclick="insertarTexto('cosh(t)')">cosh(t)</button>
+              <button onclick="insertarTexto('sinh(t)')">sinh(t)</button>
+              <button onclick="insertarTexto('sqrt(t)')">sqrt(t)</button>
+              <button onclick="insertarTexto('1/s')">1/s</button>
+              <button onclick="insertarTexto('t^n')">t^n</button>
+              <button onclick="insertarTexto('e^(s*t)')">e^(s*t)</button>
+              <button onclick="insertarTexto('cos(s*t)')">cos(s*t)</button>
+              <button onclick="insertarTexto('sin(s*t)')">sin(s*t)</button>
+              <button onclick="insertarTexto('cosh(s*t)')">cosh(s*t)</button>
+              <button onclick="insertarTexto('sinh(s*t)')">sinh(s*t)</button>
+              <button onclick="insertarTexto('sqrt(s*t)')">sqrt(s*t)</button>
+              <button onclick="insertarTexto('1/(s-a)')">1/(s-a)</button>
+              <button onclick="insertarTexto('t^(n-1)/(-a)')">t^(n-1)/(-a)</button>
+              <button onclick="insertarTexto('e^(at)')">e^(at)</button>
+              <button onclick="insertarTexto('cos(at)')">cos(at)</button>
+              <button onclick="insertarTexto('sin(at)')">sin(at)</button>
+              <button onclick="insertarTexto('cosh(at)')">cosh(at)</button>
+              <button onclick="insertarTexto('sinh(at)')">sinh(at)</button>
+              <button onclick="insertarTexto('sqrt(at)')">sqrt(at)</button>
+              <button onclick="insertarTexto('1/s+a')">1/s+a</button>
+              <button onclick="insertarTexto('t^n-1/a')">t^n-1/a</button>
+              <button onclick="insertarTexto('e^(-at)')">e^(-at)</button>
+              <button onclick="insertarTexto('cos(-at)')">cos(-at)</button>
+              <button onclick="insertarTexto('sin(-at)')">sin(-at)</button>
+              <button onclick="insertarTexto('cosh(-at)')">cosh(-at)</button>
+              <button onclick="insertarTexto('sinh(-at)')">sinh(-at)</button>
+              <button onclick="insertarTexto('sqrt(-at)')">sqrt(-at)</button>
+                <button onclick="calcularLaplace()">Calcular</button>
+            </div>
         </div>
     </div>
     <div class="flex-container">
@@ -56,7 +87,7 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
   <!-- Script para letras aleatorias -->
-  <script src="/js/estrellas.js"></script>
+  <script src="js/estrellas.js"></script>
 
 </body>
 </html>

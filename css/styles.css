@@ -74,3 +74,14 @@ body {
         transform: translate(0, 0);
     }
 }
+
+#botones {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+#botones button {
+    width: 120px;
+}

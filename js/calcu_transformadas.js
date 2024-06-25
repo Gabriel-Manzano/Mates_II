@@ -1,3 +1,13 @@
+// calcu_transformadas.js
+
+function insertarTexto(texto) {
+    const inputFuncion = document.getElementById('funcion');
+    const posicionCursor = inputFuncion.selectionStart;
+    const textoAnterior = inputFuncion.value.substring(0, posicionCursor);
+    const textoPosterior = inputFuncion.value.substring(posicionCursor);
+    inputFuncion.value = textoAnterior + texto + textoPosterior;
+}
+
 function actualizarVistaPrevia() {
     const funcion = document.getElementById('funcion').value;
     const vistaPrevia = document.getElementById('vistaPrevia');
@@ -17,7 +27,7 @@ function calcularLaplace() {
         const laplaceTransform = laplaceTransformSim(expr, t, s);
         
         // Generar LaTeX
-        const latexOutput = laplaceTransform;
+        const latexOutput = laplaceTransform.replace(/\//g, '\\frac{').replace(/s\-/g, 's} - ').replace(/s\+/g, 's} + ');
         document.getElementById('resultado').innerHTML = 'Transformada de Laplace: $$' + latexOutput + '$$';
         MathJax.typeset();
     } catch (error) {
@@ -28,7 +38,7 @@ function calcularLaplace() {
 // Simulación mejorada de la transformada de Laplace
 function laplaceTransformSim(expr, t, s) {
     if (expr.isConstantNode) {
-        return `\\frac{1}{${s}}`;
+        return `\\frac{${expr.value}}{${s}}`;
     } else if (expr.isSymbolNode && expr.name === 't') {
         return `\\frac{1}{${s}^2}`;
     } else if (expr.isOperatorNode && expr.op === '^' && expr.args[0].name === 't') {
@@ -36,30 +46,24 @@ function laplaceTransformSim(expr, t, s) {
         if (Number.isInteger(exponent)) {
             return `\\frac{${math.factorial(exponent)}}{${s}^${exponent + 1}}`;
         }
-    } else if (expr.isFunctionNode && expr.fn.name === 'exp' && expr.args[0].isUnaryMinusNode) {
-        const innerExpr = expr.args[0].args[0];
-        if (innerExpr.isSymbolNode && innerExpr.name === 't') {
-            return `\\frac{1}{${s} + 1}`;
-        }
-    } else if (expr.isFunctionNode && expr.fn.name === 'cos') {
+    } else if (expr.isFunctionNode && (expr.fn.name === 'exp' || expr.fn.name === 'cos' || expr.fn.name === 'sin' || expr.fn.name === 'cosh' || expr.fn.name === 'sinh')) {
         const innerExpr = expr.args[0];
-        if (innerExpr.isSymbolNode && innerExpr.name === 't') {
-            return `\\frac{${s}}{{${s}}^2 + 1}`;
-        }
-    } else if (expr.isFunctionNode && expr.fn.name === 'sin') {
-        const innerExpr = expr.args[0];
-        if (innerExpr.isSymbolNode && innerExpr.name === 't') {
-            return `\\frac{1}{{${s}}^2 + 1}`;
-        }
-    } else if (expr.isFunctionNode && expr.fn.name === 'cosh') {
-        const innerExpr = expr.args[0];
-        if (innerExpr.isSymbolNode && innerExpr.name === 't') {
-            return `\\frac{${s}}{{${s}}^2 - 1}`;
-        }
-    } else if (expr.isFunctionNode && expr.fn.name === 'sinh') {
-        const innerExpr = expr.args[0];
-        if (innerExpr.isSymbolNode && innerExpr.name === 't') {
-            return `\\frac{1}{{${s}}^2 - 1}`;
+        if (innerExpr.isOperatorNode && innerExpr.op === '*' && Number.isInteger(innerExpr.args[0].value) && innerExpr.args[1].name === 't') {
+            const a = innerExpr.args[0].value;
+            switch (expr.fn.name) {
+                case 'exp':
+                    return `\\frac{1}{${s} - ${a}}`;
+                case 'cos':
+                    return `\\frac{${s}}{${s}^2 + ${a**2}}`;
+                case 'sin':
+                    return `\\frac{${a}}{${s}^2 + ${a**2}}`;
+                case 'cosh':
+                    return `\\frac{${s}}{${s}^2 - ${a**2}}`;
+                case 'sinh':
+                    return `\\frac{${a}}{${s}^2 - ${a**2}}`;
+                default:
+                    throw new Error(`Función ${expr.fn.name} no soportada para la transformada de Laplace.`);
+            }
         }
     }
 
