@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transformadas de Laplace</title>
+    <link rel="stylesheet" href="../Mates II/css/styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/9.5.2/math.min.js"></script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="C:/Users/jowsj/Downloads/Mates II/Mates II/js/calcu_transformadas.js" defer></script>
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container-fluid">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+              <a class="nav-link active" aria-current="page" href="index.html">Home</a>
+              <a class="nav-link" href="EnfriamientoDeN.html">Enfriamiento de Newton</a>
+              <a class="nav-link" href="Transformadas.html">Transformadas</a>
+              <a class="nav-link disabled" aria-disabled="true">Disabled</a>
+            </div>
+          </div>
+        </div>
+      </nav>
+
+      <div class="container">
+          <h1>Calculadora de Transformadas de Laplace</h1>
+          <div>
+              <label for="funcion">Ingrese la función f(t): </label>
+              <input type="text" id="funcion" placeholder="e.g., t**2 * exp(-t)" oninput="actualizarVistaPrevia()">
+              <button onclick="calcularLaplace()">Calcular</button>
+          </div>
+          <div id="vistaPrevia"></div>
+          <div id="resultado"></div>
+      </div>
+    
+</body>
+</html>
