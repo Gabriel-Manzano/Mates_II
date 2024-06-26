@@ -1,8 +1,17 @@
-/* Estilo para el cuerpo */
-body {
-   
-    overflow: hidden; /* Para ocultar las letras fuera del área visible */
-    position: relative; /* Añadido para establecer un contexto de apilamiento */
+html, body {
+    height: 100%;
+    margin: 0;
+    overflow: hidden;
+}
+
+svg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none; /* Asegura que el SVG no capture eventos del mouse */
+    z-index: -1; /* Asegura que el SVG esté detrás del contenido */
 }
 
 /* Estilo para los contenedores */
@@ -85,3 +94,6 @@ body {
 #botones button {
     width: 120px;
 }
+
+
+

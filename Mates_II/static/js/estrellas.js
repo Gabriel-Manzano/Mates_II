@@ -1,18 +1,19 @@
 document.addEventListener('DOMContentLoaded', function() {
     const container = document.body;
-    const numLetters = 50; // Número de letras aleatorias
+    const numLetters = 60; // Número de letras aleatorias
 
     const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
     const letterArray = letters.split('');
 
     // Crear un SVG absoluto para contener las letras y líneas
     const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
-    svg.setAttribute('width', window.innerWidth);
-    svg.setAttribute('height', window.innerHeight);
+    svg.setAttribute('width', '100%');
+    svg.setAttribute('height', '100%');
     svg.style.position = 'absolute';
     svg.style.top = '0';
     svg.style.left = '0';
     svg.style.pointerEvents = 'none'; // Evitar que el SVG capture eventos de ratón
+    svg.style.zIndex = '-1'; // Asegurar que el SVG esté detrás de todo el contenido
 
     // Arreglo para almacenar las posiciones iniciales de las líneas
     const linePositions = [];
@@ -74,5 +75,5 @@ document.addEventListener('DOMContentLoaded', function() {
     updateLines();
 
     // Actualizar líneas periódicamente mientras las letras se mueven
-    setInterval(updateLines, 100); // Ajusta el intervalo según sea necesario
+    setInterval(updateLines, 1); // Ajusta el intervalo según sea necesario
 });

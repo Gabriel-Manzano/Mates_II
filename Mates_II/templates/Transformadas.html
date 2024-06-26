@@ -2,7 +2,7 @@
 
 {% block content %}
  <!-- Contenido principal -->
- <div class="container">
+ <div class="container shadow-none p-5 mb-5 bg-body-tertiary rounded  " style=" box-shadow: 0 0 20px 10px #ffffffee; background-color: rgba(236, 225, 225, 0.938);" >
   <div>
       <div class="titulo">
           <h1>Calculadora de Transformadas de Laplace</h1>
@@ -11,27 +11,22 @@
           <label for="funcion">Ingrese la función f(t): </label>
           <input type="text" id="funcion" placeholder="e.g., t**2 * exp(-t)" oninput="actualizarVistaPrevia()">
           <div class="botones">
-            <button onclick="insertarTexto('sin(kt)')">sen k(t)</button>
-            <button onclick="insertarTexto('sinh(kt)')">senh k(t)</button>
-            <button onclick="insertarTexto('e^{at}cosh(kt)')">e^{at}cosh(kt)</button>
-            <button onclick="insertarTexto('t^n')">t^n</button>
-            <button onclick="insertarTexto('(e^{at} - e^{bt})/(a-b)')">(e^{at} - e^{bt})/(a-b)</button>
+              <button onclick="insertarTexto('sin(kt)')">sen k(t)</button>
+              <button onclick="insertarTexto('sinh(kt)')">senh k(t)</button>
+              <button onclick="insertarTexto('e^{at}cosh(kt)')">e^{at}cosh(kt)</button>
+              <button onclick="insertarTexto('t^n')">t^n</button>
+              <button onclick="insertarTexto('(e^{at} - e^{bt})/(a-b)')">(e^{at} - e^{bt})/(a-b)</button>
               <button onclick="calcularLaplace()">Calcular</button>
           </div>
       </div>
-  </div>
-  <div class="flex-container">
-      <div class="contenedor_entrada" id="vistaPrevia"></div>
-      <div class="contenedor_igual_valor"></div>
-      <div class="contenedor_salida" id="resultado"></div>
+    </div>
+    <div class="flex-container p-3 m-5">
+       <div class="contenedor_entrada" id="vistaPrevia"></div>
+        <div class="contenedor_igual_valor"></div>
+        <div class="contenedor_salida" id="resultado"></div>
   </div>
 </div>
 
-<!-- Script de Bootstrap -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-
-<!-- Script para letras aleatorias -->
-<script src="js/estrellas.js"></script>
 
 </body>
 </html>
