@@ -134,6 +134,7 @@
                 <button type="button" class="btn btn-outline-secondary" onclick="crearInputsEAtCoshKt()">\( e^{at}\cosh(kt) \)</button>
                 <button type="button" class="btn btn-outline-secondary" onclick="crearInputstN()">\( t^n \)</button>
                 <button type="button" class="btn btn-outline-secondary" onclick="crearInputsEAtMinusEBt()">\( \frac{e^{at} - e^{bt}}{a-b} \)</button>
+                <button type="button" class="btn btn-outline-secondary" onclick="crearInputsEBtsinhAt()">\( e^{-bt}\sinh(at) \)</button>
             </div>
             <div class="container text-center" id="inputContainer"></div>
         </div>        
@@ -179,6 +180,11 @@
         var inputContainer = document.getElementById("inputContainer");
         inputContainer.innerHTML = '<label for="valorA">Ingrese el valor de a:</label><input type="number" id="valorA" name="valorA" class="form-control" required oninput="actualizarVistaPrevia(\'{e^{at} - e^{bt}}/{a-b}\')"><label for="valorB">Ingrese el valor de b:</label><input type="number" id="valorB" name="valorB" class="form-control" required oninput="actualizarVistaPrevia(\'{e^{at} - e^{bt}}/{a-b}\')"><button type="button" class="btn btn-primary mt-2" onclick="calcularEAtMinusEBt()">Calcular</button>';
     }
+    function crearInputsEBtsinhAt(){
+        var inputContainer = document.getElementById("inputContainer");
+        inputContainer.innerHTML = '<label for="valorB">Ingrese el valor de b:</label><input type="number" id="valorB" name="valorB" class="form-control" required oninput="actualizarVistaPrevia(\'e^{-bt}sinh(at)\')"><label for="valora">Ingrese el valor de a:</label><input type="number" id="valorA" name="valorA" class="form-control" required oninput="actualizarVistaPrevia(\'e^{-bt}sinh(at)\')"><button type="button" class="btn btn-primary mt-2" onclick="calcularEBtsinhAt()">Calcular</button>';   
+    }
+
 
     function actualizarVistaPrevia(funcion) {
     var vistaPrevia = document.getElementById("vistaPrevia");
@@ -197,6 +203,8 @@
         vistaPrevia.innerHTML = '\\( t^{' + valorN + '} \\)';
     } else if (funcion === '{e^{at} - e^{bt}}/{a-b}') {
         vistaPrevia.innerHTML = '\\( \\frac{e^{' + valorA + 't} - e^{' + valorB + 't}}{' + valorA + '-' + valorB + '} \\)';
+    } else if (funcion === 'e^{-bt}sinh(at)') {
+        vistaPrevia.innerHTML = '\\( e^{' + valorB + 't}\\sinh(' + valorA + 't) \\)';
     }
 
     MathJax.typeset();
@@ -237,5 +245,13 @@
         document.getElementById("resultado").innerHTML = `Resultado para \\( \\frac{e^{${a}t} - e^{${b}t}}{${a} - ${b}} \\): ${resultado}`;
         MathJax.typeset();
     }
+    function calcularEBtsinhAt(){
+        var a = document.getElementById("valorA").value;
+        var b = document.getElementById("valorB").value;
+        var resultado = `\\( \\frac{s - ${b}}{(s - ${b})^2 + ${a}^2} \\)`;
+        document.getElementById("resultado").innerHTML = `Resultado para \\( e^{${b}t}\\sinh(${a}t) \\): ${resultado}`;
+        MathJax.typeset();
+    }
+  
 </script>
 {% endblock %}
