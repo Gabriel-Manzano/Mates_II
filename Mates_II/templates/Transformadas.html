@@ -135,6 +135,7 @@
                 <button type="button" class="btn btn-outline-secondary" onclick="crearInputstN()">\( t^n \)</button>
                 <button type="button" class="btn btn-outline-secondary" onclick="crearInputsEAtMinusEBt()">\( \frac{e^{at} - e^{bt}}{a-b} \)</button>
                 <button type="button" class="btn btn-outline-secondary" onclick="crearInputsEBtsinhAt()">\( e^{-bt}\sinh(at) \)</button>
+                <button type="button" class="btn btn-outline-secondary" onclick="crearInputIntegral()">\( \int_{0}^{t} f(\tau) d\tau \)</button>
             </div>
             <div class="container text-center" id="inputContainer"></div>
         </div>        
@@ -180,9 +181,15 @@
         var inputContainer = document.getElementById("inputContainer");
         inputContainer.innerHTML = '<label for="valorA">Ingrese el valor de a:</label><input type="number" id="valorA" name="valorA" class="form-control" required oninput="actualizarVistaPrevia(\'{e^{at} - e^{bt}}/{a-b}\')"><label for="valorB">Ingrese el valor de b:</label><input type="number" id="valorB" name="valorB" class="form-control" required oninput="actualizarVistaPrevia(\'{e^{at} - e^{bt}}/{a-b}\')"><button type="button" class="btn btn-primary mt-2" onclick="calcularEAtMinusEBt()">Calcular</button>';
     }
+
     function crearInputsEBtsinhAt(){
         var inputContainer = document.getElementById("inputContainer");
         inputContainer.innerHTML = '<label for="valorB">Ingrese el valor de b:</label><input type="number" id="valorB" name="valorB" class="form-control" required oninput="actualizarVistaPrevia(\'e^{-bt}sinh(at)\')"><label for="valora">Ingrese el valor de a:</label><input type="number" id="valorA" name="valorA" class="form-control" required oninput="actualizarVistaPrevia(\'e^{-bt}sinh(at)\')"><button type="button" class="btn btn-primary mt-2" onclick="calcularEBtsinhAt()">Calcular</button>';   
+    }
+
+    function crearInputIntegral() {
+        var inputContainer = document.getElementById("inputContainer");
+        inputContainer.innerHTML = '<label for="funcionF">Ingrese la función F(t):</label><input type="text" id="funcionF" name="funcionF" class="form-control" required oninput="actualizarVistaPrevia(\'integral\')"><label for="valorT">Ingrese el valor de t):</label><input type="number" id="valorT" name="funcionF" class="form-control" required oninput="actualizarVistaPrevia(\'integral\')"><button type="button" class="btn btn-primary mt-2" onclick="calcularIntegral()">Calcular</button>';
     }
 
 
@@ -192,6 +199,8 @@
     var valorK = document.getElementById("valorK") ? document.getElementById("valorK").value : document.getElementById("valorsenKt") ? document.getElementById("valorsenKt").value : "";
     var valorN = document.getElementById("valorN") ? document.getElementById("valorN").value : "";
     var valorB = document.getElementById("valorB") ? document.getElementById("valorB").value : "";
+    var funcionF = document.getElementById("funcionF") ? document.getElementById("funcionF").value : "";
+    var valorT = document.getElementById("valorT") ? document.getElementById("valorT").value : "";
 
     if (funcion === 'sin(kt)') {
         vistaPrevia.innerHTML = '\\( \\sin(' + valorK + 't) \\)';
@@ -205,6 +214,8 @@
         vistaPrevia.innerHTML = '\\( \\frac{e^{' + valorA + 't} - e^{' + valorB + 't}}{' + valorA + '-' + valorB + '} \\)';
     } else if (funcion === 'e^{-bt}sinh(at)') {
         vistaPrevia.innerHTML = '\\( e^{' + valorB + 't}\\sinh(' + valorA + 't) \\)';
+    } else if (funcion === 'integral') {
+        vistaPrevia.innerHTML = '\\( \\int_{0}^{' + valorT + '} ' + funcionF + ' d\\tau \\)';
     }
 
     MathJax.typeset();
@@ -250,6 +261,14 @@
         var b = document.getElementById("valorB").value;
         var resultado = `\\( \\frac{s - ${b}}{(s - ${b})^2 + ${a}^2} \\)`;
         document.getElementById("resultado").innerHTML = `Resultado para \\( e^{${b}t}\\sinh(${a}t) \\): ${resultado}`;
+        MathJax.typeset();
+    }
+
+    function calcularIntegral() {
+        var funcionF = document.getElementById("funcionF").value;
+        var t = document.getElementById("valorT").value;
+        var resultado = `\\( \\frac{${funcionF}}{s} \\)`;
+        document.getElementById("resultado").innerHTML = `Resultado para \\( \\int_{0}^${t} ${funcionF} d\\tau \\): ${resultado}`;
         MathJax.typeset();
     }
   
