@@ -4,122 +4,12 @@
 <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
 <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 
-<div class="container shadow-none p-5 mb-5 bg-body-tertiary rounded" style="box-shadow: 0 0 20px 10px #ffffffee; background-color: rgba(255, 250, 250, 0.979);">
+<div class="container shadow-none p-5 mb-5 bg-body-tertiary rounded" style="box-shadow: 0 0 20px 10px #ffffffee; background-color: rgba(84, 81, 77, 0.656);">
     <div class="img-thumbnail">
         <img src="{{ url_for('static', filename='image/laplace.jpg') }}" class="img-fluid">
         <p class="fs-4">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
         </p>
-    </div>
-
-    <button class="btn btn-primary mb-3" onclick="toggleTable()">Mostrar/Ocultar Tabla</button>
-    <div id="laplaceTable" class="container">
-        <table class="table">
-            <thead>
-                <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">f(t)</th>
-                    <th scope="col">F(s)</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <th scope="row">1</th>
-                    <td>1</td>
-                    <td>\(\frac{1}{s}\)</td>
-                </tr>
-                <tr>
-                    <th scope="row">2</th>
-                    <td>t</td>
-                    <td>\(\frac{1}{s^2}\)</td>
-                </tr>
-                <tr>
-                    <th scope="row">3</th>
-                    <td>t²</td>
-                    <td>\(\frac{2}{s^3}\)</td>
-                </tr>
-                <tr>
-                    <th scope="row">4</th>
-                    <td>t<sup>α</sup></td>
-                    <td>\(\frac{\Gamma(\alpha + 1)}{s^{\alpha+1}}, \alpha > -1\)</td>
-                </tr>
-                <tr>
-                    <th scope="row">5</th>
-                    <td>e<sup>at</sup></td>
-                    <td>\(\frac{1}{s - a}\)</td>
-                </tr>
-                <tr>
-                    <th scope="row">6</th>
-                    <td>sin(kt)</td>
-                    <td>\(\frac{k}{s^2 + k^2}\)</td>
-                </tr>
-                <tr>
-                    <th scope="row">7</th>
-                    <td>cos(kt)</td>
-                    <td>\(\frac{s}{s^2 + k^2}\)</td>
-                </tr>
-                <tr>
-                    <th scope="row">8</th>
-                    <td>sinh(kt)</td>
-                    <td>\(\frac{k}{s^2 - k^2}\)</td>
-                </tr>
-                <tr>
-                    <th scope="row">9</th>
-                    <td>cosh(kt)</td>
-                    <td>\(\frac{s}{s^2 - k^2}\)</td>
-                </tr>
-                <tr>
-                    <th scope="row">10</th>
-                    <td>e<sup>at</sup>sin(kt)</td>
-                    <td>\(\frac{k}{(s - a)^2 + k^2}\)</td>
-                </tr>
-                <tr>
-                    <th scope="row">11</th>
-                    <td>e<sup>at</sup>cos(kt)</td>
-                    <td>\(\frac{s - a}{(s - a)^2 + k^2}\)</td>
-                </tr>
-                <tr>
-                    <th scope="row">12</th>
-                    <td>t<sup>n</sup></td>
-                    <td>\(\frac{n!}{s^{n+1}}, n\) is a positive integer</td>
-                </tr>
-                <tr>
-                    <th scope="row">13</th>
-                    <td>u(t)</td>
-                    <td>\(\frac{1}{s}\)</td>
-                </tr>
-                <tr>
-                    <th scope="row">14</th>
-                    <td>u(t)f(t - c)</td>
-                    <td>\(e^{-cs}F(s)\)</td>
-                </tr>
-                <tr>
-                    <th scope="row">15</th>
-                    <td>f(ct)</td>
-                    <td>\(\frac{1}{c} \cdot F\left(\frac{s}{c}\right)\)</td>
-                </tr>
-                <tr>
-                    <th scope="row">16</th>
-                    <td>\(\int_{0}^{t} f(\tau)g(t - \tau)d\tau\)</td>
-                    <td>\(F(s)G(s)\)</td>
-                </tr>
-                <tr>
-                    <th scope="row">17</th>
-                    <td>δ(t - c)</td>
-                    <td>\(e^{-cs}\)</td>
-                </tr>
-                <tr>
-                    <th scope="row">18</th>
-                    <td>f<sup>(n)</sup>(t)</td>
-                    <td>\(s^nF(s) - s^{n-1}f(0) - \ldots - f^{(n-1)}(0)\)</td>
-                </tr>
-                <tr>
-                    <th scope="row">19</th>
-                    <td>\((-t)^n \cdot f(t)\)</td>
-                    <td>\(F^{(n)}(s)\)</td>
-                </tr>
-            </tbody>
-        </table>
     </div>
 
     <div class="container shadow-none p-5 mb-5 bg-body-tertiary rounded" style="box-shadow: 0 0 20px 10px #ffffffee; background-color: rgba(255, 250, 250, 0.979);">
@@ -137,25 +27,41 @@
                 <button type="button" class="btn btn-outline-secondary" onclick="crearInputstN()">\( t^n \)</button>
                 <button type="button" class="btn btn-outline-secondary" onclick="crearInputsEAtMinusEBt()">\( \frac{e^{at} - e^{bt}}{a-b} \)</button>
                 <button type="button" class="btn btn-outline-secondary" onclick="crearInputsEBtsinhAt()">\( e^{-bt}\sinh(at) \)</button>
+                <button type="button" class="btn btn-outline-secondary" onclick="crearInputIntegral()">\( \int_{0}^{t} f(\tau) d\tau \)</button>
             </div>
             <div class="container text-center" id="inputContainer"></div>
         </div>        
         <div class="flex-container p-3 m-5">
-            <div class="contenedor_entrada" id="vistaPrevia"></div>
-            <div class="contenedor_igual_valor"></div>
-            <div class="contenedor_salida" id="resultado"></div>
+            <div class="contenedor_igual_valor">
+                <h2>Formula</h2>
+                <hr class="hr-divider">
+                <div id="formulaOriginal"></div>
+            </div>
+            <div class="contenedor_entrada">
+                <h2>Sustitucion</h2>
+                <hr class="hr-divider">
+                <div id="vistaPrevia"></div>
+            </div>
+            <div class="contenedor_igual_valor">
+                <h2>Resultado</h2>
+                <hr class="hr-divider">
+                <div id="resultado"></div>
+            </div>
         </div>
     </div>
+
 
     <script>
         function crearInputUcos() {
             var inputContainer = document.getElementById("inputContainer");
             inputContainer.innerHTML = '<label for="valorA">Ingrese el valor de a:</label><input type="number" id="valorA" name="valorA" class="form-control" required oninput="actualizarVistaPrevia(\'u(t - a)cos(bt)\')"><label for="valorB">Ingrese el valor de b:</label><input type="number" id="valorB" name="valorB" class="form-control" required oninput="actualizarVistaPrevia(\'u(t - a)cos(bt)\')"><button type="button" class="btn btn-primary mt-2" onclick="calcularUcos()">Calcular</button>';
+            document.getElementById("resultado").innerHTML = '';
         }
 
         function crearInputCos() {
             var inputContainer = document.getElementById("inputContainer");
             inputContainer.innerHTML = '<label for="valorA">Ingrese el valor de a:</label><input type="number" id="valorA" name="valorA" class="form-control" required oninput="actualizarVistaPrevia(\'cos(at + b)\')"><label for="valorB">Ingrese el valor de b:</label><input type="number" id="valorB" name="valorB" class="form-control" required oninput="actualizarVistaPrevia(\'cos(at + b)\')"><button type="button" class="btn btn-primary mt-2" onclick="calcularCos()">Calcular</button>';
+            document.getElementById("resultado").innerHTML = '';
         }
 
         function actualizarVistaPrevia(funcion) {
@@ -164,23 +70,36 @@
             var valorB = document.getElementById("valorB") ? document.getElementById("valorB").value : "";
             var valorK = document.getElementById("valorK") ? document.getElementById("valorK").value : document.getElementById("valorsenKt") ? document.getElementById("valorsenKt").value : "";
             var valorN = document.getElementById("valorN") ? document.getElementById("valorN").value : "";
+            var funcionF = document.getElementById("funcionF") ? document.getElementById("funcionF").value : "";
+            var valorT = document.getElementById("valorT") ? document.getElementById("valorT").value : "";
 
             if (funcion === 'u(t - a)cos(bt)') {
                 vistaPrevia.innerHTML = '\\( u(t - ' + valorA + ') \\cos(' + valorB + 't) \\)';
+                document.getElementById("formulaOriginal").innerHTML = '\\( u(t - a) \\cos(bt) \\)';
             } else if (funcion === 'cos(at + b)') {
                 vistaPrevia.innerHTML = '\\( \\cos(' + valorA + 't + ' + valorB + ') \\)';
+                document.getElementById("formulaOriginal").innerHTML = '\\( \\cos(at + b) \\)';
             } else if (funcion === 'sin(kt)') {
                 vistaPrevia.innerHTML = '\\( \\sin(' + valorK + 't) \\)';
+                document.getElementById("formulaOriginal").innerHTML = '\\( \\sin(kt) \\)';
             } else if (funcion === 'sinh(kt)') {
                 vistaPrevia.innerHTML = '\\( \\sinh(' + valorK + 't) \\)';
+                document.getElementById("formulaOriginal").innerHTML = '\\( \\sinh(kt) \\)';
             } else if (funcion === 'e^{at}cosh(kt)') {
                 vistaPrevia.innerHTML = '\\( e^{' + valorA + 't}\\cosh(' + valorK + 't) \\)';
+                document.getElementById("formulaOriginal").innerHTML = '\\( e^{at}\\cosh(kt) \\)';
             } else if (funcion === 't^n') {
                 vistaPrevia.innerHTML = '\\( t^{' + valorN + '} \\)';
+                document.getElementById("formulaOriginal").innerHTML = '\\( t^n \\)';
             } else if (funcion === '{e^{at} - e^{bt}}/{a-b}') {
                 vistaPrevia.innerHTML = '\\( \\frac{e^{' + valorA + 't} - e^{' + valorB + 't}}{' + valorA + '-' + valorB + '} \\)';
+                document.getElementById("formulaOriginal").innerHTML = '\\( \\frac{e^{at} - e^{bt}}{a-b} \\)';
             } else if (funcion === 'e^{-bt}sinh(at)') {
                 vistaPrevia.innerHTML = '\\( e^{' + valorB + 't}\\sinh(' + valorA + 't) \\)';
+                document.getElementById("formulaOriginal").innerHTML = '\\( e^{-bt}\\sinh(at) \\)';
+            } else if (funcion === 'integral') {
+                vistaPrevia.innerHTML = '\\( \\int_{0}^{' + valorT + '} ' + funcionF + ' d\\tau \\)';
+                document.getElementById("formulaOriginal").innerHTML = '\\( \\int_{0}^{' + valorT + '} ' + funcionF + ' d\\tau \\)';
             }
 
             MathJax.typeset();
@@ -190,7 +109,7 @@
             var a = document.getElementById("valorA").value;
             var b = document.getElementById("valorB").value;
             var resultado = `\\( \\frac{e^{-(${a})s} s}{s^2 + (${b})^2} \\)`;
-            document.getElementById("resultado").innerHTML = `Resultado para \\( u(t - ${a}) \\cos(${b}t) \\): ${resultado}`;
+            document.getElementById("resultado").innerHTML = `${resultado}`;
             MathJax.typeset();
         }
 
@@ -198,83 +117,103 @@
             var a = document.getElementById("valorA").value;
             var b = document.getElementById("valorB").value;
             var resultado = `\\( \\frac{s \\cos(${b}) - ${a} \\sin(${b})}{s^2 + (${a})^2} \\)`;
-            document.getElementById("resultado").innerHTML = `Resultado para \\( \\cos(${a}t + ${b}) \\): ${resultado}`;
+            document.getElementById("resultado").innerHTML = `${resultado}`;
             MathJax.typeset();
         }
 
         function crearInputsenK() {
             var inputContainer = document.getElementById("inputContainer");
             inputContainer.innerHTML = '<label for="valorK">Ingrese el valor de k:</label><input type="number" id="valorK" name="valorK" class="form-control" required oninput="actualizarVistaPrevia(\'sin(kt)\')"><button type="button" class="btn btn-primary mt-2" onclick="calcularSenK()">Calcular</button>';
+            document.getElementById("resultado").innerHTML = '';
         }
 
         function crearInputsenKt() {
             var inputContainer = document.getElementById("inputContainer");
-            inputContainer.innerHTML = '<label for="valorK">Ingrese el valor de k:</label><input type="number" id="valorsenKt" name="valorK" class="form-control" required oninput="actualizarVistaPrevia(\'sinh(kt)\')"><button type="button" class="btn btn-primary mt-2" onclick="calcularSenKt()">Calcular</button>';
+            inputContainer.innerHTML = '<label for="valorK">Ingrese el valor de k:</label><input type="number" id="valorK" name="valorK" class="form-control" required oninput="actualizarVistaPrevia(\'sinh(kt)\')"><button type="button" class="btn btn-primary mt-2" onclick="calcularSenKt()">Calcular</button>';
+            document.getElementById("resultado").innerHTML = '';
         }
 
         function crearInputsEAtCoshKt() {
             var inputContainer = document.getElementById("inputContainer");
             inputContainer.innerHTML = '<label for="valorA">Ingrese el valor de a:</label><input type="number" id="valorA" name="valorA" class="form-control" required oninput="actualizarVistaPrevia(\'e^{at}cosh(kt)\')"><label for="valorK">Ingrese el valor de k:</label><input type="number" id="valorK" name="valorK" class="form-control" required oninput="actualizarVistaPrevia(\'e^{at}cosh(kt)\')"><button type="button" class="btn btn-primary mt-2" onclick="calcularEAtCoshKt()">Calcular</button>';
+            document.getElementById("resultado").innerHTML = '';
         }
 
         function crearInputstN() {
             var inputContainer = document.getElementById("inputContainer");
-            inputContainer.innerHTML = '<label for="valorN">Ingrese el valor de n:</label><input type="number" id="valorN" name="valorN" class="form-control" required oninput="actualizarVistaPrevia(\'t^n\')"><button type="button" class="btn btn-primary mt-2" onclick="calcularTN()">Calcular</button>';
+            inputContainer.innerHTML = '<label for="valorN">Ingrese el valor de n:</label><input type="number" id="valorN" name="valorN" class="form-control" required oninput="actualizarVistaPrevia(\'t^n\')"><button type="button" class="btn btn-primary mt-2" onclick="calcularTn()">Calcular</button>';
+            document.getElementById("resultado").innerHTML = '';
         }
 
         function crearInputsEAtMinusEBt() {
             var inputContainer = document.getElementById("inputContainer");
             inputContainer.innerHTML = '<label for="valorA">Ingrese el valor de a:</label><input type="number" id="valorA" name="valorA" class="form-control" required oninput="actualizarVistaPrevia(\'{e^{at} - e^{bt}}/{a-b}\')"><label for="valorB">Ingrese el valor de b:</label><input type="number" id="valorB" name="valorB" class="form-control" required oninput="actualizarVistaPrevia(\'{e^{at} - e^{bt}}/{a-b}\')"><button type="button" class="btn btn-primary mt-2" onclick="calcularEAtMinusEBt()">Calcular</button>';
+            document.getElementById("resultado").innerHTML = '';
         }
 
-        function crearInputsEBtsinhAt(){
+        function crearInputsEBtsinhAt() {
             var inputContainer = document.getElementById("inputContainer");
-            inputContainer.innerHTML = '<label for="valorB">Ingrese el valor de b:</label><input type="number" id="valorB" name="valorB" class="form-control" required oninput="actualizarVistaPrevia(\'e^{-bt}sinh(at)\')"><label for="valorA">Ingrese el valor de a:</label><input type="number" id="valorA" name="valorA" class="form-control" required oninput="actualizarVistaPrevia(\'e^{-bt}sinh(at)\')"><button type="button" class="btn btn-primary mt-2" onclick="calcularEBtsinhAt()">Calcular</button>';
+            inputContainer.innerHTML = '<label for="valorA">Ingrese el valor de a:</label><input type="number" id="valorA" name="valorA" class="form-control" required oninput="actualizarVistaPrevia(\'e^{-bt}sinh(at)\')"><label for="valorB">Ingrese el valor de b:</label><input type="number" id="valorB" name="valorB" class="form-control" required oninput="actualizarVistaPrevia(\'e^{-bt}sinh(at)\')"><button type="button" class="btn btn-primary mt-2" onclick="calcularEBtsinhAt()">Calcular</button>';
+            document.getElementById("resultado").innerHTML = '';
+        }
+
+        function crearInputIntegral() {
+            var inputContainer = document.getElementById("inputContainer");
+            inputContainer.innerHTML = '<label for="funcionF">Ingrese la función F(t):</label><input type="text" id="funcionF" name="funcionF" class="form-control" required oninput="actualizarVistaPrevia(\'integral\')"><label for="valorT">Ingrese el valor de t:</label><input type="number" id="valorT" name="valorT" class="form-control" required oninput="actualizarVistaPrevia(\'integral\')"><button type="button" class="btn btn-primary mt-2" onclick="calcularIntegral()">Calcular</button>';
+            document.getElementById("resultado").innerHTML = '';
         }
 
         function calcularSenK() {
             var k = document.getElementById("valorK").value;
-            var resultado = `\\( \\frac{${k}}{s^2 + ${k}^2} \\)`;
-            document.getElementById("resultado").innerHTML = `Resultado para \\( \\sin(${k}t) \\): ${resultado}`;
+            var resultado = `\\( \\frac{${k}}{s^2 + (${k})^2} \\)`;
+            document.getElementById("resultado").innerHTML = `${resultado}`;
             MathJax.typeset();
         }
 
         function calcularSenKt() {
-            var k = document.getElementById("valorsenKt").value;
-            var resultado = `\\( \\frac{${k}}{s^2 - ${k}^2} \\)`;
-            document.getElementById("resultado").innerHTML = `Resultado para \\( \\sinh(${k}t) \\): ${resultado}`;
+            var k = document.getElementById("valorK").value;
+            var resultado = `\\( \\frac{${k}}{s^2 - (${k})^2} \\)`;
+            document.getElementById("resultado").innerHTML = `${resultado}`;
             MathJax.typeset();
         }
 
         function calcularEAtCoshKt() {
             var a = document.getElementById("valorA").value;
             var k = document.getElementById("valorK").value;
-            var resultado = `\\( \\frac{s - ${a}}{(s - ${a})^2 + ${k}^2} \\)`;
-            document.getElementById("resultado").innerHTML = `Resultado para \\( e^{${a}t}\\cosh(${k}t) \\): ${resultado}`;
+            var resultado = `\\( \\frac{s - ${a}}{s^2 - (${k})^2} \\)`;
+            document.getElementById("resultado").innerHTML = `${resultado}`;
             MathJax.typeset();
         }
 
-        function calcularTN() {
+        function calcularTn() {
             var n = document.getElementById("valorN").value;
-            var resultado = `\\( \\frac{${n}!}{s^{${n}+1}} \\)`;
-            document.getElementById("resultado").innerHTML = `Resultado para \\( t^{${n}} \\): ${resultado}`;
+            var resultado = `\\( \\frac{${n}!}{s^{${n} + 1}} \\)`;
+            document.getElementById("resultado").innerHTML = `${resultado}`;
             MathJax.typeset();
         }
 
         function calcularEAtMinusEBt() {
             var a = document.getElementById("valorA").value;
             var b = document.getElementById("valorB").value;
-            var resultado = `\\( \\frac{1}{(s-${a})(s-${b})} \\)`;
-            document.getElementById("resultado").innerHTML = `Resultado para \\( \\frac{e^{${a}t} - e^{${b}t}}{${a} - ${b}} \\): ${resultado}`;
+            var resultado = `\\( \\frac{1}{s^2 - (${a})^2} \\)`;
+            document.getElementById("resultado").innerHTML = `${resultado}`;
             MathJax.typeset();
         }
 
-        function calcularEBtsinhAt(){
+        function calcularEBtsinhAt() {
             var a = document.getElementById("valorA").value;
             var b = document.getElementById("valorB").value;
-            var resultado = `\\( \\frac{s - ${b}}{(s - ${b})^2 + ${a}^2} \\)`;
-            document.getElementById("resultado").innerHTML = `Resultado para \\( e^{${b}t}\\sinh(${a}t) \\): ${resultado}`;
+            var resultado = `\\( \\frac{1}{s^2 - (${b})^2} \\)`;
+            document.getElementById("resultado").innerHTML = `${resultado}`;
             MathJax.typeset();
         }
+
+        function calcularIntegral() {
+        var funcionF = document.getElementById("funcionF").value;
+        var t = document.getElementById("valorT").value;
+        var resultado = `\\( \\frac{${funcionF}}{s} \\)`;
+        document.getElementById("resultado").innerHTML = ` ${resultado}`;
+        MathJax.typeset();
+    }
     </script>
 {% endblock %}

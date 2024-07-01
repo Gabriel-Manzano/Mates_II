@@ -28,7 +28,7 @@ html, body {
 }
 
 .contenedor_entrada, .contenedor_salida, .contenedor_igual_valor {
-    background: blue;
+    background: rgba(247, 247, 247, 0.911);
     width: 950px;
     height: 500px;
     line-height: 80px;
@@ -36,8 +36,14 @@ html, body {
     text-align: center;
     font-size: 40px;
     align-items: center;
-    position: relative; /* Añadido para establecer un contexto de apilamiento */
-    z-index: 2; /* Asegura que los contenedores estén por encima de las letras */
+    position: relative; 
+    z-index: 2; 
+    box-shadow: 0 8px 16px rgb(0, 0, 0);
+}
+
+.hr-divider {
+    margin: 20px 0;
+    border-top: 1px solid #000000;
 }
 
 /* Estilo para el fondo oscuro transparente */
