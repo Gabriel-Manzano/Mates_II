@@ -19,15 +19,32 @@
         <div class="container text-center">
             <label for="funcion">Seleccione la función f(t) que quiere calcular: </label>
             <div class="botones">
-                <button type="button" class="btn btn-outline-secondary" onclick="crearInputUcos()">\( u(t - a) \cos(bt) \)</button>
-                <button type="button" class="btn btn-outline-secondary" onclick="crearInputCos()">\( \cos(at + b) \)</button>
-                <button type="button" class="btn btn-outline-secondary" onclick="crearInputsenK()">\( \sin(kt) \)</button>
-                <button type="button" class="btn btn-outline-secondary" onclick="crearInputsenKt()">\( \sinh(kt) \)</button>
-                <button type="button" class="btn btn-outline-secondary" onclick="crearInputsEAtCoshKt()">\( e^{at}\cosh(kt) \)</button>
-                <button type="button" class="btn btn-outline-secondary" onclick="crearInputstN()">\( t^n \)</button>
-                <button type="button" class="btn btn-outline-secondary" onclick="crearInputsEAtMinusEBt()">\( \frac{e^{at} - e^{bt}}{a-b} \)</button>
-                <button type="button" class="btn btn-outline-secondary" onclick="crearInputsEBtsinhAt()">\( e^{-bt}\sinh(at) \)</button>
-                <button type="button" class="btn btn-outline-secondary" onclick="crearInputIntegral()">\( \int_{0}^{t} f(\tau) d\tau \)</button>
+                <button type="button" class="btn btn-outline-secondary" onclick="crearInputFuncion('1')">\( 1 \)</button>
+                <button type="button" class="btn btn-outline-secondary" onclick="crearInputFuncion('t')">\( t \)</button>
+                <button type="button" class="btn btn-outline-secondary" onclick="crearInputFuncion('t^2')">\( t^2 \)</button>
+                <button type="button" class="btn btn-outline-secondary" onclick="crearInputFuncion('t^n')">\( t^n \)</button>
+                <button type="button" class="btn btn-outline-secondary" onclick="crearInputFuncion('e^{at}')">\( e^{at} \)</button>
+                <button type="button" class="btn btn-outline-secondary" onclick="crearInputFuncion('\\cos(bt)')">\( \cos(bt) \)</button>
+                <button type="button" class="btn btn-outline-secondary" onclick="crearInputFuncion('\\sin(bt)')">\( \sin(bt) \)</button>
+                <button type="button" class="btn btn-outline-secondary" onclick="crearInputFuncion('\\sinh(bt)')">\( \sinh(bt) \)</button>
+                <button type="button" class="btn btn-outline-secondary" onclick="crearInputFuncion('\\cosh(bt)')">\( \cosh(bt) \)</button>
+                <button type="button" class="btn btn-outline-secondary" onclick="crearInputFuncion('e^{at} \\cos(bt)')">\( e^{at} \cos(bt) \)</button>
+                <button type="button" class="btn btn-outline-secondary" onclick="crearInputFuncion('e^{at} \\sin(bt)')">\( e^{at} \sin(bt) \)</button>
+                <button type="button" class="btn btn-outline-secondary" onclick="crearInputFuncion('\\delta(t - a)')">\( \delta(t - a) \)</button>
+                <button type="button" class="btn btn-outline-secondary" onclick="crearInputFuncion('u(t - a)')">\( u(t - a) \)</button>
+                <button type="button" class="btn btn-outline-secondary" onclick="crearInputFuncion('\\frac{1}{t}')">\( \frac{1}{t} \)</button>
+                <button type="button" class="btn btn-outline-secondary" onclick="crearInputFuncion('t e^{at}')">\( t e^{at} \)</button>
+                <button type="button" class="btn btn-outline-secondary" onclick="crearInputFuncion('t^n e^{at}')">\( t^n e^{at} \)</button>
+                <button type="button" class="btn btn-outline-secondary" onclick="crearInputFuncion('sinh(at) \\cosh(bt)')">\( \sinh(at) \cosh(bt) \)</button>
+                <button type="button" class="btn btn-outline-secondary" onclick="crearInputFuncion('cosh(at) \\sinh(bt)')">\( \cosh(at) \sinh(bt) \)</button>
+                <button type="button" class="btn btn-outline-secondary" onclick="crearInputFuncion('\\int_{0}^{t} f(\\tau) d\\tau')">\( \int_{0}^{t} f(\\tau) d\\tau \)</button>
+                <button type="button" class="btn btn-outline-secondary" onclick="crearInputFuncion('f\'(t)')">\( f'(t) \)</button>
+                <button type="button" class="btn btn-outline-secondary" onclick="crearInputFuncion('f\'\'(t)')">\( f''(t) \)</button>
+                <button type="button" class="btn btn-outline-secondary" onclick="crearInputFuncion('e^{bt} t^n')">\( e^{bt} t^n \)</button>
+                <button type="button" class="btn btn-outline-secondary" onclick="crearInputFuncion('t \\sin(at)')">\( t \sin(at) \)</button>
+                <button type="button" class="btn btn-outline-secondary" onclick="crearInputFuncion('t \\cos(at)')">\( t \cos(at) \)</button>
+                <button type="button" class="btn btn-outline-secondary" onclick="crearInputFuncion('\\sin(at + b)')">\( \sin(at + b) \)</button>
+                <button type="button" class="btn btn-outline-secondary" onclick="crearInputFuncion('\\cos(at + b)')">\( \cos(at + b) \)</button>
             </div>
             <div class="container text-center" id="inputContainer"></div>
         </div>        
@@ -49,171 +66,258 @@
             </div>
         </div>
     </div>
-
-
+    
     <script>
-        function crearInputUcos() {
+        function crearInputFuncion(funcion) {
             var inputContainer = document.getElementById("inputContainer");
-            inputContainer.innerHTML = '<label for="valorA">Ingrese el valor de a:</label><input type="number" id="valorA" name="valorA" class="form-control" required oninput="actualizarVistaPrevia(\'u(t - a)cos(bt)\')"><label for="valorB">Ingrese el valor de b:</label><input type="number" id="valorB" name="valorB" class="form-control" required oninput="actualizarVistaPrevia(\'u(t - a)cos(bt)\')"><button type="button" class="btn btn-primary mt-2" onclick="calcularUcos()">Calcular</button>';
+            var inputs = '';
+            switch (funcion) {
+                case '1':
+                    inputs = '<button type="button" class="btn btn-primary mt-2" onclick="calcularFuncion(\'1\')">Calcular</button>';
+                    break;
+                case 't':
+                    inputs = '<button type="button" class="btn btn-primary mt-2" onclick="calcularFuncion(\'t\')">Calcular</button>';
+                    break;
+                case 't^2':
+                    inputs = '<button type="button" class="btn btn-primary mt-2" onclick="calcularFuncion(\'t^2\')">Calcular</button>';
+                    break;
+                case 't^n':
+                    inputs = '<label for="valorN">Ingrese el valor de n:</label><input type="number" id="valorN" name="valorN" class="form-control" required oninput="actualizarVistaPrevia(\'t^n\')"><button type="button" class="btn btn-primary mt-2" onclick="calcularFuncion(\'t^n\')">Calcular</button>';
+                    break;
+                case 'e^{at}':
+                    inputs = '<label for="valorA">Ingrese el valor de a:</label><input type="number" id="valorA" name="valorA" class="form-control" required oninput="actualizarVistaPrevia(\'e^{at}\')"><button type="button" class="btn btn-primary mt-2" onclick="calcularFuncion(\'e^{at}\')">Calcular</button>';
+                    break;
+                case '\\cos(bt)':
+                case '\\sin(bt)':
+                case '\\sinh(bt)':
+                case '\\cosh(bt)':
+                    inputs = '<label for="valorB">Ingrese el valor de b:</label><input type="number" id="valorB" name="valorB" class="form-control" required oninput="actualizarVistaPrevia(\'' + funcion + '\')"><button type="button" class="btn btn-primary mt-2" onclick="calcularFuncion(\'' + funcion + '\')">Calcular</button>';
+                    break;
+                case 'e^{at} \\cos(bt)':
+                case 'e^{at} \\sin(bt)':
+                    inputs = '<label for="valorA">Ingrese el valor de a:</label><input type="number" id="valorA" name="valorA" class="form-control" required oninput="actualizarVistaPrevia(\'' + funcion + '\')"><label for="valorB">Ingrese el valor de b:</label><input type="number" id="valorB" name="valorB" class="form-control" required oninput="actualizarVistaPrevia(\'' + funcion + '\')"><button type="button" class="btn btn-primary mt-2" onclick="calcularFuncion(\'' + funcion + '\')">Calcular</button>';
+                    break;
+                case '\\delta(t - a)':
+                case 'u(t - a)':
+                    inputs = '<label for="valorA">Ingrese el valor de a:</label><input type="number" id="valorA" name="valorA" class="form-control" required oninput="actualizarVistaPrevia(\'' + funcion + '\')"><button type="button" class="btn btn-primary mt-2" onclick="calcularFuncion(\'' + funcion + '\')">Calcular</button>';
+                    break;
+                case '\\frac{1}{t}':
+                    inputs = '<button type="button" class="btn btn-primary mt-2" onclick="calcularFuncion(\'\\frac{1}{t}\')">Calcular</button>';
+                    break;
+                case 't e^{at}':
+                    inputs = '<label for="valorA">Ingrese el valor de a:</label><input type="number" id="valorA" name="valorA" class="form-control" required oninput="actualizarVistaPrevia(\'t e^{at}\')"><button type="button" class="btn btn-primary mt-2" onclick="calcularFuncion(\'t e^{at}\')">Calcular</button>';
+                    break;
+                case 't^n e^{at}':
+                    inputs = '<label for="valorN">Ingrese el valor de n:</label><input type="number" id="valorN" name="valorN" class="form-control" required oninput="actualizarVistaPrevia(\'t^n e^{at}\')"><label for="valorA">Ingrese el valor de a:</label><input type="number" id="valorA" name="valorA" class="form-control" required oninput="actualizarVistaPrevia(\'t^n e^{at}\')"><button type="button" class="btn btn-primary mt-2" onclick="calcularFuncion(\'t^n e^{at}\')">Calcular</button>';
+                    break;
+                case 'sinh(at) \\cosh(bt)':
+                case 'cosh(at) \\sinh(bt)':
+                    inputs = '<label for="valorA">Ingrese el valor de a:</label><input type="number" id="valorA" name="valorA" class="form-control" required oninput="actualizarVistaPrevia(\'' + funcion + '\')"><label for="valorB">Ingrese el valor de b:</label><input type="number" id="valorB" name="valorB" class="form-control" required oninput="actualizarVistaPrevia(\'' + funcion + '\')"><button type="button" class="btn btn-primary mt-2" onclick="calcularFuncion(\'' + funcion + '\')">Calcular</button>';
+                    break;
+                case '\\int_{0}^{t} f(\\tau) d\\tau':
+                    inputs = '<label for="funcionF">Ingrese la función F(t):</label><input type="text" id="funcionF" name="funcionF" class="form-control" required oninput="actualizarVistaPrevia(\'\\int_{0}^{t} f(\\tau) d\\tau\')"><label for="valorT">Ingrese el valor de t:</label><input type="number" id="valorT" name="valorT" class="form-control" required oninput="actualizarVistaPrevia(\'\\int_{0}^{t} f(\\tau) d\\tau\')"><button type="button" class="btn btn-primary mt-2" onclick="calcularFuncion(\'\\int_{0}^{t} f(\\tau) d\\tau\')">Calcular</button>';
+                    break;
+                case 'f\'(t)':
+                case 'f\'\'(t)':
+                    inputs = '<label for="funcionF">Ingrese la función F(t):</label><input type="text" id="funcionF" name="funcionF" class="form-control" required oninput="actualizarVistaPrevia(\'' + funcion + '\')"><button type="button" class="btn btn-primary mt-2" onclick="calcularFuncion(\'' + funcion + '\')">Calcular</button>';
+                    break;
+                case 'e^{bt} t^n':
+                    inputs = '<label for="valorB">Ingrese el valor de b:</label><input type="number" id="valorB" name="valorB" class="form-control" required oninput="actualizarVistaPrevia(\'e^{bt} t^n\')"><label for="valorN">Ingrese el valor de n:</label><input type="number" id="valorN" name="valorN" class="form-control" required oninput="actualizarVistaPrevia(\'e^{bt} t^n\')"><button type="button" class="btn btn-primary mt-2" onclick="calcularFuncion(\'e^{bt} t^n\')">Calcular</button>';
+                    break;
+                case 't \\sin(at)':
+                case 't \\cos(at)':
+                    inputs = '<label for="valorA">Ingrese el valor de a:</label><input type="number" id="valorA" name="valorA" class="form-control" required oninput="actualizarVistaPrevia(\'' + funcion + '\')"><button type="button" class="btn btn-primary mt-2" onclick="calcularFuncion(\'' + funcion + '\')">Calcular</button>';
+                    break;
+                case '\\sin(at + b)':
+                case '\\cos(at + b)':
+                    inputs = '<label for="valorA">Ingrese el valor de a:</label><input type="number" id="valorA" name="valorA" class="form-control" required oninput="actualizarVistaPrevia(\'' + funcion + '\')"><label for="valorB">Ingrese el valor de b:</label><input type="number" id="valorB" name="valorB" class="form-control" required oninput="actualizarVistaPrevia(\'' + funcion + '\')"><button type="button" class="btn btn-primary mt-2" onclick="calcularFuncion(\'' + funcion + '\')">Calcular</button>';
+                    break;
+            }
+            inputContainer.innerHTML = inputs;
             document.getElementById("resultado").innerHTML = '';
+            actualizarVistaPrevia(funcion);
         }
-
-        function crearInputCos() {
-            var inputContainer = document.getElementById("inputContainer");
-            inputContainer.innerHTML = '<label for="valorA">Ingrese el valor de a:</label><input type="number" id="valorA" name="valorA" class="form-control" required oninput="actualizarVistaPrevia(\'cos(at + b)\')"><label for="valorB">Ingrese el valor de b:</label><input type="number" id="valorB" name="valorB" class="form-control" required oninput="actualizarVistaPrevia(\'cos(at + b)\')"><button type="button" class="btn btn-primary mt-2" onclick="calcularCos()">Calcular</button>';
-            document.getElementById("resultado").innerHTML = '';
-        }
-
+    
         function actualizarVistaPrevia(funcion) {
             var vistaPrevia = document.getElementById("vistaPrevia");
             var valorA = document.getElementById("valorA") ? document.getElementById("valorA").value : "";
             var valorB = document.getElementById("valorB") ? document.getElementById("valorB").value : "";
-            var valorK = document.getElementById("valorK") ? document.getElementById("valorK").value : document.getElementById("valorsenKt") ? document.getElementById("valorsenKt").value : "";
             var valorN = document.getElementById("valorN") ? document.getElementById("valorN").value : "";
             var funcionF = document.getElementById("funcionF") ? document.getElementById("funcionF").value : "";
             var valorT = document.getElementById("valorT") ? document.getElementById("valorT").value : "";
-
-            if (funcion === 'u(t - a)cos(bt)') {
-                vistaPrevia.innerHTML = '\\( u(t - ' + valorA + ') \\cos(' + valorB + 't) \\)';
-                document.getElementById("formulaOriginal").innerHTML = '\\( u(t - a) \\cos(bt) \\)';
-            } else if (funcion === 'cos(at + b)') {
-                vistaPrevia.innerHTML = '\\( \\cos(' + valorA + 't + ' + valorB + ') \\)';
-                document.getElementById("formulaOriginal").innerHTML = '\\( \\cos(at + b) \\)';
-            } else if (funcion === 'sin(kt)') {
-                vistaPrevia.innerHTML = '\\( \\sin(' + valorK + 't) \\)';
-                document.getElementById("formulaOriginal").innerHTML = '\\( \\sin(kt) \\)';
-            } else if (funcion === 'sinh(kt)') {
-                vistaPrevia.innerHTML = '\\( \\sinh(' + valorK + 't) \\)';
-                document.getElementById("formulaOriginal").innerHTML = '\\( \\sinh(kt) \\)';
-            } else if (funcion === 'e^{at}cosh(kt)') {
-                vistaPrevia.innerHTML = '\\( e^{' + valorA + 't}\\cosh(' + valorK + 't) \\)';
-                document.getElementById("formulaOriginal").innerHTML = '\\( e^{at}\\cosh(kt) \\)';
-            } else if (funcion === 't^n') {
+    
+            if (funcion === 't^n') {
                 vistaPrevia.innerHTML = '\\( t^{' + valorN + '} \\)';
                 document.getElementById("formulaOriginal").innerHTML = '\\( t^n \\)';
-            } else if (funcion === '{e^{at} - e^{bt}}/{a-b}') {
-                vistaPrevia.innerHTML = '\\( \\frac{e^{' + valorA + 't} - e^{' + valorB + 't}}{' + valorA + '-' + valorB + '} \\)';
-                document.getElementById("formulaOriginal").innerHTML = '\\( \\frac{e^{at} - e^{bt}}{a-b} \\)';
-            } else if (funcion === 'e^{-bt}sinh(at)') {
-                vistaPrevia.innerHTML = '\\( e^{' + valorB + 't}\\sinh(' + valorA + 't) \\)';
-                document.getElementById("formulaOriginal").innerHTML = '\\( e^{-bt}\\sinh(at) \\)';
-            } else if (funcion === 'integral') {
+            } else if (funcion === 'e^{at}') {
+                vistaPrevia.innerHTML = '\\( e^{' + valorA + 't} \\)';
+                document.getElementById("formulaOriginal").innerHTML = '\\( e^{at} \\)';
+            } else if (funcion === '\\cos(bt)') {
+                vistaPrevia.innerHTML = '\\( \\cos(' + valorB + 't) \\)';
+                document.getElementById("formulaOriginal").innerHTML = '\\( \\cos(bt) \\)';
+            } else if (funcion === '\\sin(bt)') {
+                vistaPrevia.innerHTML = '\\( \\sin(' + valorB + 't) \\)';
+                document.getElementById("formulaOriginal").innerHTML = '\\( \\sin(bt) \\)';
+            } else if (funcion === '\\sinh(bt)') {
+                vistaPrevia.innerHTML = '\\( \\sinh(' + valorB + 't) \\)';
+                document.getElementById("formulaOriginal").innerHTML = '\\( \\sinh(bt) \\)';
+            } else if (funcion === '\\cosh(bt)') {
+                vistaPrevia.innerHTML = '\\( \\cosh(' + valorB + 't) \\)';
+                document.getElementById("formulaOriginal").innerHTML = '\\( \\cosh(bt) \\)';
+            } else if (funcion === 'e^{at} \\cos(bt)') {
+                vistaPrevia.innerHTML = '\\( e^{' + valorA + 't} \\cos(' + valorB + 't) \\)';
+                document.getElementById("formulaOriginal").innerHTML = '\\( e^{at} \\cos(bt) \\)';
+            } else if (funcion === 'e^{at} \\sin(bt)') {
+                vistaPrevia.innerHTML = '\\( e^{' + valorA + 't} \\sin(' + valorB + 't) \\)';
+                document.getElementById("formulaOriginal").innerHTML = '\\( e^{at} \\sin(bt) \\)';
+            } else if (funcion === '\\delta(t - a)') {
+                vistaPrevia.innerHTML = '\\( \\delta(t - ' + valorA + ') \\)';
+                document.getElementById("formulaOriginal").innerHTML = '\\( \\delta(t - a) \\)';
+            } else if (funcion === 'u(t - a)') {
+                vistaPrevia.innerHTML = '\\( u(t - ' + valorA + ') \\)';
+                document.getElementById("formulaOriginal").innerHTML = '\\( u(t - a) \\)';
+            } else if (funcion === '1') {
+                vistaPrevia.innerHTML = '\\( 1 \\)';
+                document.getElementById("formulaOriginal").innerHTML = '\\( 1 \\)';
+            } else if (funcion === 't') {
+                vistaPrevia.innerHTML = '\\( t \\)';
+                document.getElementById("formulaOriginal").innerHTML = '\\( t \\)';
+            } else if (funcion === 't^2') {
+                vistaPrevia.innerHTML = '\\( t^2 \\)';
+                document.getElementById("formulaOriginal").innerHTML = '\\( t^2 \\)';
+            } else if (funcion === '\\frac{1}{t}') {
+                vistaPrevia.innerHTML = '\\( \\frac{1}{t} \\)';
+                document.getElementById("formulaOriginal").innerHTML = '\\( \\frac{1}{t} \\)';
+            } else if (funcion === 't e^{at}') {
+                vistaPrevia.innerHTML = '\\( t e^{' + valorA + 't} \\)';
+                document.getElementById("formulaOriginal").innerHTML = '\\( t e^{at} \\)';
+            } else if (funcion === 't^n e^{at}') {
+                vistaPrevia.innerHTML = '\\( t^{' + valorN + '} e^{' + valorA + 't} \\)';
+                document.getElementById("formulaOriginal").innerHTML = '\\( t^n e^{at} \\)';
+            } else if (funcion === 'sinh(at) \\cosh(bt)') {
+                vistaPrevia.innerHTML = '\\( \\sinh(' + valorA + 't) \\cosh(' + valorB + 't) \\)';
+                document.getElementById("formulaOriginal").innerHTML = '\\( \\sinh(at) \\cosh(bt) \\)';
+            } else if (funcion === 'cosh(at) \\sinh(bt)') {
+                vistaPrevia.innerHTML = '\\( \\cosh(' + valorA + 't) \\sinh(' + valorB + 't) \\)';
+                document.getElementById("formulaOriginal").innerHTML = '\\( \\cosh(at) \\sinh(bt) \\)';
+            } else if (funcion === '\\int_{0}^{t} f(\\tau) d\\tau') {
                 vistaPrevia.innerHTML = '\\( \\int_{0}^{' + valorT + '} ' + funcionF + ' d\\tau \\)';
-                document.getElementById("formulaOriginal").innerHTML = '\\( \\int_{0}^{' + valorT + '} ' + funcionF + ' d\\tau \\)';
+                document.getElementById("formulaOriginal").innerHTML = '\\( \\int_{0}^{t} f(\\tau) d\\tau \\)';
+            } else if (funcion === 'f\'(t)') {
+                vistaPrevia.innerHTML = '\\( f\'(t) \\)';
+                document.getElementById("formulaOriginal").innerHTML = '\\( f\'(t) \\)';
+            } else if (funcion === 'f\'\'(t)') {
+                vistaPrevia.innerHTML = '\\( f\'\'(t) \\)';
+                document.getElementById("formulaOriginal").innerHTML = '\\( f\'\'(t) \\)';
+            } else if (funcion === 'e^{bt} t^n') {
+                vistaPrevia.innerHTML = '\\( e^{' + valorB + 't} t^{' + valorN + '} \\)';
+                document.getElementById("formulaOriginal").innerHTML = '\\( e^{bt} t^n \\)';
+            } else if (funcion === 't \\sin(at)') {
+                vistaPrevia.innerHTML = '\\( t \\sin(' + valorA + 't) \\)';
+                document.getElementById("formulaOriginal").innerHTML = '\\( t \\sin(at) \\)';
+            } else if (funcion === 't \\cos(at)') {
+                vistaPrevia.innerHTML = '\\( t \\cos(' + valorA + 't) \\)';
+                document.getElementById("formulaOriginal").innerHTML = '\\( t \\cos(at) \\)';
+            } else if (funcion === '\\sin(at + b)') {
+                vistaPrevia.innerHTML = '\\( \\sin(' + valorA + 't + ' + valorB + ') \\)';
+                document.getElementById("formulaOriginal").innerHTML = '\\( \\sin(at + b) \\)';
+            } else if (funcion === '\\cos(at + b)') {
+                vistaPrevia.innerHTML = '\\( \\cos(' + valorA + 't + ' + valorB + ') \\)';
+                document.getElementById("formulaOriginal").innerHTML = '\\( \\cos(at + b) \\)';
             }
-
+    
             MathJax.typeset();
         }
-
-        function calcularUcos() {
-            var a = document.getElementById("valorA").value;
-            var b = document.getElementById("valorB").value;
-            var resultado = `\\( \\frac{e^{-(${a})s} s}{s^2 + (${b})^2} \\)`;
-            document.getElementById("resultado").innerHTML = `${resultado}`;
+    
+        function calcularFuncion(funcion) {
+            var resultado = '';
+            var valorA = document.getElementById("valorA") ? document.getElementById("valorA").value : "";
+            var valorB = document.getElementById("valorB") ? document.getElementById("valorB").value : "";
+            var valorN = document.getElementById("valorN") ? document.getElementById("valorN").value : "";
+            var funcionF = document.getElementById("funcionF") ? document.getElementById("funcionF").value : "";
+    
+            switch (funcion) {
+                case '1':
+                    resultado = '\\( \\frac{1}{s} \\)';
+                    break;
+                case 't':
+                    resultado = '\\( \\frac{1}{s^2} \\)';
+                    break;
+                case 't^2':
+                    resultado = '\\( \\frac{2}{s^3} \\)';
+                    break;
+                case 't^n':
+                    resultado = '\\( \\frac{' + valorN + '!}{s^{' + (parseInt(valorN) + 1) + '}} \\)';
+                    break;
+                case 'e^{at}':
+                    resultado = '\\( \\frac{1}{s - ' + valorA + '} \\)';
+                    break;
+                case '\\cos(bt)':
+                    resultado = '\\( \\frac{s}{s^2 + ' + valorB + '^2} \\)';
+                    break;
+                case '\\sin(bt)':
+                    resultado = '\\( \\frac{' + valorB + '}{s^2 + ' + valorB + '^2} \\)';
+                    break;
+                case '\\sinh(bt)':
+                    resultado = '\\( \\frac{' + valorB + '}{s^2 - ' + valorB + '^2} \\)';
+                    break;
+                case '\\cosh(bt)':
+                    resultado = '\\( \\frac{s}{s^2 - ' + valorB + '^2} \\)';
+                    break;
+                case 'e^{at} \\cos(bt)':
+                    resultado = '\\( \\frac{s - ' + valorA + '}{(s - ' + valorA + ')^2 + ' + valorB + '^2} \\)';
+                    break;
+                case 'e^{at} \\sin(bt)':
+                    resultado = '\\( \\frac{' + valorB + '}{(s - ' + valorA + ')^2 + ' + valorB + '^2} \\)';
+                    break;
+                case '\\delta(t - a)':
+                    resultado = '\\( e^{-' + valorA + 's} \\)';
+                    break;
+                case 'u(t - a)':
+                    resultado = '\\( \\frac{e^{-' + valorA + 's}}{s} \\)';
+                    break;
+                case '\\frac{1}{t}':
+                    resultado = '\\( \\ln(s) \\)';
+                    break;
+                case 't e^{at}':
+                    resultado = '\\( \\frac{1}{(s - ' + valorA + ')^2} \\)';
+                    break;
+                case 't^n e^{at}':
+                    resultado = '\\( \\frac{' + valorN + '!}{(s - ' + valorA + ')^{' + (parseInt(valorN) + 1) + '}} \\)';
+                    break;
+                case 'sinh(at) \\cosh(bt)':
+                    resultado = '\\( \\frac{' + valorA + '}{s^2 - (' + valorA + ')^2} \\)';
+                    break;
+                case 'cosh(at) \\sinh(bt)':
+                    resultado = '\\( \\frac{s}{s^2 - (' + valorA + ')^2} \\)';
+                    break;
+                case '\\int_{0}^{t} f(\\tau) d\\tau':
+                    resultado = '\\( \\frac{F(s)}{s} \\)';
+                    break;
+                case 'f\'(t)':
+                    resultado = '\\( sF(s) - f(0) \\)';
+                    break;
+                case 'f\'\'(t)':
+                    resultado = '\\( s^2F(s) - sf(0) - f\'(0) \\)';
+                    break;
+                case 'e^{bt} t^n':
+                    resultado = '\\( \\frac{' + valorN + '!}{(s - ' + valorB + ')^{' + (parseInt(valorN) + 1) + '}} \\)';
+                    break;
+                case 't \\sin(at)':
+                    resultado = '\\( \\frac{2as}{(s^2 + a^2)^2} \\)';
+                    break;
+                case 't \\cos(at)':
+                    resultado = '\\( \\frac{s^2 - a^2}{(s^2 + a^2)^2} \\)';
+                    break;
+                case '\\sin(at + b)':
+                    resultado = '\\( \\frac{a \\cos(b) + s \\sin(b)}{s^2 + a^2} \\)';
+                    break;
+                case '\\cos(at + b)':
+                    resultado = '\\( \\frac{s \\cos(b) - a \\sin(b)}{s^2 + a^2} \\)';
+                    break;
+            }
+            document.getElementById("resultado").innerHTML = resultado;
             MathJax.typeset();
         }
-
-        function calcularCos() {
-            var a = document.getElementById("valorA").value;
-            var b = document.getElementById("valorB").value;
-            var resultado = `\\( \\frac{s \\cos(${b}) - ${a} \\sin(${b})}{s^2 + (${a})^2} \\)`;
-            document.getElementById("resultado").innerHTML = `${resultado}`;
-            MathJax.typeset();
-        }
-
-        function crearInputsenK() {
-            var inputContainer = document.getElementById("inputContainer");
-            inputContainer.innerHTML = '<label for="valorK">Ingrese el valor de k:</label><input type="number" id="valorK" name="valorK" class="form-control" required oninput="actualizarVistaPrevia(\'sin(kt)\')"><button type="button" class="btn btn-primary mt-2" onclick="calcularSenK()">Calcular</button>';
-            document.getElementById("resultado").innerHTML = '';
-        }
-
-        function crearInputsenKt() {
-            var inputContainer = document.getElementById("inputContainer");
-            inputContainer.innerHTML = '<label for="valorK">Ingrese el valor de k:</label><input type="number" id="valorK" name="valorK" class="form-control" required oninput="actualizarVistaPrevia(\'sinh(kt)\')"><button type="button" class="btn btn-primary mt-2" onclick="calcularSenKt()">Calcular</button>';
-            document.getElementById("resultado").innerHTML = '';
-        }
-
-        function crearInputsEAtCoshKt() {
-            var inputContainer = document.getElementById("inputContainer");
-            inputContainer.innerHTML = '<label for="valorA">Ingrese el valor de a:</label><input type="number" id="valorA" name="valorA" class="form-control" required oninput="actualizarVistaPrevia(\'e^{at}cosh(kt)\')"><label for="valorK">Ingrese el valor de k:</label><input type="number" id="valorK" name="valorK" class="form-control" required oninput="actualizarVistaPrevia(\'e^{at}cosh(kt)\')"><button type="button" class="btn btn-primary mt-2" onclick="calcularEAtCoshKt()">Calcular</button>';
-            document.getElementById("resultado").innerHTML = '';
-        }
-
-        function crearInputstN() {
-            var inputContainer = document.getElementById("inputContainer");
-            inputContainer.innerHTML = '<label for="valorN">Ingrese el valor de n:</label><input type="number" id="valorN" name="valorN" class="form-control" required oninput="actualizarVistaPrevia(\'t^n\')"><button type="button" class="btn btn-primary mt-2" onclick="calcularTn()">Calcular</button>';
-            document.getElementById("resultado").innerHTML = '';
-        }
-
-        function crearInputsEAtMinusEBt() {
-            var inputContainer = document.getElementById("inputContainer");
-            inputContainer.innerHTML = '<label for="valorA">Ingrese el valor de a:</label><input type="number" id="valorA" name="valorA" class="form-control" required oninput="actualizarVistaPrevia(\'{e^{at} - e^{bt}}/{a-b}\')"><label for="valorB">Ingrese el valor de b:</label><input type="number" id="valorB" name="valorB" class="form-control" required oninput="actualizarVistaPrevia(\'{e^{at} - e^{bt}}/{a-b}\')"><button type="button" class="btn btn-primary mt-2" onclick="calcularEAtMinusEBt()">Calcular</button>';
-            document.getElementById("resultado").innerHTML = '';
-        }
-
-        function crearInputsEBtsinhAt() {
-            var inputContainer = document.getElementById("inputContainer");
-            inputContainer.innerHTML = '<label for="valorA">Ingrese el valor de a:</label><input type="number" id="valorA" name="valorA" class="form-control" required oninput="actualizarVistaPrevia(\'e^{-bt}sinh(at)\')"><label for="valorB">Ingrese el valor de b:</label><input type="number" id="valorB" name="valorB" class="form-control" required oninput="actualizarVistaPrevia(\'e^{-bt}sinh(at)\')"><button type="button" class="btn btn-primary mt-2" onclick="calcularEBtsinhAt()">Calcular</button>';
-            document.getElementById("resultado").innerHTML = '';
-        }
-
-        function crearInputIntegral() {
-            var inputContainer = document.getElementById("inputContainer");
-            inputContainer.innerHTML = '<label for="funcionF">Ingrese la función F(t):</label><input type="text" id="funcionF" name="funcionF" class="form-control" required oninput="actualizarVistaPrevia(\'integral\')"><label for="valorT">Ingrese el valor de t:</label><input type="number" id="valorT" name="valorT" class="form-control" required oninput="actualizarVistaPrevia(\'integral\')"><button type="button" class="btn btn-primary mt-2" onclick="calcularIntegral()">Calcular</button>';
-            document.getElementById("resultado").innerHTML = '';
-        }
-
-        function calcularSenK() {
-            var k = document.getElementById("valorK").value;
-            var resultado = `\\( \\frac{${k}}{s^2 + (${k})^2} \\)`;
-            document.getElementById("resultado").innerHTML = `${resultado}`;
-            MathJax.typeset();
-        }
-
-        function calcularSenKt() {
-            var k = document.getElementById("valorK").value;
-            var resultado = `\\( \\frac{${k}}{s^2 - (${k})^2} \\)`;
-            document.getElementById("resultado").innerHTML = `${resultado}`;
-            MathJax.typeset();
-        }
-
-        function calcularEAtCoshKt() {
-            var a = document.getElementById("valorA").value;
-            var k = document.getElementById("valorK").value;
-            var resultado = `\\( \\frac{s - ${a}}{s^2 - (${k})^2} \\)`;
-            document.getElementById("resultado").innerHTML = `${resultado}`;
-            MathJax.typeset();
-        }
-
-        function calcularTn() {
-            var n = document.getElementById("valorN").value;
-            var resultado = `\\( \\frac{${n}!}{s^{${n} + 1}} \\)`;
-            document.getElementById("resultado").innerHTML = `${resultado}`;
-            MathJax.typeset();
-        }
-
-        function calcularEAtMinusEBt() {
-            var a = document.getElementById("valorA").value;
-            var b = document.getElementById("valorB").value;
-            var resultado = `\\( \\frac{1}{s^2 - (${a})^2} \\)`;
-            document.getElementById("resultado").innerHTML = `${resultado}`;
-            MathJax.typeset();
-        }
-
-        function calcularEBtsinhAt() {
-            var a = document.getElementById("valorA").value;
-            var b = document.getElementById("valorB").value;
-            var resultado = `\\( \\frac{1}{s^2 - (${b})^2} \\)`;
-            document.getElementById("resultado").innerHTML = `${resultado}`;
-            MathJax.typeset();
-        }
-
-        function calcularIntegral() {
-        var funcionF = document.getElementById("funcionF").value;
-        var t = document.getElementById("valorT").value;
-        var resultado = `\\( \\frac{${funcionF}}{s} \\)`;
-        document.getElementById("resultado").innerHTML = ` ${resultado}`;
-        MathJax.typeset();
-    }
     </script>
 {% endblock %}
