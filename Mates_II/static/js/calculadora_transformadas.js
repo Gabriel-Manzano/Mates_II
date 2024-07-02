@@ -177,28 +177,35 @@ function calcularFuncion(funcion) {
             resultado = '\\( \\frac{2}{s^3} \\)';
             break;
         case 't^n':
-            resultado = '\\( \\frac{' + valorN + '!}{s^{' + (parseInt(valorN) + 1) + '}} \\)';
+            factorialN = 1;
+        
+        
+            for (let i = 1; i <= valorN; i++) {
+                factorialN *= i;
+            }
+            
+            resultado = '\\( \\frac{' + factorialN + '}{s^{' + (parseInt(valorN) + 1) + '}} \\)';
             break;
         case 'e^{at}':
             resultado = '\\( \\frac{1}{s - ' + valorA + '} \\)';
             break;
         case 'cos(bt)':
-            resultado = '\\( \\frac{s}{s^2 + ' + valorB + '^2} \\)';
+            resultado = '\\( \\frac{s}{s^2 + ' + valorB**2 + '} \\)';
             break;
         case 'sin(bt)':
-            resultado = '\\( \\frac{' + valorB + '}{s^2 + ' + valorB + '^2} \\)';
+            resultado = '\\( \\frac{' + valorB + '}{s^2 + ' + valorB**2 + '} \\)';
             break;
         case 'sinh(bt)':
-            resultado = '\\( \\frac{' + valorB + '}{s^2 - ' + valorB + '^2} \\)';
+            resultado = '\\( \\frac{' + valorB + '}{s^2 - ' + valorB**2 + '} \\)';
             break;
         case 'cosh(bt)':
-            resultado = '\\( \\frac{s}{s^2 - ' + valorB + '^2} \\)';
+            resultado = '\\( \\frac{s}{s^2 - ' + valorB**2 + '} \\)';
             break;
         case 'e^{at} cos(bt)':
-            resultado = '\\( \\frac{s - ' + valorA + '}{(s - ' + valorA + ')^2 + ' + valorB + '^2} \\)';
+            resultado = '\\( \\frac{s - ' + valorA + '}{(s - ' + valorA + ')^2 + ' + valorB**2 + '} \\)';
             break;
         case 'e^{at} sin(bt)':
-            resultado = '\\( \\frac{' + valorB + '}{(s - ' + valorA + ')^2 + ' + valorB + '^2} \\)';
+            resultado = '\\( \\frac{' + valorB + '}{(s - ' + valorA + ')^2 + ' + valorB**2 + '} \\)';
             break;
         case 'delta(t - a)':
             resultado = '\\( e^{-' + valorA + 's} \\)';
@@ -213,25 +220,42 @@ function calcularFuncion(funcion) {
             resultado = '\\( \\frac{1}{(s - ' + valorA + ')^2} \\)';
             break;
         case 't^n e^{at}':
-            resultado = '\\( \\frac{' + valorN + '!}{(s - ' + valorA + ')^{' + (parseInt(valorN) + 1) + '}} \\)';
+             factorialN = 1;
+        
+        
+            for (let i = 1; i <= valorN; i++) {
+                factorialN *= i;
+            }
+
+            resultado = '\\( \\frac{' + factorialN + '}{(s - ' + valorA + ')^{' + (parseInt(valorN) + 1) + '}} \\)';
             break;
         case 'sinh(at) cosh(bt)':
-            resultado = '\\( \\frac{' + valorA + '}{s^2 - (' + valorA + ')^2} \\)';
+            resultado = '\\( \\frac{' + valorA + '}{s^2 - ' + valorA**2     + '} \\)';
             break;
         case 'cosh(at) sinh(bt)':
-            resultado = '\\( \\frac{s}{s^2 - (' + valorA + ')^2} \\)';
+            resultado = '\\( \\frac{s}{s^2 - ' + valorA**2 + '} \\)';
             break;
-        case '\\int_{0}^{t} f(\\tau) d\\tau':
+        case '\\int_{0}^{t} f(\\tau) d\\tau': //!!NO FUNCIONA
             resultado = '\\( \\frac{F(s)}{s} \\)';
             break;
-        case 'f\'(t)':
+        case 'f\'(t)'://!!NO FUNCIONA
             resultado = '\\( sF(s) - f(0) \\)';
             break;
-        case 'f\'\'(t)':
+        case 'f\'\'(t)'://!!NO FUNCIONA
             resultado = '\\( s^2F(s) - sf(0) - f\'(0) \\)';
             break;
         case 'e^{bt} t^n':
-            resultado = '\\( \\frac{' + valorN + '!}{(s - ' + valorB + ')^{' + (parseInt(valorN) + 1) + '}} \\)';
+
+        factorialN = 1;
+        
+        
+        for (let i = 1; i <= valorN; i++) {
+            factorialN *= i;
+        }
+
+
+
+            resultado = '\\( \\frac{' + factorialN + '}{(s - ' + valorB + ')^{' + (parseInt(valorN) + 1) + '}} \\)';
             break;
         case 't sin(at)':
             resultado = '\\( \\frac{' + 2*valorA + 's}{(s^2 + ' + valorA**2 + ')^2} \\)';
