@@ -67,7 +67,10 @@ function crearInputFuncion(funcion) {
     document.getElementById("resultado").innerHTML = '';
     actualizarVistaPrevia(funcion);
 }
-
+//---------------------------------------------------------------------------------------------------------------------
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//*ACTUALIZACION DE LAS VISTAS EN LOS DIV FORMULA */
 function actualizarVistaPrevia(funcion) {
     var vistaPrevia = document.getElementById("vistaPrevia");
     var valorA = document.getElementById("valorA") ? document.getElementById("valorA").value : "";
@@ -99,13 +102,13 @@ function actualizarVistaPrevia(funcion) {
         document.getElementById("formulaOriginal").innerHTML = '\\( e^{at} \\cos(bt) \\)';
     } else if (funcion === 'e^{at} \\sin(bt)') {
         vistaPrevia.innerHTML = '\\( e^{' + valorA + 't} \\sin(' + valorB + 't) \\)';
-        document.getElementById("formulaOriginal").innerHTML = '\\( e^{at} \\sin(bt) \\)';
+        document.getElementById("formulaOriginal").innerHTML = '\\( e^{' + valorA + 't} \\sin(' + valorB + 't) \\)';
     } else if (funcion === '\\delta(t - a)') {
         vistaPrevia.innerHTML = '\\( \\delta(t - ' + valorA + ') \\)';
-        document.getElementById("formulaOriginal").innerHTML = '\\( \\delta(t - a) \\)';
+        document.getElementById("formulaOriginal").innerHTML = '\\( \\delta(t - ' + valorA + ') \\)';
     } else if (funcion === 'u(t - a)') {
         vistaPrevia.innerHTML = '\\( u(t - ' + valorA + ') \\)';
-        document.getElementById("formulaOriginal").innerHTML = '\\( u(t - a) \\)';
+        document.getElementById("formulaOriginal").innerHTML = '\\( u(t - ' + valorA + ') \\)';
     } else if (funcion === '1') {
         vistaPrevia.innerHTML = '\\( 1 \\)';
         document.getElementById("formulaOriginal").innerHTML = '\\( 1 \\)';
@@ -119,8 +122,8 @@ function actualizarVistaPrevia(funcion) {
         vistaPrevia.innerHTML = '\\( \\frac{1}{t} \\)';
         document.getElementById("formulaOriginal").innerHTML = '\\( \\frac{1}{t} \\)';
     } else if (funcion === 't e^{at}') {
-        vistaPrevia.innerHTML = '\\( t e^{' + valorA + 't} \\)';
-        document.getElementById("formulaOriginal").innerHTML = '\\( t e^{at} \\)';
+        vistaPrevia.innerHTML = '\\( t e^{at} \\)';
+        document.getElementById("formulaOriginal").innerHTML = '\\( t e^{' + valorN + 't} \\)';
     } else if (funcion === 't^n e^{at}') {
         vistaPrevia.innerHTML = '\\( t^{' + valorN + '} e^{' + valorA + 't} \\)';
         document.getElementById("formulaOriginal").innerHTML = '\\( t^n e^{at} \\)';
@@ -158,7 +161,10 @@ function actualizarVistaPrevia(funcion) {
 
     MathJax.typeset();
 }
-
+//---------------------------------------------------------------------------------------------------------------------
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//*CALCULO DE LAS INTEGRALES EN EL DIV DE RESULTADO */
 function calcularFuncion(funcion) {
     var resultado = '';
     var valorA = document.getElementById("valorA") ? document.getElementById("valorA").value : "";
