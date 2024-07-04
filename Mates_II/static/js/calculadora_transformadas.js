@@ -322,144 +322,85 @@ function calcularFuncion(funcion) {
             resultado = '\\( \\frac{2}{s^3} \\)';
             break;
         case 't^n':
-            rd_sustitucion = '\\(\\frac{n!}{s^{n+1}}\\)';
             var factorialN = 1;
             for (let i = 1; i <= parseInt(valorN); i++) {
                 factorialN *= i;
             }
-            rd_transformada = '\\[ \\mathcal{L}\\{t^{' + valorN + '}\\} \\]';
             resultado = '\\( \\frac{' + factorialN + '}{s^{' + (parseInt(valorN) + 1) + '}} \\)';
             break;
         case 'e^{at}':
-            rd_sustitucion = '\\(\\frac{1}{s-a} \\)';
-            rd_transformada = '\\[ \\mathcal{L}\\{e^{' + valorA + 't}\\} \\]';
-            resultado = '\\( \\frac{1}{s - ' + valorA + '} \\)';
+            resultado = '\\( \\frac{1}{s - ' + parseInt(valorA) + '} \\)';
             break;
         case 'cos(bt)':
-            rd_sustitucion = '\\( \\frac{s}{s^{2}+b^} \\)';
-            rd_transformada = '\\[ \\mathcal{L}\\{\\cos(' + valorB + 't)\\} \\]';
             resultado = '\\( \\frac{s}{s^2 + ' + formatearNumero(vb) + '} \\)';
             break;
         case 'sin(bt)':
-            rd_sustitucion = '\\( \\sin(' + valorB + 't) \\)';
-            rd_transformada = '\\[ \\mathcal{L}\\{\\sin(' + valorB + 't)\\} \\]';
             resultado = '\\( \\frac{' + formatearNumero(parseFloat(valorB)) + '}{s^2 + ' + formatearNumero(vb) + '} \\)';
             break;
         case 'sinh(bt)':
-            rd_sustitucion = '\\( \\sinh(' + valorB + 't) \\)';
-            rd_transformada = '\\[ \\mathcal{L}\\{\\sinh(' + valorB + 't)\\} \\]';
             resultado = '\\( \\frac{' + formatearNumero(parseFloat(valorB)) + '}{s^2 - ' + formatearNumero(vb) + '} \\)';
             break;
         case 'cosh(bt)':
-            rd_sustitucion = '\\( \\cosh(' + valorB + 't) \\)';
-            rd_transformada = '\\[ \\mathcal{L}\\{\\cosh(' + valorB + 't)\\} \\]';
             resultado = '\\( \\frac{s}{s^2 - ' + formatearNumero(vb) + '} \\)';
             break;
         case 'e^{at} cos(bt)':
-            rd_sustitucion = '\\( e^{' + valorA + 't} \\cos(' + valorB + 't) \\)';
-            rd_transformada = '\\[ \\mathcal{L}\\{e^{' + valorA + 't} \\cos(' + valorB + 't)\\} \\]';
-            resultado = '\\( \\frac{s - ' + valorA + '}{(s - ' + valorA + ')^2 + ' + formatearNumero(vb) + '} \\)';
+            resultado = '\\( \\frac{s - ' + parseInt(valorA) + '}{(s - ' + parseInt(valorA) + ')^2 + ' + formatearNumero(vb) + '} \\)';
             break;
         case 'e^{at} sin(bt)':
-            rd_sustitucion = '\\( e^{' + valorA + 't} \\sin(' + valorB + 't) \\)';
-            rd_transformada = '\\[ \\mathcal{L}\\{e^{' + valorA + 't} \\sin(' + valorB + 't)\\} \\]';
-            resultado = '\\( \\frac{' + formatearNumero(parseFloat(valorB)) + '}{(s - ' + valorA + ')^2 + ' + formatearNumero(vb) + '} \\)';
+            resultado = '\\( \\frac{' + formatearNumero(parseFloat(valorB)) + '}{(s - ' + parseInt(valorA) + ')^2 + ' + formatearNumero(vb) + '} \\)';
             break;
-        case '\\int_{0}^{t} f(\\tau) d\\tau':
-            rd_sustitucion = '\\( \\int_{0}^{t} f(\\tau) \\, d\\tau \\)';
-            rd_transformada = '\\[ \\mathcal{L}\\{\\int_{0}^{t} f(\\tau) \\, d\\tau\\} = \\frac{F(s)}{s} \\)';
+        case 'delta(t - a)':
+            resultado = '\\( e^{-' + parseInt(valorA) + 's} \\)';
+            break;
+        case 'u(t - a)':
+            resultado = '\\( \\frac{e^{-' + parseInt(valorA) + 's}}{s} \\)';
+            break;
+        case 'frac{1}{t}':
+            resultado = '\\( \\ln(s) \\)';
+            break;
+        case 't e^{at}':
+            resultado = '\\( \\frac{1}{(s - ' + parseInt(valorA) + ')^2} \\)';
+            break;
+        case 't^n e^{at}':
+            var factorialN = 1;
+            for (let i = 1; i <= parseInt(valorN); i++) {
+                factorialN *= i;
+            }
+            resultado = '\\( \\frac{' + factorialN + '}{(s - ' + parseInt(valorA) + ')^{' + (parseInt(valorN) + 1) + '}} \\)';
+            break;
+        case 'sinh(at) cosh(bt)':
+            resultado = '\\( \\frac{' + parseInt(valorA) + '}{s^2 - ' + formatearNumero(va) + '} \\)';
+            break;
+        case 'cosh(at) sinh(bt)':
+            resultado = '\\( \\frac{s}{s^2 - ' + formatearNumero(va) + '} \\)';
+            break;
+        case '\\int_{0}^{t} f(\\tau) d\\tau': //!!NO FUNCIONA
             resultado = '\\( \\frac{F(s)}{s} \\)';
             break;
-        case 'f\'(t)':
-            rd_sustitucion = '\\( f\'(t) \\)';
-            rd_transformada = '\\[ \\mathcal{L}\\{f\'(t)\\} = sF(s) - f(0) \\)';
+        case 'f\'(t)': //!!NO FUNCIONA
             resultado = '\\( sF(s) - f(0) \\)';
             break;
-        case 'f\'\'(t)':
-            rd_sustitucion = '\\( f\'\'(t) \\)';
-            rd_transformada = '\\[ \\mathcal{L}\\{f\'\'(t)\\} = s^2F(s) - sf(0) - f\'(0) \\)';
+        case 'f\'\'(t)': //!!NO FUNCIONA
             resultado = '\\( s^2F(s) - sf(0) - f\'(0) \\)';
             break;
         case 'e^{bt} t^n':
-            rd_sustitucion = '\\( e^{' + valorB + 't} t^{' + valorN + '} \\)';
             var factorialN = 1;
             for (let i = 1; i <= parseInt(valorN); i++) {
                 factorialN *= i;
             }
-            rd_transformada = '\\[ \\mathcal{L}\\{e^{' + valorB + 't} t^{' + valorN + '}\\} \\]';
-            resultado = '\\( \\frac{' + factorialN + '}{(s - ' + valorB + ')^{' + (parseInt(valorN) + 1) + '}} \\)';
+            resultado = '\\( \\frac{' + factorialN + '}{(s - ' + parseInt(valorB) + ')^{' + (parseInt(valorN) + 1) + '}} \\)';
             break;
         case 't sin(at)':
-            rd_sustitucion = '\\( t \\sin(' + valorA + 't) \\)';
-            rd_transformada = '\\[ \\mathcal{L}\\{t \\sin(' + valorA + 't)\\} \\]';
             resultado = '\\( \\frac{' + (2 * parseInt(valorA)) + 's}{(s^2 + ' + formatearNumero(va) + ')^2} \\)';
             break;
         case 't cos(at)':
-            rd_sustitucion = '\\( t \\cos(' + valorA + 't) \\)';
-            rd_transformada = '\\[ \\mathcal{L}\\{t \\cos(' + valorA + 't)\\} \\]';
             resultado = '\\( \\frac{s^2 - ' + formatearNumero(va) + '}{(s^2 + ' + formatearNumero(va) + ')^2} \\)';
             break;
         case 'sin(at + b)':
-            rd_sustitucion = '\\( \\sin(' + valorA + 't + ' + valorB + ') \\)';
-            rd_transformada = '\\[ \\mathcal{L}\\{\\sin(' + valorA + 't + ' + valorB + ')\\} \\]';
-            resultado = '\\( \\frac{' + valorA + ' \\cos(' + valorB + ') + s \\sin(' + valorB + ')}{s^2 + ' + formatearNumero(va) + '} \\)';
+            resultado = '\\( \\frac{' + parseInt(valorA) + ' \\cos(' + parseInt(valorB) + ') + s \\sin(' + parseInt(valorB) + ')}{s^2 + ' + formatearNumero(va) + '} \\)';
             break;
         case 'cos(at + b)':
-            rd_sustitucion = '\\( \\cos(' + valorA + 't + ' + valorB + ') \\)';
-            rd_transformada = '\\[ \\mathcal{L}\\{\\cos(' + valorA + 't + ' + valorB + ')\\} \\]';
-            resultado = '\\( \\frac{s \\cos(' + valorB + ') - ' + valorA + ' \\sin(' + valorB + ')}{s^2 + ' + formatearNumero(va) + '} \\)';
-            break;
-        case 'sinh(at) cosh(bt)':
-            rd_sustitucion = '\\( \\sinh(' + valorA + 't) \\cosh(' + valorB + 't) \\)';
-            rd_transformada = '\\[ \\mathcal{L}\\{\\sinh(' + valorA + 't) \\cosh(' + valorB + 't)\\} \\]';
-            resultado = '\\( \\frac{' + valorA + '}{s^2 - ' + formatearNumero(va) + '} \\)';
-            break;
-        case 'cosh(at) sinh(bt)':
-            rd_sustitucion = '\\( \\cosh(' + valorA + 't) \\sinh(' + valorB + 't) \\)';
-            rd_transformada = '\\[ \\mathcal{L}\\{\\cosh(' + valorA + 't) \\sinh(' + valorB + 't)\\} \\]';
-            resultado = '\\( \\frac{s}{s^2 - ' + formatearNumero(va) + '} \\)';
-            break;
-        case 'e^{bt} t^n':
-            rd_sustitucion = '\\( e^{' + valorB + 't} t^{' + valorN + '} \\)';
-            var factorialN = 1;
-            for (let i = 1; i <= parseInt(valorN); i++) {
-                factorialN *= i;
-            }
-            rd_transformada = '\\[ \\mathcal{L}\\{e^{' + valorB + 't} t^{' + valorN + '}\\} \\]';
-            resultado = '\\( \\frac{' + factorialN + '}{(s - ' + valorB + ')^{' + (parseInt(valorN) + 1) + '}} \\)';
-            break;
-        case 't sin(at)':
-            rd_sustitucion = '\\( t \\sin(' + valorA + 't) \\)';
-            rd_transformada = '\\[ \\mathcal{L}\\{t \\sin(' + valorA + 't)\\} \\]';
-            resultado = '\\( \\frac{' + (2 * parseInt(valorA)) + 's}{(s^2 + ' + formatearNumero(va) + ')^2} \\)';
-            break;
-        case 't cos(at)':
-            rd_sustitucion = '\\( t \\cos(' + valorA + 't) \\)';
-            rd_transformada = '\\[ \\mathcal{L}\\{t \\cos(' + valorA + 't)\\} \\]';
-            resultado = '\\( \\frac{s^2 - ' + formatearNumero(va) + '}{(s^2 + ' + formatearNumero(va) + ')^2} \\)';
-            break;
-        case 'sin(at + b)':
-            rd_sustitucion = '\\( \\sin(' + valorA + 't + ' + valorB + ') \\)';
-            rd_transformada = '\\[ \\mathcal{L}\\{\\sin(' + valorA + 't + ' + valorB + ')\\} \\]';
-            resultado = '\\( \\frac{' + valorA + ' \\cos(' + valorB + ') + s \\sin(' + valorB + ')}{s^2 + ' + formatearNumero(va) + '} \\)';
-            break;
-        case 'cos(at + b)':
-            rd_sustitucion = '\\( \\cos(' + valorA + 't + ' + valorB + ') \\)';
-            rd_transformada = '\\[ \\mathcal{L}\\{\\cos(' + valorA + 't + ' + valorB + ')\\} \\]';
-            resultado = '\\( \\frac{s \\cos(' + valorB + ') - ' + valorA + ' \\sin(' + valorB + ')}{s^2 + ' + formatearNumero(va) + '} \\)';
-            break;
-        case 'sinh(at) cosh(bt)':
-            rd_sustitucion = '\\( \\sinh(' + valorA + 't) \\cosh(' + valorB + 't) \\)';
-            rd_transformada = '\\[ \\mathcal{L}\\{\\sinh(' + valorA + 't) \\cosh(' + valorB + 't)\\} \\]';
-            resultado = '\\( \\frac{' + valorA + '}{s^2 - ' + formatearNumero(va) + '} \\)';
-            break;
-        case 'cosh(at) sinh(bt)':
-            rd_sustitucion = '\\( \\cosh(' + valorA + 't) \\sinh(' + valorB + 't) \\)';
-            rd_transformada = '\\[ \\mathcal{L}\\{\\cosh(' + valorA + 't) \\sinh(' + valorB + 't)\\} \\]';
-            resultado = '\\( \\frac{s}{s^2 - ' + formatearNumero(va) + '} \\)';
-            break;
-        default:
-            resultado = 'Transformación no definida';
+            resultado = '\\( \\frac{s \\cos(' + parseInt(valorB) + ') - ' + parseInt(valorB) + ' \\sin(' + parseInt(valorB) + ')}{s^2 + ' + formatearNumero(va) + '} \\)';
             break;
     }
     
