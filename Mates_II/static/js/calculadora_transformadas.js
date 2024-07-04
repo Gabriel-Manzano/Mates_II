@@ -170,7 +170,7 @@ function calcularFuncion(funcion) {
     var valorA = document.getElementById("valorA") ? document.getElementById("valorA").value : "";
     var valorB = document.getElementById("valorB") ? document.getElementById("valorB").value : "";
     var valorN = document.getElementById("valorN") ? document.getElementById("valorN").value : "";
-    var funcionF = document.getElementById("funcionF") ? document.getElementById("funcionF").value : "";
+    
 
     switch (funcion) {
         case '1':
