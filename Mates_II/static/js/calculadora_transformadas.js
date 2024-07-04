@@ -3,70 +3,104 @@ function crearInputFuncion(funcion) {
     var inputs = '';
     switch (funcion) {
         case '1':
-            inputs = '<button type="button" class="btn btn-primary mt-2" onclick="calcularFuncion(\'1\')">Calcular</button>';
-            break;
         case 't':
-            inputs = '<button type="button" class="btn btn-primary mt-2" onclick="calcularFuncion(\'t\')">Calcular</button>';
-            break;
         case 't^2':
-            inputs = '<button type="button" class="btn btn-primary mt-2" onclick="calcularFuncion(\'t^2\')">Calcular</button>';
+        case '\\frac{1}{t}':
+            inputs = `<button type="button" class="btn btn-primary mt-2" onclick="calcularFuncion('${funcion}')">Calcular</button>`;
             break;
         case 't^n':
-            inputs = '<label for="valorN">Ingrese el valor de n:</label><input type="number" id="valorN" name="valorN" class="form-control" required oninput="actualizarVistaPrevia(\'t^n\')"><button type="button" class="btn btn-primary mt-2" onclick="calcularFuncion(\'t^n\')">Calcular</button>';
+            inputs = `<label for="valorN">Ingrese el valor de n:</label>
+                      <input type="number" id="valorN" name="valorN" class="form-control" required oninput="actualizarVistaPrevia('t^n')">
+                      <button type="button" class="btn btn-primary mt-2" onclick="calcularFuncion('t^n')">Calcular</button>`;
             break;
         case 'e^{at}':
-            inputs = '<label for="valorA">Ingrese el valor de a:</label><input type="number" id="valorA" name="valorA" class="form-control" required oninput="actualizarVistaPrevia(\'e^{at}\')"><button type="button" class="btn btn-primary mt-2" onclick="calcularFuncion(\'e^{at}\')">Calcular</button>';
+            inputs = `<label for="valorA">Ingrese el valor de a:</label>
+                      <input type="number" id="valorA" name="valorA" class="form-control" required oninput="actualizarVistaPrevia('e^{at}')">
+                      <button type="button" class="btn btn-primary mt-2" onclick="calcularFuncion('e^{at}')">Calcular</button>`;
             break;
         case '\\cos(bt)':
         case '\\sin(bt)':
         case '\\sinh(bt)':
         case '\\cosh(bt)':
-            inputs = '<label for="valorB">Ingrese el valor de b:</label><input type="number" id="valorB" name="valorB" class="form-control" required oninput="actualizarVistaPrevia(\'' + funcion + '\')"><button type="button" class="btn btn-primary mt-2" onclick="calcularFuncion(\'' + funcion + '\')">Calcular</button>';
+            inputs = `<label for="valorB">Ingrese el valor de b:</label>
+                      <input type="number" id="valorB" name="valorB" class="form-control" required oninput="actualizarVistaPrevia('${funcion}')">
+                      <button type="button" class="btn btn-primary mt-2" onclick="calcularFuncion('${funcion}')">Calcular</button>`;
             break;
         case 'e^{at} \\cos(bt)':
         case 'e^{at} \\sin(bt)':
-            inputs = '<label for="valorA">Ingrese el valor de a:</label><input type="number" id="valorA" name="valorA" class="form-control" required oninput="actualizarVistaPrevia(\'' + funcion + '\')"><label for="valorB">Ingrese el valor de b:</label><input type="number" id="valorB" name="valorB" class="form-control" required oninput="actualizarVistaPrevia(\'' + funcion + '\')"><button type="button" class="btn btn-primary mt-2" onclick="calcularFuncion(\'' + funcion + '\')">Calcular</button>';
+            inputs = `<label for="valorA">Ingrese el valor de a:</label>
+                      <input type="number" id="valorA" name="valorA" class="form-control" required oninput="actualizarVistaPrevia('${funcion}')">
+                      <label for="valorB">Ingrese el valor de b:</label>
+                      <input type="number" id="valorB" name="valorB" class="form-control" required oninput="actualizarVistaPrevia('${funcion}')">
+                      <button type="button" class="btn btn-primary mt-2" onclick="calcularFuncion('${funcion}')">Calcular</button>`;
             break;
         case '\\delta(t - a)':
         case 'u(t - a)':
-            inputs = '<label for="valorA">Ingrese el valor de a:</label><input type="number" id="valorA" name="valorA" class="form-control" required oninput="actualizarVistaPrevia(\'' + funcion + '\')"><button type="button" class="btn btn-primary mt-2" onclick="calcularFuncion(\'' + funcion + '\')">Calcular</button>';
-            break;
-        case '\\frac{1}{t}':
-            inputs = '<button type="button" class="btn btn-primary mt-2" onclick="calcularFuncion(\'\\frac{1}{t}\')">Calcular</button>';
+            inputs = `<label for="valorA">Ingrese el valor de a:</label>
+                      <input type="number" id="valorA" name="valorA" class="form-control" required oninput="actualizarVistaPrevia('${funcion}')">
+                      <button type="button" class="btn btn-primary mt-2" onclick="calcularFuncion('${funcion}')">Calcular</button>`;
             break;
         case 't e^{at}':
-            inputs = '<label for="valorA">Ingrese el valor de a:</label><input type="number" id="valorA" name="valorA" class="form-control" required oninput="actualizarVistaPrevia(\'t e^{at}\')"><button type="button" class="btn btn-primary mt-2" onclick="calcularFuncion(\'t e^{at}\')">Calcular</button>';
+            inputs = `<label for="valorA">Ingrese el valor de a:</label>
+                      <input type="number" id="valorA" name="valorA" class="form-control" required oninput="actualizarVistaPrevia('t e^{at}')">
+                      <button type="button" class="btn btn-primary mt-2" onclick="calcularFuncion('t e^{at}')">Calcular</button>`;
             break;
         case 't^n e^{at}':
-            inputs = '<label for="valorN">Ingrese el valor de n:</label><input type="number" id="valorN" name="valorN" class="form-control" required oninput="actualizarVistaPrevia(\'t^n e^{at}\')"><label for="valorA">Ingrese el valor de a:</label><input type="number" id="valorA" name="valorA" class="form-control" required oninput="actualizarVistaPrevia(\'t^n e^{at}\')"><button type="button" class="btn btn-primary mt-2" onclick="calcularFuncion(\'t^n e^{at}\')">Calcular</button>';
+            inputs = `<label for="valorN">Ingrese el valor de n:</label>
+                      <input type="number" id="valorN" name="valorN" class="form-control" required oninput="actualizarVistaPrevia('t^n e^{at}')">
+                      <label for="valorA">Ingrese el valor de a:</label>
+                      <input type="number" id="valorA" name="valorA" class="form-control" required oninput="actualizarVistaPrevia('t^n e^{at}')">
+                      <button type="button" class="btn btn-primary mt-2" onclick="calcularFuncion('t^n e^{at}')">Calcular</button>`;
             break;
         case 'sinh(at) \\cosh(bt)':
         case 'cosh(at) \\sinh(bt)':
-            inputs = '<label for="valorA">Ingrese el valor de a:</label><input type="number" id="valorA" name="valorA" class="form-control" required oninput="actualizarVistaPrevia(\'' + funcion + '\')"><label for="valorB">Ingrese el valor de b:</label><input type="number" id="valorB" name="valorB" class="form-control" required oninput="actualizarVistaPrevia(\'' + funcion + '\')"><button type="button" class="btn btn-primary mt-2" onclick="calcularFuncion(\'' + funcion + '\')">Calcular</button>';
+            inputs = `<label for="valorA">Ingrese el valor de a:</label>
+                      <input type="number" id="valorA" name="valorA" class="form-control" required oninput="actualizarVistaPrevia('${funcion}')">
+                      <label for="valorB">Ingrese el valor de b:</label>
+                      <input type="number" id="valorB" name="valorB" class="form-control" required oninput="actualizarVistaPrevia('${funcion}')">
+                      <button type="button" class="btn btn-primary mt-2" onclick="calcularFuncion('${funcion}')">Calcular</button>`;
             break;
         case '\\int_{0}^{t} f(\\tau) d\\tau':
-            inputs = '<label for="funcionF">Ingrese la función F(t):</label><input type="text" id="funcionF" name="funcionF" class="form-control" required oninput="actualizarVistaPrevia(\'\\int_{0}^{t} f(\\tau) d\\tau\')"><label for="valorT">Ingrese el valor de t:</label><input type="number" id="valorT" name="valorT" class="form-control" required oninput="actualizarVistaPrevia(\'\\int_{0}^{t} f(\\tau) d\\tau\')"><button type="button" class="btn btn-primary mt-2" onclick="calcularFuncion(\'\\int_{0}^{t} f(\\tau) d\\tau\')">Calcular</button>';
+            inputs = `<label for="funcionF">Ingrese la función F(t):</label>
+                      <input type="text" id="funcionF" name="funcionF" class="form-control" required oninput="actualizarVistaPrevia('\\int_{0}^{t} f(\\tau) d\\tau')">
+                      <label for="valorT">Ingrese el valor de t:</label>
+                      <input type="number" id="valorT" name="valorT" class="form-control" required oninput="actualizarVistaPrevia('\\int_{0}^{t} f(\\tau) d\\tau')">
+                      <button type="button" class="btn btn-primary mt-2" onclick="calcularFuncion('\\int_{0}^{t} f(\\tau) d\\tau')">Calcular</button>`;
             break;
         case 'f\'(t)':
         case 'f\'\'(t)':
-            inputs = '<label for="funcionF">Ingrese la función F(t):</label><input type="text" id="funcionF" name="funcionF" class="form-control" required oninput="actualizarVistaPrevia(\'' + funcion + '\')"><button type="button" class="btn btn-primary mt-2" onclick="calcularFuncion(\'' + funcion + '\')">Calcular</button>';
+            inputs = `<label for="funcionF">Ingrese la función F(t):</label>
+                      <input type="text" id="funcionF" name="funcionF" class="form-control" required oninput="actualizarVistaPrevia('${funcion}')">
+                      <button type="button" class="btn btn-primary mt-2" onclick="calcularFuncion('${funcion}')">Calcular</button>`;
             break;
         case 'e^{bt} t^n':
-            inputs = '<label for="valorB">Ingrese el valor de b:</label><input type="number" id="valorB" name="valorB" class="form-control" required oninput="actualizarVistaPrevia(\'e^{bt} t^n\')"><label for="valorN">Ingrese el valor de n:</label><input type="number" id="valorN" name="valorN" class="form-control" required oninput="actualizarVistaPrevia(\'e^{bt} t^n\')"><button type="button" class="btn btn-primary mt-2" onclick="calcularFuncion(\'e^{bt} t^n\')">Calcular</button>';
+            inputs = `<label for="valorB">Ingrese el valor de b:</label>
+                      <input type="number" id="valorB" name="valorB" class="form-control" required oninput="actualizarVistaPrevia('e^{bt} t^n')">
+                      <label for="valorN">Ingrese el valor de n:</label>
+                      <input type="number" id="valorN" name="valorN" class="form-control" required oninput="actualizarVistaPrevia('e^{bt} t^n')">
+                      <button type="button" class="btn btn-primary mt-2" onclick="calcularFuncion('e^{bt} t^n')">Calcular</button>`;
             break;
         case 't \\sin(at)':
         case 't \\cos(at)':
-            inputs = '<label for="valorA">Ingrese el valor de a:</label><input type="number" id="valorA" name="valorA" class="form-control" required oninput="actualizarVistaPrevia(\'' + funcion + '\')"><button type="button" class="btn btn-primary mt-2" onclick="calcularFuncion(\'' + funcion + '\')">Calcular</button>';
+            inputs = `<label for="valorA">Ingrese el valor de a:</label>
+                      <input type="number" id="valorA" name="valorA" class="form-control" required oninput="actualizarVistaPrevia('${funcion}')">
+                      <button type="button" class="btn btn-primary mt-2" onclick="calcularFuncion('${funcion}')">Calcular</button>`;
             break;
         case '\\sin(at + b)':
         case '\\cos(at + b)':
-            inputs = '<label for="valorA">Ingrese el valor de a:</label><input type="number" id="valorA" name="valorA" class="form-control" required oninput="actualizarVistaPrevia(\'' + funcion + '\')"><label for="valorB">Ingrese el valor de b:</label><input type="number" id="valorB" name="valorB" class="form-control" required oninput="actualizarVistaPrevia(\'' + funcion + '\')"><button type="button" class="btn btn-primary mt-2" onclick="calcularFuncion(\'' + funcion + '\')">Calcular</button>';
+            inputs = `<label for="valorA">Ingrese el valor de a:</label>
+                      <input type="number" id="valorA" name="valorA" class="form-control" required oninput="actualizarVistaPrevia('${funcion}')">
+                      <label for="valorB">Ingrese el valor de b:</label>
+                      <input type="number" id="valorB" name="valorB" class="form-control" required oninput="actualizarVistaPrevia('${funcion}')">
+                      <button type="button" class="btn btn-primary mt-2" onclick="calcularFuncion('${funcion}')">Calcular</button>`;
             break;
     }
     inputContainer.innerHTML = inputs;
     document.getElementById("resultado").innerHTML = '';
     actualizarVistaPrevia(funcion);
 }
+
+
 //---------------------------------------------------------------------------------------------------------------------
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -84,7 +118,7 @@ function actualizarVistaPrevia(funcion) {
         document.getElementById("formulaOriginal").innerHTML = '\\( t^n \\)';
     } else if (funcion === 'e^{at}') {
         vistaPrevia.innerHTML = '\\( e^{' + valorA + 't} \\)';
-        document.getElementById("formulaOriginal").innerHTML = '\\( e^{at} \\)';
+        document.getElementById("formulaOriginal").innerHTML = '\\( e^{t} \\)';
     } else if (funcion === '\\cos(bt)') {
         vistaPrevia.innerHTML = '\\( \\cos(' + valorB + 't) \\)';
         document.getElementById("formulaOriginal").innerHTML = '\\( \\cos(bt) \\)';
@@ -122,7 +156,7 @@ function actualizarVistaPrevia(funcion) {
         vistaPrevia.innerHTML = '\\( \\frac{1}{t} \\)';
         document.getElementById("formulaOriginal").innerHTML = '\\( \\frac{1}{t} \\)';
     } else if (funcion === 't e^{at}') {
-        vistaPrevia.innerHTML = '\\( t e^{at} \\)';
+        vistaPrevia.innerHTML = '\\( t e^{' + valorA + 't} \\)';
         document.getElementById("formulaOriginal").innerHTML = '\\( t e^{' + valorN + 't} \\)';
     } else if (funcion === 't^n e^{at}') {
         vistaPrevia.innerHTML = '\\( t^{' + valorN + '} e^{' + valorA + 't} \\)';
@@ -167,10 +201,101 @@ function actualizarVistaPrevia(funcion) {
 //*CALCULO DE LAS INTEGRALES EN EL DIV DE RESULTADO */
 function calcularFuncion(funcion) {
     var resultado = '';
-    var valorA = document.getElementById("valorA") ? document.getElementById("valorA").value : "";
-    var valorB = document.getElementById("valorB") ? document.getElementById("valorB").value : "";
-    var valorN = document.getElementById("valorN") ? document.getElementById("valorN").value : "";
-    var funcionF = document.getElementById("funcionF") ? document.getElementById("funcionF").value : "";
+    var valorA = document.getElementById("valorA") ? document.getElementById("valorA").value.trim() : null;
+    var valorB = document.getElementById("valorB") ? document.getElementById("valorB").value.trim() : null;
+    var valorN = document.getElementById("valorN") ? document.getElementById("valorN").value.trim() : null;
+    var funcionF = document.getElementById("funcionF") ? document.getElementById("funcionF").value.trim() : null;
+    var valorT = document.getElementById("valorT") ? document.getElementById("valorT").value.trim() : null;
+
+    switch (funcion) {
+        case 't^n':
+            if (!valorN || parseFloat(valorN) === 0 || isNaN(parseFloat(valorN))) {
+                document.getElementById("resultado").innerHTML = "Por favor ingrese un número válido diferente de 0 para n.";
+                return;
+            }
+            break;
+        case 'e^{at}':
+            if (!valorA || parseFloat(valorA) === 0 || isNaN(parseFloat(valorA))) {
+                document.getElementById("resultado").innerHTML = "Por favor ingrese un número válido diferente de 0 para a.";
+                return;
+            }
+            break;
+        case '\\cos(bt)':
+        case '\\sin(bt)':
+        case '\\sinh(bt)':
+        case '\\cosh(bt)':
+            if (!valorB || parseFloat(valorB) === 0 || isNaN(parseFloat(valorB))) {
+                document.getElementById("resultado").innerHTML = "Por favor ingrese un número válido diferente de 0 para b.";
+                return;
+            }
+            break;
+        case 'e^{at} \\cos(bt)':
+        case 'e^{at} \\sin(bt)':
+            if ((!valorA || parseFloat(valorA) === 0 || isNaN(parseFloat(valorA))) || 
+                (!valorB || parseFloat(valorB) === 0 || isNaN(parseFloat(valorB)))) {
+                document.getElementById("resultado").innerHTML = "Por favor ingrese números válidos diferentes de 0 para a y b.";
+                return;
+            }
+            break;
+        case '\\delta(t - a)':
+        case 'u(t - a)':
+        case 't e^{at}':
+            if (!valorA || parseFloat(valorA) === 0 || isNaN(parseFloat(valorA))) {
+                document.getElementById("resultado").innerHTML = "Por favor ingrese un número válido diferente de 0 para a.";
+                return;
+            }
+            break;
+        case 't^n e^{at}':
+            if ((!valorN || parseFloat(valorN) === 0 || isNaN(parseFloat(valorN))) || 
+                (!valorA || parseFloat(valorA) === 0 || isNaN(parseFloat(valorA)))) {
+                document.getElementById("resultado").innerHTML = "Por favor ingrese números válidos diferentes de 0 para n y a.";
+                return;
+            }
+            break;
+        case 'sinh(at) \\cosh(bt)':
+        case 'cosh(at) \\sinh(bt)':
+            if ((!valorA || parseFloat(valorA) === 0 || isNaN(parseFloat(valorA))) || 
+                (!valorB || parseFloat(valorB) === 0 || isNaN(parseFloat(valorB)))) {
+                document.getElementById("resultado").innerHTML = "Por favor ingrese números válidos diferentes de 0 para a y b.";
+                return;
+            }
+            break;
+        case '\\int_{0}^{t} f(\\tau) d\\tau':
+            if (!funcionF || !valorT || parseFloat(valorT) === 0 || isNaN(parseFloat(valorT))) {
+                document.getElementById("resultado").innerHTML = "Por favor ingrese una función válida y un número válido diferente de 0 para t.";
+                return;
+            }
+            break;
+        case 'f\'(t)':
+        case 'f\'\'(t)':
+            if (!funcionF) {
+                document.getElementById("resultado").innerHTML = "Por favor ingrese una función válida.";
+                return;
+            }
+            break;
+        case 'e^{bt} t^n':
+            if ((!valorB || parseFloat(valorB) === 0 || isNaN(parseFloat(valorB))) || 
+                (!valorN || parseFloat(valorN) === 0 || isNaN(parseFloat(valorN)))) {
+                document.getElementById("resultado").innerHTML = "Por favor ingrese números válidos diferentes de 0 para b y n.";
+                return;
+            }
+            break;
+        case 't \\sin(at)':
+        case 't \\cos(at)':
+            if (!valorA || parseFloat(valorA) === 0 || isNaN(parseFloat(valorA))) {
+                document.getElementById("resultado").innerHTML = "Por favor ingrese un número válido diferente de 0 para a.";
+                return;
+            }
+            break;
+        case '\\sin(at + b)':
+        case '\\cos(at + b)':
+            if ((!valorA || parseFloat(valorA) === 0 || isNaN(parseFloat(valorA))) || 
+                (!valorB || parseFloat(valorB) === 0 || isNaN(parseFloat(valorB)))) {
+                document.getElementById("resultado").innerHTML = "Por favor ingrese números válidos diferentes de 0 para a y b.";
+                return;
+            }
+            break;
+    }
 
     switch (funcion) {
         case '1':
@@ -277,6 +402,7 @@ function calcularFuncion(funcion) {
             resultado = '\\( \\frac{s \\cos(' + valorB + ') - ' + valorB + ' \\sin(' + valorB + ')}{s^2 + ' + valorA**2 + '} \\)';
             break;
     }
+
     document.getElementById("resultado").innerHTML = resultado;
     MathJax.typeset();
 }
