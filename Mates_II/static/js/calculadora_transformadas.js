@@ -207,15 +207,25 @@ function calcularFuncion(funcion) {
     var funcionF = document.getElementById("funcionF") ? document.getElementById("funcionF").value.trim() : null;
     var valorT = document.getElementById("valorT") ? document.getElementById("valorT").value.trim() : null;
 
+    vb = valorB**2
+    va = valorA**2
+    function formatearNumero(numero) {
+        if (Number.isInteger(numero)) {
+            return numero.toString(); // Retornar como string para evitar .toFixed(2)
+        } else {
+            return numero.toFixed(2); // Retornar con dos decimales
+        }
+    }
+
     switch (funcion) {
         case 't^n':
-            if (!valorN || parseFloat(valorN) === 0 || isNaN(parseFloat(valorN))) {
+            if (!valorN || parseInt(valorN) === 0 || isNaN(parseInt(valorN))) {
                 document.getElementById("resultado").innerHTML = "Por favor ingrese un número válido diferente de 0 para n.";
                 return;
             }
             break;
         case 'e^{at}':
-            if (!valorA || parseFloat(valorA) === 0 || isNaN(parseFloat(valorA))) {
+            if (!valorA || parseInt(valorA) === 0 || isNaN(parseInt(valorA))) {
                 document.getElementById("resultado").innerHTML = "Por favor ingrese un número válido diferente de 0 para a.";
                 return;
             }
@@ -224,38 +234,36 @@ function calcularFuncion(funcion) {
         case 'sin(bt)':
         case 'sinh(bt)':
         case 'cosh(bt)':
-            if (!valorB || parseFloat(valorB) === 0 || isNaN(parseFloat(valorB))) {
+            if (!valorB || parseInt(valorB) === 0 || isNaN(parseInt(valorB))) {
                 document.getElementById("resultado").innerHTML = "Por favor ingrese un número válido diferente de 0 para b.";
                 return;
             }
             break;
         case 'e^{at} cos(bt)':
         case 'e^{at} sin(bt)':
-            if ((!valorA || parseFloat(valorA) === 0 || isNaN(parseFloat(valorA))) || 
-                (!valorB || parseFloat(valorB) === 0 || isNaN(parseFloat(valorB)))) {
+            if ((!valorA || parseInt(valorA) === 0 || isNaN(parseInt(valorA))) || 
+                (!valorB || parseInt(valorB) === 0 || isNaN(parseInt(valorB)))) {
                 document.getElementById("resultado").innerHTML = "Por favor ingrese números válidos diferentes de 0 para a y b.";
                 return;
             }
             break;
-        case '\\delta(t - a)':
-        case 'u(t - a)':
         case 't e^{at}':
-            if (!valorA || parseFloat(valorA) === 0 || isNaN(parseFloat(valorA))) {
+            if (!valorA || parseInt(valorA) === 0 || isNaN(parseInt(valorA))) {
                 document.getElementById("resultado").innerHTML = "Por favor ingrese un número válido diferente de 0 para a.";
                 return;
             }
             break;
         case 't^n e^{at}':
-            if ((!valorN || parseFloat(valorN) === 0 || isNaN(parseFloat(valorN))) || 
-                (!valorA || parseFloat(valorA) === 0 || isNaN(parseFloat(valorA)))) {
+            if ((!valorN || parseInt(valorN) === 0 || isNaN(parseInt(valorN))) || 
+                (!valorA || parseInt(valorA) === 0 || isNaN(parseInt(valorA)))) {
                 document.getElementById("resultado").innerHTML = "Por favor ingrese números válidos diferentes de 0 para n y a.";
                 return;
             }
             break;
         case 'sinh(at) cosh(bt)':
         case 'cosh(at) sinh(bt)':
-            if ((!valorA || parseFloat(valorA) === 0 || isNaN(parseFloat(valorA))) || 
-                (!valorB || parseFloat(valorB) === 0 || isNaN(parseFloat(valorB)))) {
+            if ((!valorA || parseInt(valorA) === 0 || isNaN(parseInt(valorA))) || 
+                (!valorB || parseInt(valorB) === 0 || isNaN(parseInt(valorB)))) {
                 document.getElementById("resultado").innerHTML = "Por favor ingrese números válidos diferentes de 0 para a y b.";
                 return;
             }
@@ -274,23 +282,23 @@ function calcularFuncion(funcion) {
             }
             break;
         case 'e^{bt} t^n':
-            if ((!valorB || parseFloat(valorB) === 0 || isNaN(parseFloat(valorB))) || 
-                (!valorN || parseFloat(valorN) === 0 || isNaN(parseFloat(valorN)))) {
+            if ((!valorB || parseInt(valorB) === 0 || isNaN(parseInt(valorB))) || 
+                (!valorN || parseInt(valorN) === 0 || isNaN(parseInt(valorN)))) {
                 document.getElementById("resultado").innerHTML = "Por favor ingrese números válidos diferentes de 0 para b y n.";
                 return;
             }
             break;
         case 't sin(at)':
         case 't cos(at)':
-            if (!valorA || parseFloat(valorA) === 0 || isNaN(parseFloat(valorA))) {
+            if (!valorA || parseInt(valorA) === 0 || isNaN(parseInt(valorA))) {
                 document.getElementById("resultado").innerHTML = "Por favor ingrese un número válido diferente de 0 para a.";
                 return;
             }
             break;
         case 'sin(at + b)':
         case 'cos(at + b)':
-            if ((!valorA || parseFloat(valorA) === 0 || isNaN(parseFloat(valorA))) || 
-                (!valorB || parseFloat(valorB) === 0 || isNaN(parseFloat(valorB)))) {
+            if ((!valorA || parseInt(valorA) === 0 || isNaN(parseInt(valorA))) || 
+                (!valorB || parseInt(valorB) === 0 || isNaN(parseInt(valorB)))) {
                 document.getElementById("resultado").innerHTML = "Por favor ingrese números válidos diferentes de 0 para a y b.";
                 return;
             }
@@ -308,98 +316,85 @@ function calcularFuncion(funcion) {
             resultado = '\\( \\frac{2}{s^3} \\)';
             break;
         case 't^n':
-            factorialN = 1;
-        
-        
-            for (let i = 1; i <= valorN; i++) {
+            var factorialN = 1;
+            for (let i = 1; i <= parseInt(valorN); i++) {
                 factorialN *= i;
             }
-            
             resultado = '\\( \\frac{' + factorialN + '}{s^{' + (parseInt(valorN) + 1) + '}} \\)';
             break;
         case 'e^{at}':
-            resultado = '\\( \\frac{1}{s - ' + valorA + '} \\)';
+            resultado = '\\( \\frac{1}{s - ' + parseInt(valorA) + '} \\)';
             break;
         case 'cos(bt)':
-            resultado = '\\( \\frac{s}{s^2 + ' + valorB**2 + '} \\)';
+            resultado = '\\( \\frac{s}{s^2 + ' + formatearNumero(vb) + '} \\)';
             break;
         case 'sin(bt)':
-            resultado = '\\( \\frac{' + valorB + '}{s^2 + ' + valorB**2 + '} \\)';
+            resultado = '\\( \\frac{' + formatearNumero(parseFloat(valorB)) + '}{s^2 + ' + formatearNumero(vb) + '} \\)';
             break;
         case 'sinh(bt)':
-            resultado = '\\( \\frac{' + valorB + '}{s^2 - ' + valorB**2 + '} \\)';
+            resultado = '\\( \\frac{' + formatearNumero(parseFloat(valorB)) + '}{s^2 - ' + formatearNumero(vb) + '} \\)';
             break;
         case 'cosh(bt)':
-            resultado = '\\( \\frac{s}{s^2 - ' + valorB**2 + '} \\)';
+            resultado = '\\( \\frac{s}{s^2 - ' + formatearNumero(vb) + '} \\)';
             break;
         case 'e^{at} cos(bt)':
-            resultado = '\\( \\frac{s - ' + valorA + '}{(s - ' + valorA + ')^2 + ' + valorB**2 + '} \\)';
+            resultado = '\\( \\frac{s - ' + parseInt(valorA) + '}{(s - ' + parseInt(valorA) + ')^2 + ' + formatearNumero(vb) + '} \\)';
             break;
         case 'e^{at} sin(bt)':
-            resultado = '\\( \\frac{' + valorB + '}{(s - ' + valorA + ')^2 + ' + valorB**2 + '} \\)';
+            resultado = '\\( \\frac{' + formatearNumero(parseFloat(valorB)) + '}{(s - ' + parseInt(valorA) + ')^2 + ' + formatearNumero(vb) + '} \\)';
             break;
         case 'delta(t - a)':
-            resultado = '\\( e^{-' + valorA + 's} \\)';
+            resultado = '\\( e^{-' + parseInt(valorA) + 's} \\)';
             break;
         case 'u(t - a)':
-            resultado = '\\( \\frac{e^{-' + valorA + 's}}{s} \\)';
+            resultado = '\\( \\frac{e^{-' + parseInt(valorA) + 's}}{s} \\)';
             break;
         case 'frac{1}{t}':
             resultado = '\\( \\ln(s) \\)';
             break;
         case 't e^{at}':
-            resultado = '\\( \\frac{1}{(s - ' + valorA + ')^2} \\)';
+            resultado = '\\( \\frac{1}{(s - ' + parseInt(valorA) + ')^2} \\)';
             break;
         case 't^n e^{at}':
-             factorialN = 1;
-        
-        
-            for (let i = 1; i <= valorN; i++) {
+            var factorialN = 1;
+            for (let i = 1; i <= parseInt(valorN); i++) {
                 factorialN *= i;
             }
-
-            resultado = '\\( \\frac{' + factorialN + '}{(s - ' + valorA + ')^{' + (parseInt(valorN) + 1) + '}} \\)';
+            resultado = '\\( \\frac{' + factorialN + '}{(s - ' + parseInt(valorA) + ')^{' + (parseInt(valorN) + 1) + '}} \\)';
             break;
         case 'sinh(at) cosh(bt)':
-            resultado = '\\( \\frac{' + valorA + '}{s^2 - ' + valorA**2     + '} \\)';
+            resultado = '\\( \\frac{' + parseInt(valorA) + '}{s^2 - ' + formatearNumero(va) + '} \\)';
             break;
         case 'cosh(at) sinh(bt)':
-            resultado = '\\( \\frac{s}{s^2 - ' + valorA**2 + '} \\)';
+            resultado = '\\( \\frac{s}{s^2 - ' + formatearNumero(va) + '} \\)';
             break;
         case '\\int_{0}^{t} f(\\tau) d\\tau': //!!NO FUNCIONA
             resultado = '\\( \\frac{F(s)}{s} \\)';
             break;
-        case 'f\'(t)'://!!NO FUNCIONA
+        case 'f\'(t)': //!!NO FUNCIONA
             resultado = '\\( sF(s) - f(0) \\)';
             break;
-        case 'f\'\'(t)'://!!NO FUNCIONA
+        case 'f\'\'(t)': //!!NO FUNCIONA
             resultado = '\\( s^2F(s) - sf(0) - f\'(0) \\)';
             break;
         case 'e^{bt} t^n':
-
-        factorialN = 1;
-        
-        
-        for (let i = 1; i <= valorN; i++) {
-            factorialN *= i;
-        }
-
-
-
-            resultado = '\\( \\frac{' + factorialN + '}{(s - ' + valorB + ')^{' + (parseInt(valorN) + 1) + '}} \\)';
+            var factorialN = 1;
+            for (let i = 1; i <= parseInt(valorN); i++) {
+                factorialN *= i;
+            }
+            resultado = '\\( \\frac{' + factorialN + '}{(s - ' + parseInt(valorB) + ')^{' + (parseInt(valorN) + 1) + '}} \\)';
             break;
         case 't sin(at)':
-            resultado = '\\( \\frac{' + 2*valorA + 's}{(s^2 + ' + valorA**2 + ')^2} \\)';
+            resultado = '\\( \\frac{' + (2 * parseInt(valorA)) + 's}{(s^2 + ' + formatearNumero(va) + ')^2} \\)';
             break;
         case 't cos(at)':
-            resultado = '\\( \\frac{s^2 - ' + valorA**2 + '}{(s^2 + ' + valorA**2    + ')^2} \\)';
+            resultado = '\\( \\frac{s^2 - ' + formatearNumero(va) + '}{(s^2 + ' + formatearNumero(va) + ')^2} \\)';
             break;
         case 'sin(at + b)':
-            resultado = '\\( \\frac{' + valorA + ' \\cos(' + valorB + ') + s \\sin(' + valorB + ')}{s^2 + ' + valorA**2 + '} \\)';
+            resultado = '\\( \\frac{' + parseInt(valorA) + ' \\cos(' + parseInt(valorB) + ') + s \\sin(' + parseInt(valorB) + ')}{s^2 + ' + formatearNumero(va) + '} \\)';
             break;
         case 'cos(at + b)':
-             
-            resultado = '\\( \\frac{s \\cos(' + valorB + ') - ' + valorB + ' \\sin(' + valorB + ')}{s^2 + ' + valorA**2 + '} \\)';
+            resultado = '\\( \\frac{s \\cos(' + parseInt(valorB) + ') - ' + parseInt(valorB) + ' \\sin(' + parseInt(valorB) + ')}{s^2 + ' + formatearNumero(va) + '} \\)';
             break;
     }
 
