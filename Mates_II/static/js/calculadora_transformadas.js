@@ -307,6 +307,8 @@ function calcularFuncion(funcion) {
 
     switch (funcion) {
         case '1':
+            rd_sustitucion = '\\( \\frac{1}{s} \\)';
+            rd_transformada = '\\[ \\mathcal{L}\\{1\\} \\]';
             resultado = '\\( \\frac{1}{s} \\)';
             break;
         case 't':
@@ -397,7 +399,8 @@ function calcularFuncion(funcion) {
             resultado = '\\( \\frac{s \\cos(' + parseInt(valorB) + ') - ' + parseInt(valorB) + ' \\sin(' + parseInt(valorB) + ')}{s^2 + ' + formatearNumero(va) + '} \\)';
             break;
     }
-
+    document.getElementById("id_sustitucion").innerHTML = rd_sustitucion;
+    document.getElementById("id_transformada").innerHTML = rd_transformada;
     document.getElementById("resultado").innerHTML = resultado;
     MathJax.typeset();
 }

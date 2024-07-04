@@ -5,6 +5,39 @@
 <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 <script src="{{ url_for('static', filename='js/calculadora_transformadas.js') }}"></script>
 
+
+<style>
+    .flex-container {
+    display: flex;
+    flex-wrap: wrap; /* Asegura que los divs se envuelvan cuando no caben en una línea */
+    justify-content: flex-start; /* Alinea los divs al inicio horizontalmente */
+    max-width: 1000px; /* Ancho máximo para el contenedor principal */
+    margin: 0 auto; /* Centra el contenedor */
+}
+
+.contenedor_igual_valor, .contenedor_entrada {
+    flex: 1; /* Que ocupen el mismo espacio dentro del contenedor flex */
+    max-width: 200x; /* Ancho máximo para los contenedores internos */
+     max-height: 200px;
+    padding: 10px;
+    margin: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    overflow: hidden; /* Para evitar que el contenido desborde */
+}
+
+.contenedor_igual_valor h2, .contenedor_entrada h2 {
+    font-size: 11px; /* Tamaño de fuente para los títulos */
+    margin-bottom: 8px; /* Espacio inferior del título */
+}
+
+.contenedor_igual_valor div, .contenedor_entrada div {
+    font-size: 16px; /* Tamaño de fuente para el contenido */
+}
+</style>
+
+
 <div class="container shadow-none p-5 mb-5 bg-body-tertiary rounded" style="box-shadow: 0 0 20px 10px #ffffffee; background-color: rgba(84, 81, 77, 0.656);">
     <div class="img-thumbnail">
         <img src="{{ url_for('static', filename='image/laplace.jpg') }}" class="img-fluid">
@@ -12,6 +45,8 @@
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
         </p>
     </div>
+
+
 
     <div class="container shadow-none p-5 mb-5 bg-body-tertiary rounded" style="box-shadow: 0 0 20px 10px #ffffffee; background-color: rgba(255, 250, 250, 0.979);">
         <div class="titulo">
@@ -58,20 +93,39 @@
         </div>        
         <div class="flex-container p-3 m-5">
             <div class="contenedor_igual_valor">
+                <h2>Funcion</h2>
+                <hr class="hr-divider">
+                <div id="vistaPrevia"></div>
+            </div>
+
+
+            <div class="contenedor_igual_valor">
                 <h2>Formula</h2>
                 <hr class="hr-divider">
                 <div id="formulaOriginal"></div>
             </div>
             <div class="contenedor_entrada">
+                <h2>Transformada</h2>
+                <hr class="hr-divider">
+                <div id="id_transformada"></div>
+            </div>
+            <div class="contenedor_entrada">
                 <h2>Sustitucion</h2>
                 <hr class="hr-divider">
-                <div id="vistaPrevia"></div>
+                <div id="id_sustitucion"></div>
             </div>
+            
             <div class="contenedor_igual_valor">
                 <h2>Resultado</h2>
                 <hr class="hr-divider">
                 <div id="resultado"></div>
             </div>
+
+
+
+
+            
+            
         </div>
     </div>
     
