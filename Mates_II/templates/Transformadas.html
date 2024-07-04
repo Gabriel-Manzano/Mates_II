@@ -15,7 +15,7 @@
 
     <div class="container shadow-none p-5 mb-5 bg-body-tertiary rounded" style="box-shadow: 0 0 20px 10px #ffffffee; background-color: rgba(255, 250, 250, 0.979);">
         <div class="titulo">
-            <h1>Formulario de las Transformadas de Laplace</h1>
+            <h1>Formulario PDF</h1>
         </div>
         <embed src="{{ url_for('static', filename='FORMULARIO.pdf') }}" type="application/pdf" width="100%" height="600px">
     </div>
@@ -56,28 +56,24 @@
             </div>
             <div class="container text-center" id="inputContainer"></div>
         </div>        
-        <div class="flex-container p-3 m-5" style="display: flex; flex-wrap: wrap; justify-content: space-around;">
-            <div class="contenedor_igual_valor" style="width: 48%; margin-bottom: 20px;">
-                <h2>Función</h2>
+        <div class="flex-container p-3 m-5">
+            <div class="contenedor_igual_valor">
+                <h2>Formula</h2>
                 <hr class="hr-divider">
-                <div id="funcion" style="font-size: 1.5rem; padding: 10px;"></div>
+                <div id="formulaOriginal"></div>
             </div>
-            <div class="contenedor_igual_valor" style="width: 48%; margin-bottom: 20px;">
-                <h2>Transformada</h2>
+            <div class="contenedor_entrada">
+                <h2>Sustitucion</h2>
                 <hr class="hr-divider">
-                <div id="transformada" style="font-size: 1.5rem; padding: 10px;"></div>
+                <div id="vistaPrevia"></div>
             </div>
-            <div class="contenedor_entrada" style="width: 48%; margin-bottom: 20px;">
-                <h2>Sustitución</h2>
-                <hr class="hr-divider">
-                <div id="sustitucion" style="font-size: 1.5rem; padding: 10px;"></div>
-            </div>
-            <div class="contenedor_igual_valor" style="width: 48%; margin-bottom: 20px;">
+            <div class="contenedor_igual_valor">
                 <h2>Resultado</h2>
                 <hr class="hr-divider">
-                <div id="resultado" style="font-size: 1.5rem; padding: 10px;"></div>
+                <div id="resultado"></div>
             </div>
         </div>
     </div>
+    
     
 {% endblock %} 
