@@ -220,17 +220,17 @@ function calcularFuncion(funcion) {
                 return;
             }
             break;
-        case '\\cos(bt)':
-        case '\\sin(bt)':
-        case '\\sinh(bt)':
-        case '\\cosh(bt)':
+        case 'cos(bt)':
+        case 'sin(bt)':
+        case 'sinh(bt)':
+        case 'cosh(bt)':
             if (!valorB || parseFloat(valorB) === 0 || isNaN(parseFloat(valorB))) {
                 document.getElementById("resultado").innerHTML = "Por favor ingrese un número válido diferente de 0 para b.";
                 return;
             }
             break;
-        case 'e^{at} \\cos(bt)':
-        case 'e^{at} \\sin(bt)':
+        case 'e^{at} cos(bt)':
+        case 'e^{at} sin(bt)':
             if ((!valorA || parseFloat(valorA) === 0 || isNaN(parseFloat(valorA))) || 
                 (!valorB || parseFloat(valorB) === 0 || isNaN(parseFloat(valorB)))) {
                 document.getElementById("resultado").innerHTML = "Por favor ingrese números válidos diferentes de 0 para a y b.";
@@ -252,8 +252,8 @@ function calcularFuncion(funcion) {
                 return;
             }
             break;
-        case 'sinh(at) \\cosh(bt)':
-        case 'cosh(at) \\sinh(bt)':
+        case 'sinh(at) cosh(bt)':
+        case 'cosh(at) sinh(bt)':
             if ((!valorA || parseFloat(valorA) === 0 || isNaN(parseFloat(valorA))) || 
                 (!valorB || parseFloat(valorB) === 0 || isNaN(parseFloat(valorB)))) {
                 document.getElementById("resultado").innerHTML = "Por favor ingrese números válidos diferentes de 0 para a y b.";
@@ -280,15 +280,15 @@ function calcularFuncion(funcion) {
                 return;
             }
             break;
-        case 't \\sin(at)':
-        case 't \\cos(at)':
+        case 't sin(at)':
+        case 't cos(at)':
             if (!valorA || parseFloat(valorA) === 0 || isNaN(parseFloat(valorA))) {
                 document.getElementById("resultado").innerHTML = "Por favor ingrese un número válido diferente de 0 para a.";
                 return;
             }
             break;
-        case '\\sin(at + b)':
-        case '\\cos(at + b)':
+        case 'sin(at + b)':
+        case 'cos(at + b)':
             if ((!valorA || parseFloat(valorA) === 0 || isNaN(parseFloat(valorA))) || 
                 (!valorB || parseFloat(valorB) === 0 || isNaN(parseFloat(valorB)))) {
                 document.getElementById("resultado").innerHTML = "Por favor ingrese números válidos diferentes de 0 para a y b.";
