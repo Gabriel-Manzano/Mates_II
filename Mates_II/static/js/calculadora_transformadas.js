@@ -18,10 +18,10 @@ function crearInputFuncion(funcion) {
                       <input type="number" id="valorA" name="valorA" class="form-control" required oninput="actualizarVistaPrevia('e^{at}')">
                       <button type="button" class="btn btn-primary mt-2" onclick="calcularFuncion('e^{at}')">Calcular</button>`;
             break;
-        case '\\cos(bt)':
-        case '\\sin(bt)':
-        case '\\sinh(bt)':
-        case '\\cosh(bt)':
+        case 'cos(bt)':
+        case 'sin(bt)':
+        case 'sinh(bt)':
+        case 'cosh(bt)':
             inputs = `<label for="valorB">Ingrese el valor de b:</label>
                       <input type="number" id="valorB" name="valorB" class="form-control" required oninput="actualizarVistaPrevia('${funcion}')">
                       <button type="button" class="btn btn-primary mt-2" onclick="calcularFuncion('${funcion}')">Calcular</button>`;
@@ -35,6 +35,7 @@ function crearInputFuncion(funcion) {
                       <button type="button" class="btn btn-primary mt-2" onclick="calcularFuncion('${funcion}')">Calcular</button>`;
             break;
         case '\\delta(t - a)':
+            break;
         case 'u(t - a)':
             inputs = `<label for="valorA">Ingrese el valor de a:</label>
                       <input type="number" id="valorA" name="valorA" class="form-control" required oninput="actualizarVistaPrevia('${funcion}')">
