@@ -5,7 +5,7 @@ function crearInputFuncion(funcion) {
         case '1':
         case 't':
         case 't^2':
-        case '\\frac{1}{t}':
+        case 'frac{1}{t}':
             inputs = `<button type="button" class="btn btn-primary mt-2" onclick="calcularFuncion('${funcion}')">Calcular</button>`;
             break;
         case 't^n':
@@ -19,15 +19,27 @@ function crearInputFuncion(funcion) {
                       <button type="button" class="btn btn-primary mt-2" onclick="calcularFuncion('e^{at}')">Calcular</button>`;
             break;
         case 'cos(bt)':
+            inputs = `<label for="valorA">Ingrese el valor de b:</label>
+                      <input type="number" id="valorB" name="valorB" class="form-control" required oninput="actualizarVistaPrevia('cos(bt)')">
+                      <button type="button" class="btn btn-primary mt-2" onclick="calcularFuncion('cos(bt)')">Calcular</button>`;
+            break;
         case 'sin(bt)':
+            inputs = `<label for="valorB">Ingrese el valor de b:</label>
+                      <input type="number" id="valorB" name="valorB" class="form-control" required oninput="actualizarVistaPrevia('sin(bt)')">
+                      <button type="button" class="btn btn-primary mt-2" onclick="calcularFuncion('sin(bt)')">Calcular</button>`;
+            break;
         case 'sinh(bt)':
+            inputs = `<label for="valorB">Ingrese el valor de b:</label>
+                      <input type="number" id="valorB" name="valorB" class="form-control" required oninput="actualizarVistaPrevia('sinh(bt)')">
+                      <button type="button" class="btn btn-primary mt-2" onclick="calcularFuncion('sinh(bt)')">Calcular</button>`;
+            break;
         case 'cosh(bt)':
             inputs = `<label for="valorB">Ingrese el valor de b:</label>
-                      <input type="number" id="valorB" name="valorB" class="form-control" required oninput="actualizarVistaPrevia('${funcion}')">
-                      <button type="button" class="btn btn-primary mt-2" onclick="calcularFuncion('${funcion}')">Calcular</button>`;
+                      <input type="number" id="valorB" name="valorB" class="form-control" required oninput="actualizarVistaPrevia('cosh(bt)')">
+                      <button type="button" class="btn btn-primary mt-2" onclick="calcularFuncion('cosh(bt)')">Calcular</button>`;
             break;
-        case 'e^{at} \\cos(bt)':
-        case 'e^{at} \\sin(bt)':
+        case 'e^{at} cos(bt)':
+        case 'e^{at} sin(bt)':
             inputs = `<label for="valorA">Ingrese el valor de a:</label>
                       <input type="number" id="valorA" name="valorA" class="form-control" required oninput="actualizarVistaPrevia('${funcion}')">
                       <label for="valorB">Ingrese el valor de b:</label>
@@ -35,6 +47,9 @@ function crearInputFuncion(funcion) {
                       <button type="button" class="btn btn-primary mt-2" onclick="calcularFuncion('${funcion}')">Calcular</button>`;
             break;
         case '\\delta(t - a)':
+            inputs = `<label for="valorA">Ingrese el valor de a:</label>
+                      <input type="number" id="valorA" name="valorA" class="form-control" required oninput="actualizarVistaPrevia('\\delta(t - a)')">
+                      <button type="button" class="btn btn-primary mt-2" onclick="calcularFuncion('\\delta(t - a)')">Calcular</button>`;
             break;
         case 'u(t - a)':
             inputs = `<label for="valorA">Ingrese el valor de a:</label>
@@ -53,20 +68,20 @@ function crearInputFuncion(funcion) {
                       <input type="number" id="valorA" name="valorA" class="form-control" required oninput="actualizarVistaPrevia('t^n e^{at}')">
                       <button type="button" class="btn btn-primary mt-2" onclick="calcularFuncion('t^n e^{at}')">Calcular</button>`;
             break;
-        case 'sinh(at) \\cosh(bt)':
-        case 'cosh(at) \\sinh(bt)':
+        case 'sinh(at) cosh(bt)':
+        case 'cosh(at) sinh(bt)':
             inputs = `<label for="valorA">Ingrese el valor de a:</label>
                       <input type="number" id="valorA" name="valorA" class="form-control" required oninput="actualizarVistaPrevia('${funcion}')">
                       <label for="valorB">Ingrese el valor de b:</label>
                       <input type="number" id="valorB" name="valorB" class="form-control" required oninput="actualizarVistaPrevia('${funcion}')">
                       <button type="button" class="btn btn-primary mt-2" onclick="calcularFuncion('${funcion}')">Calcular</button>`;
             break;
-        case '\\int_{0}^{t} f(\\tau) d\\tau':
+        case 'int_{0}^{t} f(tau) dtau':
             inputs = `<label for="funcionF">Ingrese la función F(t):</label>
-                      <input type="text" id="funcionF" name="funcionF" class="form-control" required oninput="actualizarVistaPrevia('\\int_{0}^{t} f(\\tau) d\\tau')">
+                      <input type="text" id="funcionF" name="funcionF" class="form-control" required oninput="actualizarVistaPrevia('int_{0}^{t} f(tau) dtau')">
                       <label for="valorT">Ingrese el valor de t:</label>
-                      <input type="number" id="valorT" name="valorT" class="form-control" required oninput="actualizarVistaPrevia('\\int_{0}^{t} f(\\tau) d\\tau')">
-                      <button type="button" class="btn btn-primary mt-2" onclick="calcularFuncion('\\int_{0}^{t} f(\\tau) d\\tau')">Calcular</button>`;
+                      <input type="number" id="valorT" name="valorT" class="form-control" required oninput="actualizarVistaPrevia('int_{0}^{t} f(tau) dtau')">
+                      <button type="button" class="btn btn-primary mt-2" onclick="calcularFuncion('int_{0}^{t} f(tau) dtau')">Calcular</button>`;
             break;
         case 'f\'(t)':
         case 'f\'\'(t)':
@@ -81,14 +96,14 @@ function crearInputFuncion(funcion) {
                       <input type="number" id="valorN" name="valorN" class="form-control" required oninput="actualizarVistaPrevia('e^{bt} t^n')">
                       <button type="button" class="btn btn-primary mt-2" onclick="calcularFuncion('e^{bt} t^n')">Calcular</button>`;
             break;
-        case 't \\sin(at)':
-        case 't \\cos(at)':
+        case 't sin(at)':
+        case 't cos(at)':
             inputs = `<label for="valorA">Ingrese el valor de a:</label>
                       <input type="number" id="valorA" name="valorA" class="form-control" required oninput="actualizarVistaPrevia('${funcion}')">
                       <button type="button" class="btn btn-primary mt-2" onclick="calcularFuncion('${funcion}')">Calcular</button>`;
             break;
-        case '\\sin(at + b)':
-        case '\\cos(at + b)':
+        case 'sin(at + b)':
+        case 'cos(at + b)':
             inputs = `<label for="valorA">Ingrese el valor de a:</label>
                       <input type="number" id="valorA" name="valorA" class="form-control" required oninput="actualizarVistaPrevia('${funcion}')">
                       <label for="valorB">Ingrese el valor de b:</label>
@@ -120,24 +135,24 @@ function actualizarVistaPrevia(funcion) {
     } else if (funcion === 'e^{at}') {
         vistaPrevia.innerHTML = '\\( e^{' + valorA + 't} \\)';
         document.getElementById("formulaOriginal").innerHTML = '\\( e^{t} \\)';
-    } else if (funcion === '\\cos(bt)') {
-        vistaPrevia.innerHTML = '\\( \\cos(' + valorB + 't) \\)';
-        document.getElementById("formulaOriginal").innerHTML = '\\( \\cos(bt) \\)';
-    } else if (funcion === '\\sin(bt)') {
-        vistaPrevia.innerHTML = '\\( \\sin(' + valorB + 't) \\)';
-        document.getElementById("formulaOriginal").innerHTML = '\\( \\sin(bt) \\)';
-    } else if (funcion === '\\sinh(bt)') {
-        vistaPrevia.innerHTML = '\\( \\sinh(' + valorB + 't) \\)';
-        document.getElementById("formulaOriginal").innerHTML = '\\( \\sinh(bt) \\)';
-    } else if (funcion === '\\cosh(bt)') {
-        vistaPrevia.innerHTML = '\\( \\cosh(' + valorB + 't) \\)';
-        document.getElementById("formulaOriginal").innerHTML = '\\( \\cosh(bt) \\)';
-    } else if (funcion === 'e^{at} \\cos(bt)') {
-        vistaPrevia.innerHTML = '\\( e^{' + valorA + 't} \\cos(' + valorB + 't) \\)';
-        document.getElementById("formulaOriginal").innerHTML = '\\( e^{at} \\cos(bt) \\)';
-    } else if (funcion === 'e^{at} \\sin(bt)') {
-        vistaPrevia.innerHTML = '\\( e^{' + valorA + 't} \\sin(' + valorB + 't) \\)';
-        document.getElementById("formulaOriginal").innerHTML = '\\( e^{' + valorA + 't} \\sin(' + valorB + 't) \\)';
+    } else if (funcion === 'cos(bt)') {
+        vistaPrevia.innerHTML = '\\( cos(' + valorB + 't) \\)';
+        document.getElementById("formulaOriginal").innerHTML = '\\( cos(bt) \\)';
+    } else if (funcion === 'sin(bt)') {
+        vistaPrevia.innerHTML = '\\( sin(' + valorB + 't) \\)';
+        document.getElementById("formulaOriginal").innerHTML = '\\( sin(bt) \\)';
+    } else if (funcion === 'sinh(bt)') {
+        vistaPrevia.innerHTML = '\\( sinh(' + valorB + 't) \\)';
+        document.getElementById("formulaOriginal").innerHTML = '\\( sinh(bt) \\)';
+    } else if (funcion === 'cosh(bt)') {
+        vistaPrevia.innerHTML = '\\( cosh(' + valorB + 't) \\)';
+        document.getElementById("formulaOriginal").innerHTML = '\\( cosh(bt) \\)';
+    } else if (funcion === 'e^{at} cos(bt)') {
+        vistaPrevia.innerHTML = '\\( e^{' + valorA + 't} cos(' + valorB + 't) \\)';
+        document.getElementById("formulaOriginal").innerHTML = '\\( e^{at} cos(bt) \\)';
+    } else if (funcion === 'e^{at} sin(bt)') {
+        vistaPrevia.innerHTML = '\\( e^{' + valorA + 't} sin(' + valorB + 't) \\)';
+        document.getElementById("formulaOriginal").innerHTML = '\\( e^{' + valorA + 't} sin(' + valorB + 't) \\)';
     } else if (funcion === '\\delta(t - a)') {
         vistaPrevia.innerHTML = '\\( \\delta(t - ' + valorA + ') \\)';
         document.getElementById("formulaOriginal").innerHTML = '\\( \\delta(t - ' + valorA + ') \\)';
@@ -153,24 +168,24 @@ function actualizarVistaPrevia(funcion) {
     } else if (funcion === 't^2') {
         vistaPrevia.innerHTML = '\\( t^2 \\)';
         document.getElementById("formulaOriginal").innerHTML = '\\( t^2 \\)';
-    } else if (funcion === '\\frac{1}{t}') {
-        vistaPrevia.innerHTML = '\\( \\frac{1}{t} \\)';
-        document.getElementById("formulaOriginal").innerHTML = '\\( \\frac{1}{t} \\)';
+    } else if (funcion === 'frac{1}{t}') {
+        vistaPrevia.innerHTML = '\\( frac{1}{t} \\)';
+        document.getElementById("formulaOriginal").innerHTML = '\\( frac{1}{t} \\)';
     } else if (funcion === 't e^{at}') {
         vistaPrevia.innerHTML = '\\( t e^{' + valorA + 't} \\)';
         document.getElementById("formulaOriginal").innerHTML = '\\( t e^{' + valorN + 't} \\)';
     } else if (funcion === 't^n e^{at}') {
         vistaPrevia.innerHTML = '\\( t^{' + valorN + '} e^{' + valorA + 't} \\)';
         document.getElementById("formulaOriginal").innerHTML = '\\( t^n e^{at} \\)';
-    } else if (funcion === 'sinh(at) \\cosh(bt)') {
-        vistaPrevia.innerHTML = '\\( \\sinh(' + valorA + 't) \\cosh(' + valorB + 't) \\)';
-        document.getElementById("formulaOriginal").innerHTML = '\\( \\sinh(at) \\cosh(bt) \\)';
-    } else if (funcion === 'cosh(at) \\sinh(bt)') {
-        vistaPrevia.innerHTML = '\\( \\cosh(' + valorA + 't) \\sinh(' + valorB + 't) \\)';
-        document.getElementById("formulaOriginal").innerHTML = '\\( \\cosh(at) \\sinh(bt) \\)';
-    } else if (funcion === '\\int_{0}^{t} f(\\tau) d\\tau') {
-        vistaPrevia.innerHTML = '\\( \\int_{0}^{' + valorT + '} ' + funcionF + ' d\\tau \\)';
-        document.getElementById("formulaOriginal").innerHTML = '\\( \\int_{0}^{t} f(\\tau) d\\tau \\)';
+    } else if (funcion === 'sinh(at) cosh(bt)') {
+        vistaPrevia.innerHTML = '\\( sinh(' + valorA + 't) cosh(' + valorB + 't) \\)';
+        document.getElementById("formulaOriginal").innerHTML = '\\( sinh(at) cosh(bt) \\)';
+    } else if (funcion === 'cosh(at) sinh(bt)') {
+        vistaPrevia.innerHTML = '\\( cosh(' + valorA + 't) sinh(' + valorB + 't) \\)';
+        document.getElementById("formulaOriginal").innerHTML = '\\( cosh(at) sinh(bt) \\)';
+    } else if (funcion === 'int_{0}^{t} f(tau) dtau') {
+        vistaPrevia.innerHTML = '\\( int_{0}^{' + valorT + '} ' + funcionF + ' dtau \\)';
+        document.getElementById("formulaOriginal").innerHTML = '\\( int_{0}^{t} f(tau) dtau \\)';
     } else if (funcion === 'f\'(t)') {
         vistaPrevia.innerHTML = '\\( f\'(t) \\)';
         document.getElementById("formulaOriginal").innerHTML = '\\( f\'(t) \\)';
@@ -180,18 +195,18 @@ function actualizarVistaPrevia(funcion) {
     } else if (funcion === 'e^{bt} t^n') {
         vistaPrevia.innerHTML = '\\( e^{' + valorB + 't} t^{' + valorN + '} \\)';
         document.getElementById("formulaOriginal").innerHTML = '\\( e^{bt} t^n \\)';
-    } else if (funcion === 't \\sin(at)') {
-        vistaPrevia.innerHTML = '\\( t \\sin(' + valorA + 't) \\)';
-        document.getElementById("formulaOriginal").innerHTML = '\\( t \\sin(at) \\)';
-    } else if (funcion === 't \\cos(at)') {
-        vistaPrevia.innerHTML = '\\( t \\cos(' + valorA + 't) \\)';
-        document.getElementById("formulaOriginal").innerHTML = '\\( t \\cos(at) \\)';
-    } else if (funcion === '\\sin(at + b)') {
-        vistaPrevia.innerHTML = '\\( \\sin(' + valorA + 't + ' + valorB + ') \\)';
-        document.getElementById("formulaOriginal").innerHTML = '\\( \\sin(at + b) \\)';
-    } else if (funcion === '\\cos(at + b)') {
-        vistaPrevia.innerHTML = '\\( \\cos(' + valorA + 't + ' + valorB + ') \\)';
-        document.getElementById("formulaOriginal").innerHTML = '\\( \\cos(at + b) \\)';
+    } else if (funcion === 't sin(at)') {
+        vistaPrevia.innerHTML = '\\( t sin(' + valorA + 't) \\)';
+        document.getElementById("formulaOriginal").innerHTML = '\\( t sin(at) \\)';
+    } else if (funcion === 't cos(at)') {
+        vistaPrevia.innerHTML = '\\( t cos(' + valorA + 't) \\)';
+        document.getElementById("formulaOriginal").innerHTML = '\\( t cos(at) \\)';
+    } else if (funcion === 'sin(at + b)') {
+        vistaPrevia.innerHTML = '\\( sin(' + valorA + 't + ' + valorB + ') \\)';
+        document.getElementById("formulaOriginal").innerHTML = '\\( sin(at + b) \\)';
+    } else if (funcion === 'cos(at + b)') {
+        vistaPrevia.innerHTML = '\\( cos(' + valorA + 't + ' + valorB + ') \\)';
+        document.getElementById("formulaOriginal").innerHTML = '\\( cos(at + b) \\)';
     }
 
     MathJax.typeset();
@@ -208,8 +223,8 @@ function calcularFuncion(funcion) {
     var funcionF = document.getElementById("funcionF") ? document.getElementById("funcionF").value.trim() : null;
     var valorT = document.getElementById("valorT") ? document.getElementById("valorT").value.trim() : null;
 
-    vb = valorB**2
-    va = valorA**2
+    vb = valorB ** 2
+    va = valorA ** 2
     function formatearNumero(numero) {
         if (Number.isInteger(numero)) {
             return numero.toString(); // Retornar como string para evitar .toFixed(2)
@@ -232,8 +247,20 @@ function calcularFuncion(funcion) {
             }
             break;
         case 'cos(bt)':
+            if (!valorB || parseInt(valorB) === 0 || isNaN(parseInt(valorB))) {
+                document.getElementById("resultado").innerHTML = "Por favor ingrese un número válido diferente de 0 para b.";
+                return;
+            }
         case 'sin(bt)':
+            if (!valorB || parseInt(valorB) === 0 || isNaN(parseInt(valorB))) {
+                document.getElementById("resultado").innerHTML = "Por favor ingrese un número válido diferente de 0 para b.";
+                return;
+            }
         case 'sinh(bt)':
+            if (!valorB || parseInt(valorB) === 0 || isNaN(parseInt(valorB))) {
+                document.getElementById("resultado").innerHTML = "Por favor ingrese un número válido diferente de 0 para b.";
+                return;
+            }
         case 'cosh(bt)':
             if (!valorB || parseInt(valorB) === 0 || isNaN(parseInt(valorB))) {
                 document.getElementById("resultado").innerHTML = "Por favor ingrese un número válido diferente de 0 para b.";
@@ -242,7 +269,7 @@ function calcularFuncion(funcion) {
             break;
         case 'e^{at} cos(bt)':
         case 'e^{at} sin(bt)':
-            if ((!valorA || parseInt(valorA) === 0 || isNaN(parseInt(valorA))) || 
+            if ((!valorA || parseInt(valorA) === 0 || isNaN(parseInt(valorA))) ||
                 (!valorB || parseInt(valorB) === 0 || isNaN(parseInt(valorB)))) {
                 document.getElementById("resultado").innerHTML = "Por favor ingrese números válidos diferentes de 0 para a y b.";
                 return;
@@ -255,7 +282,7 @@ function calcularFuncion(funcion) {
             }
             break;
         case 't^n e^{at}':
-            if ((!valorN || parseInt(valorN) === 0 || isNaN(parseInt(valorN))) || 
+            if ((!valorN || parseInt(valorN) === 0 || isNaN(parseInt(valorN))) ||
                 (!valorA || parseInt(valorA) === 0 || isNaN(parseInt(valorA)))) {
                 document.getElementById("resultado").innerHTML = "Por favor ingrese números válidos diferentes de 0 para n y a.";
                 return;
@@ -263,7 +290,7 @@ function calcularFuncion(funcion) {
             break;
         case 'sinh(at) cosh(bt)':
         case 'cosh(at) sinh(bt)':
-            if ((!valorA || parseInt(valorA) === 0 || isNaN(parseInt(valorA))) || 
+            if ((!valorA || parseInt(valorA) === 0 || isNaN(parseInt(valorA))) ||
                 (!valorB || parseInt(valorB) === 0 || isNaN(parseInt(valorB)))) {
                 document.getElementById("resultado").innerHTML = "Por favor ingrese números válidos diferentes de 0 para a y b.";
                 return;
@@ -283,7 +310,7 @@ function calcularFuncion(funcion) {
             }
             break;
         case 'e^{bt} t^n':
-            if ((!valorB || parseInt(valorB) === 0 || isNaN(parseInt(valorB))) || 
+            if ((!valorB || parseInt(valorB) === 0 || isNaN(parseInt(valorB))) ||
                 (!valorN || parseInt(valorN) === 0 || isNaN(parseInt(valorN)))) {
                 document.getElementById("resultado").innerHTML = "Por favor ingrese números válidos diferentes de 0 para b y n.";
                 return;
@@ -298,7 +325,7 @@ function calcularFuncion(funcion) {
             break;
         case 'sin(at + b)':
         case 'cos(at + b)':
-            if ((!valorA || parseInt(valorA) === 0 || isNaN(parseInt(valorA))) || 
+            if ((!valorA || parseInt(valorA) === 0 || isNaN(parseInt(valorA))) ||
                 (!valorB || parseInt(valorB) === 0 || isNaN(parseInt(valorB)))) {
                 document.getElementById("resultado").innerHTML = "Por favor ingrese números válidos diferentes de 0 para a y b.";
                 return;
@@ -350,7 +377,7 @@ function calcularFuncion(funcion) {
         case 'e^{at} sin(bt)':
             resultado = '\\( \\frac{' + formatearNumero(parseFloat(valorB)) + '}{(s - ' + parseInt(valorA) + ')^2 + ' + formatearNumero(vb) + '} \\)';
             break;
-        case 'delta(t - a)':
+        case '\\delta(t - a)':
             resultado = '\\( e^{-' + parseInt(valorA) + 's} \\)';
             break;
         case 'u(t - a)':
@@ -404,7 +431,7 @@ function calcularFuncion(funcion) {
             resultado = '\\( \\frac{s \\cos(' + parseInt(valorB) + ') - ' + parseInt(valorB) + ' \\sin(' + parseInt(valorB) + ')}{s^2 + ' + formatearNumero(va) + '} \\)';
             break;
     }
-    
+
     document.getElementById("id_sustitucion").innerHTML = rd_sustitucion;
     document.getElementById("id_transformada").innerHTML = rd_transformada;
     document.getElementById("resultado").innerHTML = resultado;
