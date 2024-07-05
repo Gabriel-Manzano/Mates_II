@@ -153,7 +153,7 @@ function actualizarVistaPrevia(funcion) {
     } else if (funcion === 'e^{at} sin(bt)') {
         vistaPrevia.innerHTML = '\\( e^{' + valorA + 't} sin(' + valorB + 't) \\)';
         document.getElementById("formulaOriginal").innerHTML = '\\( e^{' + valorA + 't} sin(' + valorB + 't) \\)';
-    } else if (funcion === '\\delta(t - a)') {
+    } else if (funcion === 'delta(t - a)') {
         vistaPrevia.innerHTML = '\\( \\delta(t - ' + valorA + ') \\)';
         document.getElementById("formulaOriginal").innerHTML = '\\( \\delta(t - ' + valorA + ') \\)';
     } else if (funcion === 'u(t - a)') {
@@ -354,39 +354,63 @@ function calcularFuncion(funcion) {
             for (let i = 1; i <= parseInt(valorN); i++) {
                 factorialN *= i;
             }
+            rd_sustitucion = '\\(\\frac{n!}{s^{' + (parseInt(valorN) + 1) + '}} \\)';
+            rd_transformada = '\\[ \\mathcal{L}\\{ t^n \\} \\]'
             resultado = '\\( \\frac{' + factorialN + '}{s^{' + (parseInt(valorN) + 1) + '}} \\)';
             break;
         case 'e^{at}':
+            rd_sustitucion = '\\( \\frac{1}{s - a} \\)';
+            rd_transformada = '\\[ \\mathcal{L}\\{ e^{at} \\} \\]'          
             resultado = '\\( \\frac{1}{s - ' + parseInt(valorA) + '} \\)';
             break;
         case 'cos(bt)':
+            rd_sustitucion = '\\( \\frac{s}{s^2 + b^2} \\)';
+            rd_transformada = '\\[ \\mathcal{L}\\{ cos(bt) \\} \\]'   
             resultado = '\\( \\frac{s}{s^2 + ' + formatearNumero(vb) + '} \\)';
             break;
         case 'sin(bt)':
+            rd_sustitucion = '\\( \\frac{b}{s^2 + b^2} \\)';
+            rd_transformada = '\\[ \\mathcal{L}\\{ sin(bt) \\} \\]' 
             resultado = '\\( \\frac{' + formatearNumero(parseFloat(valorB)) + '}{s^2 + ' + formatearNumero(vb) + '} \\)';
             break;
         case 'sinh(bt)':
+            rd_sustitucion = '\\( \\frac{b}{s^2 - b^2} \\)';
+            rd_transformada = '\\[ \\mathcal{L}\\{ sinh(bt) \\} \\]' 
             resultado = '\\( \\frac{' + formatearNumero(parseFloat(valorB)) + '}{s^2 - ' + formatearNumero(vb) + '} \\)';
             break;
         case 'cosh(bt)':
+            rd_sustitucion = '\\( \\frac{s}{s^2 - b^2} \\)';
+            rd_transformada = '\\[ \\mathcal{L}\\{ cosh(bt) \\} \\]' 
             resultado = '\\( \\frac{s}{s^2 - ' + formatearNumero(vb) + '} \\)';
             break;
         case 'e^{at} cos(bt)':
+            rd_sustitucion = '\\( \\frac{s - a}{(s - a)^2 + b^2} \\)';
+            rd_transformada = '\\[ \\mathcal{L}\\{ e^{at} cos(bt) \\} \\]' 
             resultado = '\\( \\frac{s - ' + parseInt(valorA) + '}{(s - ' + parseInt(valorA) + ')^2 + ' + formatearNumero(vb) + '} \\)';
             break;
         case 'e^{at} sin(bt)':
+            rd_sustitucion = '\\( \\frac{b}{(s - a)^2 + b^2} \\)';
+            rd_transformada = '\\[ \\mathcal{L}\\{ e^{at} sin(bt) \\} \\]' 
             resultado = '\\( \\frac{' + formatearNumero(parseFloat(valorB)) + '}{(s - ' + parseInt(valorA) + ')^2 + ' + formatearNumero(vb) + '} \\)';
             break;
-        case '\\delta(t - a)':
+        case 'delta(t - a)':
+            rd_sustitucion = '\\( e^{-as} \\)';
+            rd_transformada = '\\[ \\mathcal{L}\\{ \\delta(t - a) \\} \\]' 
             resultado = '\\( e^{-' + parseInt(valorA) + 's} \\)';
             break;
         case 'u(t - a)':
+            rd_sustitucion = '\\( \\frac{e^{-as}}{s} \\)';
+            rd_transformada = '\\[ \\mathcal{L}\\{ u(t - a) \\} \\]' 
             resultado = '\\( \\frac{e^{-' + parseInt(valorA) + 's}}{s} \\)';
             break;
         case 'frac{1}{t}':
+            rd_sustitucion = '\\( \\ln(s) \\)';
+            rd_transformada = '\\[ \\mathcal{L}\\{ frac{1}{t} \\} \\]' 
             resultado = '\\( \\ln(s) \\)';
             break;
         case 't e^{at}':
+            rd_sustitucion = '\\( \\frac{1}{(s - a)^2} \\)';
+            rd_transformada = '\\[ \\mathcal{L}\\{ t e^{at} \\} \\]' 
             resultado = '\\( \\frac{1}{(s - ' + parseInt(valorA) + ')^2} \\)';
             break;
         case 't^n e^{at}':
@@ -394,12 +418,18 @@ function calcularFuncion(funcion) {
             for (let i = 1; i <= parseInt(valorN); i++) {
                 factorialN *= i;
             }
+            rd_sustitucion = '\\( \\frac{n!}{(s - a)^{n + 1}} \\)';
+            rd_transformada = '\\[ \\mathcal{L}\\{ t^n e^{at} \\} \\]' 
             resultado = '\\( \\frac{' + factorialN + '}{(s - ' + parseInt(valorA) + ')^{' + (parseInt(valorN) + 1) + '}} \\)';
             break;
         case 'sinh(at) cosh(bt)':
+            rd_sustitucion = '\\( \\frac{a}{s^2 - a^2} \\)';
+            rd_transformada = '\\[ \\mathcal{L}\\{ sinh(at) cosh(bt) \\} \\]' 
             resultado = '\\( \\frac{' + parseInt(valorA) + '}{s^2 - ' + formatearNumero(va) + '} \\)';
             break;
         case 'cosh(at) sinh(bt)':
+            rd_sustitucion = '\\( \\frac{s}{s^2 - a^2} \\)';
+            rd_transformada = '\\[ \\mathcal{L}\\{ cosh(at) sinh(bt) \\} \\]' 
             resultado = '\\( \\frac{s}{s^2 - ' + formatearNumero(va) + '} \\)';
             break;
         case '\\int_{0}^{t} f(\\tau) d\\tau': //!!NO FUNCIONA
@@ -412,22 +442,33 @@ function calcularFuncion(funcion) {
             resultado = '\\( s^2F(s) - sf(0) - f\'(0) \\)';
             break;
         case 'e^{bt} t^n':
+
             var factorialN = 1;
             for (let i = 1; i <= parseInt(valorN); i++) {
                 factorialN *= i;
             }
+            rd_sustitucion = '\\( \\frac{n!}{(s - b)^{n + 1}} \\)';
+            rd_transformada = '\\[ \\mathcal{L}\\{ e^{bt} t^n \\} \\]' 
             resultado = '\\( \\frac{' + factorialN + '}{(s - ' + parseInt(valorB) + ')^{' + (parseInt(valorN) + 1) + '}} \\)';
             break;
         case 't sin(at)':
+            rd_sustitucion = '\\( \\frac{2as}{(s^2 + a^2)^2} \\)';
+            rd_transformada = '\\[ \\mathcal{L}\\{ t sin(at) \\} \\]' 
             resultado = '\\( \\frac{' + (2 * parseInt(valorA)) + 's}{(s^2 + ' + formatearNumero(va) + ')^2} \\)';
             break;
         case 't cos(at)':
+            rd_sustitucion = '\\( \\frac{s^2 - a^2}{(s^2 + a^2)^2} \\)';
+            rd_transformada = '\\[ \\mathcal{L}\\{ t cos(at) \\} \\]' 
             resultado = '\\( \\frac{s^2 - ' + formatearNumero(va) + '}{(s^2 + ' + formatearNumero(va) + ')^2} \\)';
             break;
         case 'sin(at + b)':
+            rd_sustitucion = '\\( \\frac{a \\cos(b) + s \\sin(b)}{s^2 + a^2} \\)';
+            rd_transformada = '\\[ \\mathcal{L}\\{ sin(at + b) \\} \\]' 
             resultado = '\\( \\frac{' + parseInt(valorA) + ' \\cos(' + parseInt(valorB) + ') + s \\sin(' + parseInt(valorB) + ')}{s^2 + ' + formatearNumero(va) + '} \\)';
             break;
         case 'cos(at + b)':
+            rd_sustitucion = '\\( \\frac{s \\cos(b) - b \\sin(b)}{s^2 + a^2} \\)';
+            rd_transformada = '\\[ \\mathcal{L}\\{ cos(at + b) \\} \\]' 
             resultado = '\\( \\frac{s \\cos(' + parseInt(valorB) + ') - ' + parseInt(valorB) + ' \\sin(' + parseInt(valorB) + ')}{s^2 + ' + formatearNumero(va) + '} \\)';
             break;
     }
