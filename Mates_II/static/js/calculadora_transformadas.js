@@ -76,12 +76,12 @@ function crearInputFuncion(funcion) {
                       <input type="number" id="valorB" name="valorB" class="form-control" required oninput="actualizarVistaPrevia('${funcion}')">
                       <button type="button" class="btn btn-primary mt-2" onclick="calcularFuncion('${funcion}')">Calcular</button>`;
             break;
-        case 'int_{0}^{t} f(tau) dtau':
+        case '\\int_{0}^{t} f(\\tau) d\\tau':
             inputs = `<label for="funcionF">Ingrese la función F(t):</label>
-                      <input type="text" id="funcionF" name="funcionF" class="form-control" required oninput="actualizarVistaPrevia('int_{0}^{t} f(tau) dtau')">
+                      <input type="text" id="funcionF" name="funcionF" class="form-control" required oninput="actualizarVistaPrevia('\\int_{0}^{t} f(\\tau) d\\tau')">
                       <label for="valorT">Ingrese el valor de t:</label>
-                      <input type="number" id="valorT" name="valorT" class="form-control" required oninput="actualizarVistaPrevia('int_{0}^{t} f(tau) dtau')">
-                      <button type="button" class="btn btn-primary mt-2" onclick="calcularFuncion('int_{0}^{t} f(tau) dtau')">Calcular</button>`;
+                      <input type="number" id="valorT" name="valorT" class="form-control" required oninput="actualizarVistaPrevia('\\int_{0}^{t} f(\\tau) d\\tau')">
+                      <button type="button" class="btn btn-primary mt-2" onclick="calcularFuncion('\\int_{0}^{t} f(\\tau) d\\tau')">Calcular</button>`;
             break;
         case 'f\'(t)':
         case 'f\'\'(t)':
@@ -169,8 +169,8 @@ function actualizarVistaPrevia(funcion) {
         vistaPrevia.innerHTML = '\\( t^2 \\)';
         document.getElementById("formulaOriginal").innerHTML = '\\( t^2 \\)';
     } else if (funcion === 'frac{1}{t}') {
-        vistaPrevia.innerHTML = '\\( frac{1}{t} \\)';
-        document.getElementById("formulaOriginal").innerHTML = '\\( frac{1}{t} \\)';
+        vistaPrevia.innerHTML = '\\( \\frac{1}{t} \\)';
+        document.getElementById("formulaOriginal").innerHTML = '\\( \\frac{1}{t} \\)';
     } else if (funcion === 't e^{at}') {
         vistaPrevia.innerHTML = '\\( t e^{' + valorA + 't} \\)';
         document.getElementById("formulaOriginal").innerHTML = '\\( t e^{' + valorN + 't} \\)';
@@ -183,9 +183,9 @@ function actualizarVistaPrevia(funcion) {
     } else if (funcion === 'cosh(at) sinh(bt)') {
         vistaPrevia.innerHTML = '\\( cosh(' + valorA + 't) sinh(' + valorB + 't) \\)';
         document.getElementById("formulaOriginal").innerHTML = '\\( cosh(at) sinh(bt) \\)';
-    } else if (funcion === 'int_{0}^{t} f(tau) dtau') {
-        vistaPrevia.innerHTML = '\\( int_{0}^{' + valorT + '} ' + funcionF + ' dtau \\)';
-        document.getElementById("formulaOriginal").innerHTML = '\\( int_{0}^{t} f(tau) dtau \\)';
+    } else if (funcion === '\\int_{0}^{t} f(\\tau) d\\tau') {
+        vistaPrevia.innerHTML = '\\( \\int_{0}^{' + valorT + '} ' + funcionF + ' d\\tau \\)';
+        document.getElementById("formulaOriginal").innerHTML = '\\( \\int_{0}^{t} f(\\tau) d\\tau \\)';
     } else if (funcion === 'f\'(t)') {
         vistaPrevia.innerHTML = '\\( f\'(t) \\)';
         document.getElementById("formulaOriginal").innerHTML = '\\( f\'(t) \\)';
@@ -405,7 +405,7 @@ function calcularFuncion(funcion) {
             break;
         case 'frac{1}{t}':
             rd_sustitucion = '\\( \\ln(s) \\)';
-            rd_transformada = '\\[ \\mathcal{L}\\{ frac{1}{t} \\} \\]' 
+            rd_transformada = '\\[ \\mathcal{L}\\{ \\frac{1}{t} \\} \\]' 
             resultado = '\\( \\ln(s) \\)';
             break;
         case 't e^{at}':
@@ -433,6 +433,8 @@ function calcularFuncion(funcion) {
             resultado = '\\( \\frac{s}{s^2 - ' + formatearNumero(va) + '} \\)';
             break;
         case '\\int_{0}^{t} f(\\tau) d\\tau': //!!NO FUNCIONA
+            rd_sustitucion = '\\( \\frac{F(s)}{s} \\)';
+            rd_transformada = '\\[ \\mathcal{L}\\{ \\int_{0}^{t} f(\\tau) d\\tau \\} \\]' 
             resultado = '\\( \\frac{F(s)}{s} \\)';
             break;
         case 'f\'(t)': //!!NO FUNCIONA
