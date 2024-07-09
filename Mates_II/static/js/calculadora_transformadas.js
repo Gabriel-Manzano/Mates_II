@@ -142,6 +142,18 @@ function actualizarVistaPrevia(funcion) {
     if (funcion === 't^n') {
         vistaPrevia.innerHTML = '\\( t^{' + valorN + '} \\)';
         document.getElementById("formulaOriginal").innerHTML = '\\( t^n \\)';
+    } else if (funcion === 't sin(at)') {
+        vistaPrevia.innerHTML = '\\( t sin({' + valorA + 't}) \\)';
+        document.getElementById("formulaOriginal").innerHTML = '\\( t sin(at) \\)';
+    } else if (funcion === 't cos(at)') {
+        vistaPrevia.innerHTML = '\\( t cos({' + valorA + 't}) \\)';
+        document.getElementById("formulaOriginal").innerHTML = '\\( t cos(at) \\)';
+    } else if (funcion === 'sin(at + b)') {
+        vistaPrevia.innerHTML = '\\( sin({' + valorA + 't + ' + valorB + '}) \\)';
+        document.getElementById("formulaOriginal").innerHTML = '\\( sin(at + b) \\)';
+    } else if (funcion === 'cos(at + b)') {
+        vistaPrevia.innerHTML = '\\( cos({' + valorA + 't + ' + valorB + '}) \\)';
+        document.getElementById("formulaOriginal").innerHTML = '\\( cos(at + b) \\)';
     } else if (funcion === 'e^{at}') {
         vistaPrevia.innerHTML = '\\( e^{' + valorA + 't} \\)';
         document.getElementById("formulaOriginal").innerHTML = '\\( e^{at} \\)';
@@ -391,6 +403,27 @@ function calcularFuncion(funcion) {
             rd_sustitucion = '\\( \\frac{1}{s - a} \\)';
             rd_transformada = '\\[ \\mathcal{L}\\{ e^{at} \\} \\]'          
             resultado = '\\( \\frac{1}{s - ' + parseInt(valorA) + '} \\)';
+            break;
+            
+        case 't sin(at)':
+            rd_sustitucion = '\\( \\frac{2as}{(s^2 - a^2)^2} \\)';
+            rd_transformada = '\\[ \\mathcal{L}\\{ t sin(at) \\} \\]'          
+            resultado = '\\( \\frac{' + 2*(parseFloat(valorA)) + 's}{(s^2 - ' + (parseFloat(valorA)**2) + ')^2} \\)';
+            break;
+        case 't cos(at)':
+            rd_sustitucion = '\\( \\frac{s^2 - a^2}{(s^2 - a^2)^2} \\)';
+            rd_transformada = '\\[ \\mathcal{L}\\{ t cos(at) \\} \\]'          
+            resultado = '\\( \\frac{s^2 - ' + (parseFloat(valorA)**2) + '}{(s^2 - ' + (parseFloat(valorA)**2) + ')^2} \\)';
+            break;
+        case 'sin(at + b)':
+            rd_sustitucion = '\\( \\frac{a cos(b) + s sin(b)}{s^2 + a^2} \\)';
+            rd_transformada = '\\[ \\mathcal{L}\\{  sin(at + b) \\} \\]'          
+            resultado = '\\( \\frac{' + parseFloat(valorA) + ' cos(' + parseFloat(valorB) + ') + s sin(' + parseFloat(valorB) + ')}{s^2 + ' + (parseInt(valorA))**2 + '} \\)';
+            break;
+        case 'cos(at + b)':
+            rd_sustitucion = '\\( \\frac{s cos(b) - a sin(b)}{s^2 + a^2} \\)';
+            rd_transformada = '\\[ \\mathcal{L}\\{  cos(at + b) \\} \\]'          
+            resultado = '\\( \\frac{s cos(' + parseFloat(valorB) + ') - ' + parseFloat(valorA) + ' sin(' + parseFloat(valorB) + ')}{s^2 + ' + (parseInt(valorA))**2 + '} \\)';
             break;
         case 'cos(bt)':
             rd_sustitucion = '\\( \\frac{s}{s^2 + b^2} \\)';
