@@ -242,6 +242,15 @@ function calcularFuncion(funcion) {
 
     vb = valorB ** 2
     va = valorA ** 2
+
+    var numRegex = /^\d+\.$/;
+    if (numRegex.test(valorN) || numRegex.test(valorA) || numRegex.test(valorB) || numRegex.test(valorT)) {
+        document.getElementById("resultado").innerHTML = "Por favor ingrese un número válido con decimales.";
+        return; // Detener ejecución si hay un error de validación
+    }
+
+
+
     function formatearNumero(numero) {
         if (Number.isInteger(numero)) {
             return numero.toString(); // Retornar como string para evitar .toFixed(2)
