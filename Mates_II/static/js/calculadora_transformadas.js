@@ -472,7 +472,8 @@ function calcularFuncion(funcion) {
     }
 
     document.getElementById("id_sustitucion").innerHTML = rd_sustitucion;
-    document.getElementById("id_transformada").innerHTML = rd_transformada;
-    document.getElementById("resultado").innerHTML = resultado;
-    MathJax.typeset();
+            document.getElementById("id_transformada").innerHTML = rd_transformada;
+            document.getElementById("resultado").innerHTML = `<div class='resultado-texto'>${resultado}</div>`;
+            MathJax.typeset();
+
 }
