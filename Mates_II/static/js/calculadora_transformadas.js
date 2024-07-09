@@ -16,36 +16,23 @@ function crearInputFuncion(funcion) {
         case 'frac{1}{t}':
             inputs = `<button type="button" class="btn btn-primary mt-2" onclick="calcularFuncion('${funcion}')">Calcular</button>`;
             break;
-            case 't^n':
-                inputs = `<label for="valorN">Ingrese el valor de n:</label>
-                          <input type="number" id="valorN" name="valorN" class="form-control" required min="1" step="1" oninput="validarEnteroPositivo(this)">
-                          <button type="button" class="btn btn-primary mt-2" onclick="calcularFuncion('t^n')">Calcular</button>`;
-                break;
-            
+        case 't^n':
+            inputs = `<label for="valorN">Ingrese el valor de n:</label>
+                      <input type="number" id="valorN" name="valorN" class="form-control" required min="1" step="1" oninput="validarEnteroPositivo(this); actualizarVistaPrevia('t^n')">
+                      <button type="button" class="btn btn-primary mt-2" onclick="calcularFuncion('t^n')">Calcular</button>`;
+            break;
         case 'e^{at}':
             inputs = `<label for="valorA">Ingrese el valor de a:</label>
                       <input type="number" id="valorA" name="valorA" class="form-control" required oninput="actualizarVistaPrevia('e^{at}')">
                       <button type="button" class="btn btn-primary mt-2" onclick="calcularFuncion('e^{at}')">Calcular</button>`;
             break;
         case 'cos(bt)':
-            inputs = `<label for="valorA">Ingrese el valor de b:</label>
-                      <input type="number" id="valorB" name="valorB" class="form-control" required oninput="actualizarVistaPrevia('cos(bt)')">
-                      <button type="button" class="btn btn-primary mt-2" onclick="calcularFuncion('cos(bt)')">Calcular</button>`;
-            break;
         case 'sin(bt)':
-            inputs = `<label for="valorB">Ingrese el valor de b:</label>
-                      <input type="number" id="valorB" name="valorB" class="form-control" required oninput="actualizarVistaPrevia('sin(bt)')">
-                      <button type="button" class="btn btn-primary mt-2" onclick="calcularFuncion('sin(bt)')">Calcular</button>`;
-            break;
         case 'sinh(bt)':
-            inputs = `<label for="valorB">Ingrese el valor de b:</label>
-                      <input type="number" id="valorB" name="valorB" class="form-control" required oninput="actualizarVistaPrevia('sinh(bt)')">
-                      <button type="button" class="btn btn-primary mt-2" onclick="calcularFuncion('sinh(bt)')">Calcular</button>`;
-            break;
         case 'cosh(bt)':
             inputs = `<label for="valorB">Ingrese el valor de b:</label>
-                      <input type="number" id="valorB" name="valorB" class="form-control" required oninput="actualizarVistaPrevia('cosh(bt)')">
-                      <button type="button" class="btn btn-primary mt-2" onclick="calcularFuncion('cosh(bt)')">Calcular</button>`;
+                      <input type="number" id="valorB" name="valorB" class="form-control" required oninput="actualizarVistaPrevia('${funcion}')">
+                      <button type="button" class="btn btn-primary mt-2" onclick="calcularFuncion('${funcion}')">Calcular</button>`;
             break;
         case 'e^{at} cos(bt)':
         case 'e^{at} sin(bt)':
@@ -56,10 +43,6 @@ function crearInputFuncion(funcion) {
                       <button type="button" class="btn btn-primary mt-2" onclick="calcularFuncion('${funcion}')">Calcular</button>`;
             break;
         case '\\delta(t - a)':
-            inputs = `<label for="valorA">Ingrese el valor de a:</label>
-                      <input type="number" id="valorA" name="valorA" class="form-control" required oninput="actualizarVistaPrevia('\\delta(t - a)')">
-                      <button type="button" class="btn btn-primary mt-2" onclick="calcularFuncion('\\delta(t - a)')">Calcular</button>`;
-            break;
         case 'u(t - a)':
             inputs = `<label for="valorA">Ingrese el valor de a:</label>
                       <input type="number" id="valorA" name="valorA" class="form-control" required oninput="actualizarVistaPrevia('${funcion}')">
@@ -71,9 +54,8 @@ function crearInputFuncion(funcion) {
                       <button type="button" class="btn btn-primary mt-2" onclick="calcularFuncion('t e^{at}')">Calcular</button>`;
             break;
         case 't^n e^{at}':
-            case 't^n e^{at}':
-    inputs = `<label for="valorN">Ingrese el valor de n:</label>
-                     <input type="number" id="valorN" name="valorN" class="form-control" required min="1" step="1" oninput="validarEnteroPositivo(this); actualizarVistaPrevia('t^n e^{at}')">
+            inputs = `<label for="valorN">Ingrese el valor de n:</label>
+                      <input type="number" id="valorN" name="valorN" class="form-control" required min="1" step="1" oninput="validarEnteroPositivo(this); actualizarVistaPrevia('t^n e^{at}')">
                       <label for="valorA">Ingrese el valor de a:</label>
                       <input type="number" id="valorA" name="valorA" class="form-control" required oninput="actualizarVistaPrevia('t^n e^{at}')">
                       <button type="button" class="btn btn-primary mt-2" onclick="calcularFuncion('t^n e^{at}')">Calcular</button>`;
@@ -86,14 +68,14 @@ function crearInputFuncion(funcion) {
                       <input type="number" id="valorB" name="valorB" class="form-control" required oninput="actualizarVistaPrevia('${funcion}')">
                       <button type="button" class="btn btn-primary mt-2" onclick="calcularFuncion('${funcion}')">Calcular</button>`;
             break;
-        case '\\int_{0}^{t} f(\\tau) d\\tau':
+        case '\int_{0}^{t} f(\tau) d\tau':
             inputs = `<label for="funcionF">Ingrese la función F(t):</label>
                       <input type="text" id="funcionF" name="funcionF" class="form-control" required oninput="actualizarVistaPrevia('\\int_{0}^{t} f(\\tau) d\\tau')">
                       <label for="valorT">Ingrese el valor de t:</label>
                       <input type="number" id="valorT" name="valorT" class="form-control" required oninput="actualizarVistaPrevia('\\int_{0}^{t} f(\\tau) d\\tau')">
                       <button type="button" class="btn btn-primary mt-2" onclick="calcularFuncion('\\int_{0}^{t} f(\\tau) d\\tau')">Calcular</button>`;
             break;
-        case 'f\'(t)':
+        case '\\( f\'(t) \\)':
         case 'f\'\'(t)':
             inputs = `<label for="funcionF">Ingrese la función F(t):</label>
                       <input type="text" id="funcionF" name="funcionF" class="form-control" required oninput="actualizarVistaPrevia('${funcion}')">
@@ -104,7 +86,7 @@ function crearInputFuncion(funcion) {
                       <input type="number" id="valorB" name="valorB" class="form-control" required oninput="actualizarVistaPrevia('e^{bt} t^n')">
                       <label for="valorN">Ingrese el valor de n:</label>
                       <input type="number" id="valorN" name="valorN" class="form-control" required min="1" step="1" oninput="validarEnteroPositivo(this); actualizarVistaPrevia('e^{bt} t^n')">
-              <button type="button" class="btn btn-primary mt-2" onclick="calcularFuncion('e^{bt} t^n')">Calcular</button>`;
+                      <button type="button" class="btn btn-primary mt-2" onclick="calcularFuncion('e^{bt} t^n')">Calcular</button>`;
             break;
         case 't sin(at)':
         case 't cos(at)':
@@ -125,6 +107,7 @@ function crearInputFuncion(funcion) {
     document.getElementById("resultado").innerHTML = '';
     actualizarVistaPrevia(funcion);
 }
+
 
 
 //---------------------------------------------------------------------------------------------------------------------
@@ -193,11 +176,11 @@ function actualizarVistaPrevia(funcion) {
     } else if (funcion === 'cosh(at) sinh(bt)') {
         vistaPrevia.innerHTML = '\\( cosh(' + valorA + 't) sinh(' + valorB + 't) \\)';
         document.getElementById("formulaOriginal").innerHTML = '\\( cosh(at) sinh(bt) \\)';
-    } else if (funcion === '\\int_{0}^{t} f(\\tau) d\\tau') {
+    } else if (funcion === '\int_{0}^{t} f(\tau) d\tau') {
         vistaPrevia.innerHTML = '\\( \\int_{0}^{' + valorT + '} ' + funcionF + ' d\\tau \\)';
         document.getElementById("formulaOriginal").innerHTML = '\\( \\int_{0}^{t} f(\\tau) d\\tau \\)';
-    } else if (funcion === 'f\'(t)') {
-        vistaPrevia.innerHTML = '\\( f\'(t) \\)';
+    } else if (funcion === '\\( f\'(t) \\)') {
+        vistaPrevia.innerHTML = '\\( f\'(' + funcionF + ') \\)';
         document.getElementById("formulaOriginal").innerHTML = '\\( f\'(t) \\)';
     } else if (funcion === 'f\'\'(t)') {
         vistaPrevia.innerHTML = '\\( f\'\'(t) \\)';
@@ -307,14 +290,14 @@ function calcularFuncion(funcion) {
                 return;
             }
             break;
-        case '\\int_{0}^{t} f(\\tau) d\\tau':
+        case '\int_{0}^{t} f(\tau) d\tau':
             if (!funcionF || !valorT || parseFloat(valorT) === 0 || isNaN(parseFloat(valorT))) {
                 document.getElementById("resultado").innerHTML = "Por favor ingrese una función válida y un número válido diferente de 0 para t.";
                 return;
             }
             break;
-        case 'f\'(t)':
-        case 'f\'\'(t)':
+        case '\\( f\'(t) \\)':
+        
             if (!funcionF) {
                 document.getElementById("resultado").innerHTML = "Por favor ingrese una función válida.";
                 return;
@@ -445,12 +428,12 @@ function calcularFuncion(funcion) {
             rd_transformada = '\\[ \\mathcal{L}\\{ cosh(at) sinh(bt) \\} \\]' 
             resultado = '\\( \\frac{s}{s^2 - ' + formatearNumero(va) + '} \\)';
             break;
-        case '\\int_{0}^{t} f(\\tau) d\\tau': //!!NO FUNCIONA
+        case '\int_{0}^{t} f(\tau) d\tau': 
             rd_sustitucion = '\\( \\frac{F(s)}{s} \\)';
             rd_transformada = '\\[ \\mathcal{L}\\{ \\int_{0}^{t} f(\\tau) d\\tau \\} \\]' 
             resultado = '\\( \\frac{F(s)}{s} \\)';
             break;
-        case 'f\'(t)': //!!NO FUNCIONA
+        case '\\( f\'(t) \\)': //!!NO FUNCIONA
             resultado = '\\( sF(s) - f(0) \\)';
             break;
         case 'f\'\'(t)': //!!NO FUNCIONA
