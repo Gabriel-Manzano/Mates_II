@@ -1,3 +1,11 @@
+function validarEnteroPositivo(input) {
+    if (input.value < 1) {
+        input.value = "";
+    }
+}
+
+
+
 function crearInputFuncion(funcion) {
     var inputContainer = document.getElementById("inputContainer");
     var inputs = '';
@@ -8,11 +16,12 @@ function crearInputFuncion(funcion) {
         case 'frac{1}{t}':
             inputs = `<button type="button" class="btn btn-primary mt-2" onclick="calcularFuncion('${funcion}')">Calcular</button>`;
             break;
-        case 't^n':
-            inputs = `<label for="valorN">Ingrese el valor de n:</label>
-                      <input type="number" id="valorN" name="valorN" class="form-control" required oninput="actualizarVistaPrevia('t^n')">
-                      <button type="button" class="btn btn-primary mt-2" onclick="calcularFuncion('t^n')">Calcular</button>`;
-            break;
+            case 't^n':
+                inputs = `<label for="valorN">Ingrese el valor de n:</label>
+                          <input type="number" id="valorN" name="valorN" class="form-control" required min="1" step="1" oninput="validarEnteroPositivo(this)">
+                          <button type="button" class="btn btn-primary mt-2" onclick="calcularFuncion('t^n')">Calcular</button>`;
+                break;
+            
         case 'e^{at}':
             inputs = `<label for="valorA">Ingrese el valor de a:</label>
                       <input type="number" id="valorA" name="valorA" class="form-control" required oninput="actualizarVistaPrevia('e^{at}')">
@@ -62,8 +71,9 @@ function crearInputFuncion(funcion) {
                       <button type="button" class="btn btn-primary mt-2" onclick="calcularFuncion('t e^{at}')">Calcular</button>`;
             break;
         case 't^n e^{at}':
-            inputs = `<label for="valorN">Ingrese el valor de n:</label>
-                      <input type="number" id="valorN" name="valorN" class="form-control" required oninput="actualizarVistaPrevia('t^n e^{at}')">
+            case 't^n e^{at}':
+    inputs = `<label for="valorN">Ingrese el valor de n:</label>
+                     <input type="number" id="valorN" name="valorN" class="form-control" required min="1" step="1" oninput="validarEnteroPositivo(this); actualizarVistaPrevia('t^n e^{at}')">
                       <label for="valorA">Ingrese el valor de a:</label>
                       <input type="number" id="valorA" name="valorA" class="form-control" required oninput="actualizarVistaPrevia('t^n e^{at}')">
                       <button type="button" class="btn btn-primary mt-2" onclick="calcularFuncion('t^n e^{at}')">Calcular</button>`;
@@ -93,8 +103,8 @@ function crearInputFuncion(funcion) {
             inputs = `<label for="valorB">Ingrese el valor de b:</label>
                       <input type="number" id="valorB" name="valorB" class="form-control" required oninput="actualizarVistaPrevia('e^{bt} t^n')">
                       <label for="valorN">Ingrese el valor de n:</label>
-                      <input type="number" id="valorN" name="valorN" class="form-control" required oninput="actualizarVistaPrevia('e^{bt} t^n')">
-                      <button type="button" class="btn btn-primary mt-2" onclick="calcularFuncion('e^{bt} t^n')">Calcular</button>`;
+                      <input type="number" id="valorN" name="valorN" class="form-control" required min="1" step="1" oninput="validarEnteroPositivo(this); actualizarVistaPrevia('e^{bt} t^n')">
+              <button type="button" class="btn btn-primary mt-2" onclick="calcularFuncion('e^{bt} t^n')">Calcular</button>`;
             break;
         case 't sin(at)':
         case 't cos(at)':
@@ -235,10 +245,11 @@ function calcularFuncion(funcion) {
 
     switch (funcion) {
         case 't^n':
-            if (!valorN || parseInt(valorN) === 0 || isNaN(parseInt(valorN))) {
+            if (!valorN || parseInt(valorN) === 0 || isNaN(parseInt(valorN)) ) {
                 document.getElementById("resultado").innerHTML = "Por favor ingrese un número válido diferente de 0 para n.";
-                return;
+                return;                
             }
+
             break;
         case 'e^{at}':
             if (!valorA || parseInt(valorA) === 0 || isNaN(parseInt(valorA))) {
@@ -350,6 +361,8 @@ function calcularFuncion(funcion) {
             resultado = '\\( \\frac{2}{s^3} \\)';
             break;
         case 't^n':
+
+        
             var factorialN = 1;
             for (let i = 1; i <= parseInt(valorN); i++) {
                 factorialN *= i;
