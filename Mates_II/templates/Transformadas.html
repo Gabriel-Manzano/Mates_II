@@ -84,111 +84,240 @@
     <div id="laplaceTable" class="container">
         <table class="table">
             <thead>
-                <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">f(t)</th>
-                    <th scope="col">F(s)</th>
-                </tr>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">f(t)</th>
+                <th scope="col">F(s)</th>
+              </tr>
             </thead>
             <tbody>
-                <tr>
-                    <th scope="row">1</th>
-                    <td>1</td>
-                    <td>\(\frac{1}{s}\)</td>
-                </tr>
-                <tr>
-                    <th scope="row">2</th>
-                    <td>t</td>
-                    <td>\(\frac{1}{s^2}\)</td>
-                </tr>
-                <tr>
-                    <th scope="row">3</th>
-                    <td>t²</td>
-                    <td>\(\frac{2}{s^3}\)</td>
-                </tr>
-                <tr>
-                    <th scope="row">4</th>
-                    <td>t<sup>α</sup></td>
-                    <td>\(\frac{\Gamma(\alpha + 1)}{s^{\alpha+1}}, \alpha > -1\)</td>
-                </tr>
-                <tr>
-                    <th scope="row">5</th>
-                    <td>e<sup>at</sup></td>
-                    <td>\(\frac{1}{s - a}\)</td>
-                </tr>
-                <tr>
-                    <th scope="row">6</th>
-                    <td>sin(kt)</td>
-                    <td>\(\frac{k}{s^2 + k^2}\)</td>
-                </tr>
-                <tr>
-                    <th scope="row">7</th>
-                    <td>cos(kt)</td>
-                    <td>\(\frac{s}{s^2 + k^2}\)</td>
-                </tr>
-                <tr>
-                    <th scope="row">8</th>
-                    <td>sinh(kt)</td>
-                    <td>\(\frac{k}{s^2 - k^2}\)</td>
-                </tr>
-                <tr>
-                    <th scope="row">9</th>
-                    <td>cosh(kt)</td>
-                    <td>\(\frac{s}{s^2 - k^2}\)</td>
-                </tr>
-                <tr>
-                    <th scope="row">10</th>
-                    <td>e<sup>at</sup>sin(kt)</td>
-                    <td>\(\frac{k}{(s - a)^2 + k^2}\)</td>
-                </tr>
-                <tr>
-                    <th scope="row">11</th>
-                    <td>e<sup>at</sup>cos(kt)</td>
-                    <td>\(\frac{s - a}{(s - a)^2 + k^2}\)</td>
-                </tr>
-                <tr>
-                    <th scope="row">12</th>
-                    <td>t<sup>n</sup></td>
-                    <td>\(\frac{n!}{s^{n+1}}, n\) is a positive integer</td>
-                </tr>
-                <tr>
-                    <th scope="row">13</th>
-                    <td>u(t)</td>
-                    <td>\(\frac{1}{s}\)</td>
-                </tr>
-                <tr>
-                    <th scope="row">14</th>
-                    <td>u(t)f(t - c)</td>
-                    <td>\(e^{-cs}F(s)\)</td>
-                </tr>
-                <tr>
-                    <th scope="row">15</th>
-                    <td>f(ct)</td>
-                    <td>\(\frac{1}{c} \cdot F\left(\frac{s}{c}\right)\)</td>
-                </tr>
-                <tr>
-                    <th scope="row">16</th>
-                    <td>\(\int_{0}^{t} f(\tau)g(t - \tau)d\tau\)</td>
-                    <td>\(F(s)G(s)\)</td>
-                </tr>
-                <tr>
-                    <th scope="row">17</th>
-                    <td>δ(t - c)</td>
-                    <td>\(e^{-cs}\)</td>
-                </tr>
-                <tr>
-                    <th scope="row">18</th>
-                    <td>f<sup>(n)</sup>(t)</td>
-                    <td>\(s^nF(s) - s^{n-1}f(0) - \ldots - f^{(n-1)}(0)\)</td>
-                </tr>
-                <tr>
-                    <th scope="row">19</th>
-                    <td>\((-t)^n \cdot f(t)\)</td>
-                    <td>\(F^{(n)}(s)\)</td>
-                </tr>
-                
+              <tr>
+                <th scope="row">1</th>
+                <td>1</td>
+                <td>\(\frac{1}{s}\)</td>
+              </tr>
+              <tr>
+                <th scope="row">2</th>
+                <td>t</td>
+                <td>\(\frac{1}{s^2}\)</td>
+              </tr>
+              <tr>
+                <th scope="row">3</th>
+                <td>t²</td>
+                <td>\(\frac{2}{s^3}\)</td>
+              </tr>
+              <tr>
+                <th scope="row">4</th>
+                <td>t<sup>α</sup></td>
+                <td>\(\frac{\Gamma(\alpha + 1)}{s^{\alpha+1}}, \alpha > -1\)</td>
+              </tr>
+              <tr>
+                <th scope="row">5</th>
+                <td>e<sup>at</sup></td>
+                <td>\(\frac{1}{s - a}\)</td>
+              </tr>
+              <tr>
+                <th scope="row">6</th>
+                <td>sin(kt)</td>
+                <td>\(\frac{k}{s^2 + k^2}\)</td>
+              </tr>
+              <tr>
+                <th scope="row">7</th>
+                <td>cos(kt)</td>
+                <td>\(\frac{s}{s^2 + k^2}\)</td>
+              </tr>
+              <tr>
+                <th scope="row">8</th>
+                <td>sinh(kt)</td>
+                <td>\(\frac{k}{s^2 - k^2}\)</td>
+              </tr>
+              <tr>
+                <th scope="row">9</th>
+                <td>cosh(kt)</td>
+                <td>\(\frac{s}{s^2 - k^2}\)</td>
+              </tr>
+              <tr>
+                <th scope="row">10</th>
+                <td>e<sup>at</sup>sin(kt)</td>
+                <td>\(\frac{k}{(s - a)^2 + k^2}\)</td>
+              </tr>
+              <tr>
+                <th scope="row">11</th>
+                <td>e<sup>at</sup>cos(kt)</td>
+                <td>\(\frac{s - a}{(s - a)^2 + k^2}\)</td>
+              </tr>
+              <tr>
+                <th scope="row">12</th>
+                <td>t<sup>n</sup></td>
+                <td>\(\frac{n!}{s^{n+1}}, n\) is a positive integer</td>
+              </tr>
+              <tr>
+                <th scope="row">13</th>
+                <td>u(t)</td>
+                <td>\(\frac{1}{s}\)</td>
+              </tr>
+              <tr>
+                <th scope="row">14</th>
+                <td>u(t)f(t - c)</td>
+                <td>\(e^{-cs}F(s)\)</td>
+              </tr>
+              <tr>
+                <th scope="row">15</th>
+                <td>f(ct)</td>
+                <td>\(\frac{1}{c} \cdot F\left(\frac{s}{c}\right)\)</td>
+              </tr>
+              <tr>
+                <th scope="row">16</th>
+                <td>\(\int_{0}^{t} f(\tau)g(t - \tau)d\tau\)</td>
+                <td>\(F(s)G(s)\)</td>
+              </tr>
+              <tr>
+                <th scope="row">17</th>
+                <td>δ(t - c)</td>
+                <td>\(e^{-cs}\)</td>
+              </tr>
+              <tr>
+                <th scope="row">18</th>
+                <td>f<sup>(n)</sup>(t)</td>
+                <td>\(s^nF(s) - s^{n-1}f(0) - \ldots - f^{(n-1)}(0)\)</td>
+              </tr>
+              <tr>
+                <th scope="row">19</th>
+                <td>\((-t)^n \cdot f(t)\)</td>
+                <td>\(F^{(n)}(s)\)</td>
+              </tr>
+              <tr>
+                <th scope="row">20</th>
+                <td>t sin(at)</td>
+                <td>\(\frac{2as}{(s^2+a^2)^2}\)</td>
+              </tr>
+              <tr>
+                <th scope="row">21</th>
+                <td>t cos(at)</td>
+                <td>\(\frac{s^2-a^2}{(s^2+a^2)^2}\)</td>
+              </tr>
+              <tr>
+                <th scope="row">22</th>
+                <td>sin(at + b)</td>
+                <td>\(\frac{a cos(b)+ s sin(b)}{s^2+a^2}\)</td>
+              </tr>
+              <tr>
+                <th scope="row">23</th>
+                <td>cos(at + b)</td>
+                <td>\(\frac{s cos(b)-a sin(b)}{s^2+a^2}\)</td>
+              </tr>
+              <tr>
+                <th scope="row">24</th>
+                <td>u(t) cos(at)</td>
+                <td>\(\frac{s}{s^2+a^2}\)</td>
+              </tr>
+              <tr>
+                <th scope="row">25</th>
+                <td>u(t) sin(at)</td>
+                <td>\(\frac{a}{s^2+a^2}\)</td>
+              </tr>
+              <tr>
+                <th scope="row">26</th>
+                <td>u(t) cosh(bt)</td>
+                <td>\(\frac{s}{s^2-b^2}\)</td>
+              </tr>
+              <tr>
+                <th scope="row">27</th>
+                <td>u(t) sinh(bt)</td>
+                <td>\(\frac{b}{s^2-b^2}\)</td>
+              </tr>
+              <tr>
+                <th scope="row">28</th>
+                <td>u(t-a) cos(b(t-a))</td>
+                <td>\(e^{-as}\frac{s cos(b)+a sin(b)}{s^2+b^2}\)</td>
+              </tr>
+              <tr>
+                <th scope="row">29</th>
+                <td>u(t-a) sin(b(t-a))</td>
+                <td>\(e^{-as}\frac{s sin(b)-a cos(b)}{s^2+b^2}\)</td>
+              </tr>
+              <tr>
+                <th scope="row">30</th>
+                <td>u(t-a) cos(bt)</td>
+                <td>\(e^{-as}\frac{s}{s^2+b^2}\)</td>
+              </tr>
+              <tr>
+                <th scope="row">31</th>
+                <td>u(t-a) sin(bt)</td>
+                <td>\(e^{-as}\frac{b}{s^2+b^2}\)</td>
+              </tr>
+              <tr>
+                <th scope="row">32</th>
+                <td>te<sup>-at</sup>cos(bt)</td>
+                <td>\(\frac{s+a}{(s+a)^2+b^2}\)</td>
+              </tr>
+              <tr>
+                <th scope="row">33</th>
+                <td>te<sup>-at</sup>sin(bt)</td>
+                <td>\(\frac{b}{(s+a)^2+b^2}\)</td>
+              </tr>
+              <tr>
+                <th scope="row">34</th>
+                <td>e<sup>bt</sup>cos(at)</td>
+                <td>\(\frac{s-b}{(s-b)^2+a^2}\)</td>
+              </tr>
+              <tr>
+                <th scope="row">35</th>
+                <td>e<sup>bt</sup>sin(at)</td>
+                <td>\(\frac{a}{(s-b)^2+a^2}\)</td>
+              </tr>
+              <tr>
+                <th scope="row">36</th>
+                <td>t<sup>m</sup>e<sup>bt</sup></td>
+                <td>\(\frac{m!}{(s-b)^{m+1}}\)</td>
+              </tr>
+              <tr>
+                <th scope="row">37</th>
+                <td>t<sup>m</sup>e<sup>-bt</sup></td>
+                <td>\(\frac{m!}{(s+b)^{m+1}}\)</td>
+              </tr>
+              <tr>
+                <th scope="row">38</th>
+                <td>e<sup>-bt</sup>cos(at)</td>
+                <td>\(\frac{s+b}{(s+b)^2+a^2}\)</td>
+              </tr>
+              <tr>
+                <th scope="row">39</th>
+                <td>e<sup>-bt</sup>sin(at)</td>
+                <td>\(\frac{a}{(s+b)^2+a^2}\)</td>
+              </tr>
+              <tr>
+                <th scope="row">40</th>
+                <td>e<sup>-bt</sup>cosh(at)</td>
+                <td>\(\frac{s+b}{(s+b)^2-a^2}\)</td>
+              </tr>
+              <tr>
+                <th scope="row">41</th>
+                <td>e<sup>-bt</sup>sinh(at)</td>
+                <td>\(\frac{a}{(s+b)^2-a^2}\)</td>
+              </tr>
+              <tr>
+                <th scope="row">42</th>
+                <td>cos(at)sin(bt)</td>
+                <td>\(\frac{b}{s^2 + (a+b)^2} - \frac{b}{s^2 + (a-b)^2}\)</td>
+              </tr>
+              <tr>
+                <th scope="row">43</th>
+                <td>sin(at)cos(bt)</td>
+                <td>\(\frac{ab}{(s^2 + (a+b)^2)(s^2 + (a-b)^2)}\)</td>
+              </tr>
+              <tr>
+                <th scope="row">44</th>
+                <td>cos(at)</td>
+                <td>\(\frac{s}{s^2 + a^2}\)</td>
+              </tr>
+              <tr>
+                <th scope="row">45</th>
+                <td>sin(at)</td>
+                <td>\(\frac{a}{s^2 + a^2}\)</td>
+              </tr>
             </tbody>
-        </table>
+          </table>
     </div>
 
     <div class="container shadow-none p-5 mb-5 bg-body-tertiary rounded"
