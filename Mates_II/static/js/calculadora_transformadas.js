@@ -107,8 +107,8 @@ function crearInputFuncion(funcion) {
             break;
         case 'u(t) cos(at)':
         case 'u(t) sin(at)':
-        case 'u(t) cosh(bt)':
-        case 'u(t) sinh(bt)':
+        case 'u(t) cosh(at)':
+        case 'u(t) sinh(at)':
             inputs = `<label for="valorA">Ingrese el valor de a:</label>
                       <input type="number" id="valorA" name="valorA" class="form-control" required oninput="actualizarVistaPrevia('${funcion}')">
                       <button type="button" class="btn btn-primary mt-2" onclick="calcularFuncion('${funcion}')">Calcular</button>`;
@@ -211,12 +211,12 @@ function actualizarVistaPrevia(funcion) {
     } else if (funcion === 'u(t) sin(at)') {
         vistaPrevia.innerHTML = '\\( u(t) sin(' + valorA + 't) \\)';
         document.getElementById("formulaOriginal").innerHTML = '\\( u(t) sin(at) \\)';
-    } else if (funcion === 'u(t) cosh(bt)') {
+    } else if (funcion === 'u(t) cosh(at)') {
         vistaPrevia.innerHTML = '\\( u(t) cosh(' + valorA + 't) \\)';
-        document.getElementById("formulaOriginal").innerHTML = '\\( u(t) cosh(bt) \\)';
-    } else if (funcion === 'u(t) sinh(bt)') {
+        document.getElementById("formulaOriginal").innerHTML = '\\( u(t) cosh(at) \\)';
+    } else if (funcion === 'u(t) sinh(at)') {
         vistaPrevia.innerHTML = '\\( u(t) sinh(' + valorA + 't) \\)';
-        document.getElementById("formulaOriginal").innerHTML = '\\( u(t) sinh(bt) \\)';
+        document.getElementById("formulaOriginal").innerHTML = '\\( u(t) sinh(at) \\)';
     } else if (funcion === 'u(t-a) cos(bt-a)') {
         vistaPrevia.innerHTML = '\\( u(t-' + valorA + ') cos(' + valorB + 't-' + valorA + ') \\)';
         document.getElementById("formulaOriginal").innerHTML = '\\( u(t-a) cos(bt-a) \\)';
@@ -491,15 +491,15 @@ function calcularFuncion(funcion) {
             rd_transformada = '\\[ \\mathcal{L}\\{ u(t) sin(at) \\} \\]' 
             resultado = '\\( \\frac{' + parseInt(valorA) + '}{s^2 + ' + formatearNumero(va) + '} \\)';
             break;
-        case 'u(t) cosh(bt)':
+        case 'u(t) cosh(at)':
             rd_sustitucion = '\\( \\frac{s}{s^2 - b^2} \\)';
-            rd_transformada = '\\[ \\mathcal{L}\\{ u(t) cosh(bt) \\} \\]' 
-            resultado = '\\( \\frac{s}{s^2 - ' + formatearNumero(vb) + '} \\)';
+            rd_transformada = '\\[ \\mathcal{L}\\{ u(t) cosh(at) \\} \\]' 
+            resultado = '\\( \\frac{s}{s^2 - ' + formatearNumero(va) + '} \\)';
             break;
-        case 'u(t) sinh(bt)':
+        case 'u(t) sinh(at)':
             rd_sustitucion = '\\( \\frac{b}{s^2 - b^2} \\)';
-            rd_transformada = '\\[ \\mathcal{L}\\{ u(t) sinh(bt) \\} \\]' 
-            resultado = '\\( \\frac{' + formatearNumero(parseFloat(valorB)) + '}{s^2 - ' + formatearNumero(vb) + '} \\)';
+            rd_transformada = '\\[ \\mathcal{L}\\{ u(t) sinh(at) \\} \\]' 
+            resultado = '\\( \\frac{' + formatearNumero(parseFloat(valorA)) + '}{s^2 - ' + formatearNumero(va) + '} \\)';
             break;
         case 'u(t-a) cos(bt-a)':
             rd_sustitucion = '\\( e^{-as} \\frac{s \\cos(b) + a \\sin(b)}{s^2 + b^2} \\)';
