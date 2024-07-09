@@ -5,26 +5,19 @@
 <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 <script src="{{ url_for('static', filename='js/calculadora_transformadas.js') }}"></script>
 
-
 <style>
     .flex-container {
         display: flex;
         flex-wrap: wrap;
-        /* Asegura que los divs se envuelvan cuando no caben en una línea */
         justify-content: flex-start;
-        /* Alinea los divs al inicio horizontalmente */
         max-width: 1000px;
-        /* Ancho máximo para el contenedor principal */
         margin: 0 auto;
-        /* Centra el contenedor */
     }
 
     .contenedor_igual_valor,
     .contenedor_entrada {
         flex: 1;
-        /* Que ocupen el mismo espacio dentro del contenedor flex */
-        max-width: 200x;
-        /* Ancho máximo para los contenedores internos */
+        max-width: 200px;
         max-height: 200px;
         padding: 10px;
         margin: 10px;
@@ -32,24 +25,19 @@
         border-radius: 5px;
         box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
         overflow: hidden;
-        /* Para evitar que el contenido desborde */
     }
 
     .contenedor_igual_valor h2,
     .contenedor_entrada h2 {
         font-size: 11px;
-        /* Tamaño de fuente para los títulos */
         margin-bottom: 8px;
-        /* Espacio inferior del título */
     }
 
     .contenedor_igual_valor div,
     .contenedor_entrada div {
         font-size: 16px;
-        /* Tamaño de fuente para el contenido */
     }
 </style>
-
 
 <div class="container shadow-none p-5 mb-5 bg-body-tertiary rounded"
     style="box-shadow: 0 0 20px 10px #ffffffee; background-color: rgba(84, 81, 77, 0.656);">
@@ -328,58 +316,43 @@
         <div class="container text-center">
             <label for="funcion">Seleccione la función f(t) que quiere calcular: </label>
             <div class="botones">
-                <button type="button" class="btn btn-outline-secondary" onclick="crearInputFuncion('1')">\( 1
-                    \)</button>
-                <button type="button" class="btn btn-outline-secondary" onclick="crearInputFuncion('t')">\( t
-                    \)</button>
-                <button type="button" class="btn btn-outline-secondary" onclick="crearInputFuncion('t^2')">\( t^2
-                    \)</button>
-                <button type="button" class="btn btn-outline-secondary" onclick="crearInputFuncion('t^n')">\( t^n
-                    \)</button>
-                <button type="button" class="btn btn-outline-secondary" onclick="crearInputFuncion('e^{at}')">\( e^{at}
-                    \)</button>
-                <button type="button" class="btn btn-outline-secondary" onclick="crearInputFuncion('cos(bt)')">\(
-                    \cos(bt) \)</button>
-                <button type="button" class="btn btn-outline-secondary" onclick="crearInputFuncion('sin(bt)')">\(
-                    \sin(bt) \)</button>
-                <button type="button" class="btn btn-outline-secondary" onclick="crearInputFuncion('sinh(bt)')">\(
-                    \sinh(bt) \)</button>
-                <button type="button" class="btn btn-outline-secondary" onclick="crearInputFuncion('cosh(bt)')">\(
-                    \cosh(bt) \)</button>
-                <button type="button" class="btn btn-outline-secondary" onclick="crearInputFuncion('e^{at} cos(bt)')">\(
-                    e^{at} \cos(bt) \)</button>
-                <button type="button" class="btn btn-outline-secondary" onclick="crearInputFuncion('e^{at} sin(bt)')">\(
-                    e^{at} \sin(bt) \)</button>
-                <button type="button" class="btn btn-outline-secondary" onclick="crearInputFuncion('\\delta(t - a)')">
-                    \( \delta(t - a) \)</button>
-                <button type="button" class="btn btn-outline-secondary" onclick="crearInputFuncion('u(t - a)')">\( u(t -
-                    a) \)</button>
-                <button type="button" class="btn btn-outline-secondary" onclick="crearInputFuncion('frac{1}{t}')">
-                    \( \frac{1}{t} \)</button>
-                <button type="button" class="btn btn-outline-secondary" onclick="crearInputFuncion('t e^{at}')">\( t
-                    e^{at} \)</button>
-                <button type="button" class="btn btn-outline-secondary" onclick="crearInputFuncion('t^n e^{at}')">\( t^n
-                    e^{at} \)</button>
-                <button type="button" class="btn btn-outline-secondary"
-                    onclick="crearInputFuncion('sinh(at) cosh(bt)')">\( \sinh(at) \cosh(bt) \)</button>
-                <button type="button" class="btn btn-outline-secondary"
-                    onclick="crearInputFuncion('cosh(at) sinh(bt)')">\( \cosh(at) \sinh(bt) \)</button>
-                <button type="button" class="btn btn-outline-secondary"
-                    onclick="crearInputFuncion('\int_{0}^{t} f(\tau) d\tau')">\( \int_{0}^{t} f(\tau) d\tau \) </button>
-                <button type="button" class="btn btn-outline-secondary" style="background-color: red;"
-                    onclick="crearInputFuncion('\\( f\'(t) \\)')">\( f'(t) \) </button>
-                <button type="button" class="btn btn-outline-secondary" style="background-color: red;"
-                    onclick="crearInputFuncion('f\'\'(t)')">\( f''(t) \)</button>
-                <button type="button" class="btn btn-outline-secondary" onclick="crearInputFuncion('e^{bt} t^n')">\(
-                    e^{bt} t^n \)</button>
-                <button type="button" class="btn btn-outline-secondary" onclick="crearInputFuncion('t sin(at)')">\( t
-                    \sin(at) \)</button>
-                <button type="button" class="btn btn-outline-secondary" onclick="crearInputFuncion('t cos(at)')">\( t
-                    \cos(at) \)</button>
-                <button type="button" class="btn btn-outline-secondary" onclick="crearInputFuncion('sin(at + b)')">\(
-                    \sin(at + b) \)</button>
-                <button type="button" class="btn btn-outline-secondary" onclick="crearInputFuncion('cos(at + b)')">\(
-                    \cos(at + b) \)</button>
+              <button type="button" class="btn btn-outline-secondary" onclick="crearInputFuncion('1')">\( 1 \)</button>
+              <button type="button" class="btn btn-outline-secondary" onclick="crearInputFuncion('t')">\( t \)</button>
+              <button type="button" class="btn btn-outline-secondary" onclick="crearInputFuncion('t^2')">\( t^2 \)</button>
+              <button type="button" class="btn btn-outline-secondary" onclick="crearInputFuncion('t^n')">\( t^n \)</button>
+              <button type="button" class="btn btn-outline-secondary" onclick="crearInputFuncion('e^{at}')">\( e^{at} \)</button>
+              <button type="button" class="btn btn-outline-secondary" onclick="crearInputFuncion('cos(bt)')">\( \cos(bt) \)</button>
+              <button type="button" class="btn btn-outline-secondary" onclick="crearInputFuncion('sin(bt)')">\( \sin(bt) \)</button>
+              <button type="button" class="btn btn-outline-secondary" onclick="crearInputFuncion('sinh(bt)')">\( \sinh(bt) \)</button>
+              <button type="button" class="btn btn-outline-secondary" onclick="crearInputFuncion('cosh(bt)')">\( \cosh(bt) \)</button>
+              <button type="button" class="btn btn-outline-secondary" onclick="crearInputFuncion('e^{at} cos(bt)')">\( e^{at} \cos(bt) \)</button>
+              <button type="button" class="btn btn-outline-secondary" onclick="crearInputFuncion('e^{at} sin(bt)')">\( e^{at} \sin(bt) \)</button>
+              <button type="button" class="btn btn-outline-secondary" onclick="crearInputFuncion('\\delta(t - a)')">\( \delta(t - a) \)</button>
+              <button type="button" class="btn btn-outline-secondary" onclick="crearInputFuncion('u(t - a)')">\( u(t - a) \)</button>
+              <button type="button" class="btn btn-outline-secondary" onclick="crearInputFuncion('frac{1}{t}')">\( \frac{1}{t} \)</button>
+              <button type="button" class="btn btn-outline-secondary" onclick="crearInputFuncion('t e^{at}')">\( t e^{at} \)</button>
+              <button type="button" class="btn btn-outline-secondary" onclick="crearInputFuncion('t^n e^{at}')">\( t^n e^{at} \)</button>
+              <button type="button" class="btn btn-outline-secondary" onclick="crearInputFuncion('sinh(at) cosh(bt)')">\( \sinh(at) \cosh(bt) \)</button>
+              <button type="button" class="btn btn-outline-secondary" onclick="crearInputFuncion('cosh(at) sinh(bt)')">\( \cosh(at) \sinh(bt) \)</button>
+              <button type="button" class="btn btn-outline-secondary" onclick="crearInputFuncion('e^{-at} cos(bt)')">\( e^{-at} \cos(bt) \)</button>
+              <button type="button" class="btn btn-outline-secondary" onclick="crearInputFuncion('e^{-at} sin(bt)')">\( e^{-at} \sin(bt) \)</button>
+              <button type="button" class="btn btn-outline-secondary" onclick="crearInputFuncion('e^{-at} cosh(bt)')">\( e^{-at} \cosh(bt) \)</button>
+              <button type="button" class="btn btn-outline-secondary" onclick="crearInputFuncion('e^{-at} sinh(bt)')">\( e^{-at} \sinh(bt) \)</button>
+              <button type="button" class="btn btn-outline-secondary" onclick="crearInputFuncion('u(t) cos(at)')">\( u(t) \cos(at) \)</button>
+              <button type="button" class="btn btn-outline-secondary" onclick="crearInputFuncion('u(t) sin(at)')">\( u(t) \sin(at) \)</button>
+              <button type="button" class="btn btn-outline-secondary" onclick="crearInputFuncion('u(t) cosh(bt)')">\( u(t) \cosh(bt) \)</button>
+              <button type="button" class="btn btn-outline-secondary" onclick="crearInputFuncion('u(t) sinh(bt)')">\( u(t) \sinh(bt) \)</button>
+              <button type="button" class="btn btn-outline-secondary" onclick="crearInputFuncion('u(t-a) cos(bt-a)')">\( u(t-a) \cos(bt-a) \)</button>
+              <button type="button" class="btn btn-outline-secondary" onclick="crearInputFuncion('u(t-a) sin(bt-a)')">\( u(t-a) \sin(bt-a) \)</button>
+              <button type="button" class="btn btn-outline-secondary" onclick="crearInputFuncion('t sin(at)')">\( t \sin(at) \)</button>
+              <button type="button" class="btn btn-outline-secondary" onclick="crearInputFuncion('t cos(at)')">\( t \cos(at) \)</button>
+              <button type="button" class="btn btn-outline-secondary" onclick="crearInputFuncion('sin(at + b)')">\( \sin(at + b) \)</button>
+              <button type="button" class="btn btn-outline-secondary" onclick="crearInputFuncion('cos(at + b)')">\( \cos(at + b) \)</button>
+              <button type="button" class="btn btn-outline-secondary" onclick="crearInputFuncion('cos(at)sin(bt)')">\( \cos(at)sin(bt) \)</button>
+              <button type="button" class="btn btn-outline-secondary" onclick="crearInputFuncion('sin(at)cos(bt)')">\( \sin(at)cos(bt) \)</button>
+              <button type="button" class="btn btn-outline-secondary" onclick="crearInputFuncion('cos(at)')">\( \cos(at) \)</button>
+              <button type="button" class="btn btn-outline-secondary" onclick="crearInputFuncion('sin(at)')">\( \sin(at) \)</button>
+              
             </div>
             <div class="container text-center" id="inputContainer"></div>
         </div>
@@ -389,7 +362,6 @@
                 <hr class="hr-divider">
                 <div id="vistaPrevia"></div>
             </div>
-
 
             <div class="contenedor_igual_valor">
                 <h2>Formula</h2>
@@ -407,20 +379,13 @@
                 <div id="id_sustitucion"></div>
             </div>
 
-                <div class="contenedor_igual_valor">
-                    <h2>Resultado</h2>
-                    <hr class="hr-divider">
-                    <div id="resultado" class="resultado-texto"></div>
-                </div>
+            <div class="contenedor_igual_valor">
+                <h2>Resultado</h2>
+                <hr class="hr-divider">
+                <div id="resultado" class="resultado-texto"></div>
             </div>
-
-
-
-
-
-
         </div>
     </div>
+</div>
 
-
-    {% endblock %}
+{% endblock %}
