@@ -121,6 +121,16 @@ function crearInputFuncion(funcion) {
                       <input type="number" id="valorB" name="valorB" class="form-control" required oninput="actualizarVistaPrevia('${funcion}')">
                       <button type="button" class="btn btn-primary mt-2" onclick="calcularFuncion('${funcion}')">Calcular</button>`;
             break;
+            
+            break;
+        case 'cos(at)sin(bt)':
+        case 'sin(at)cos(bt)':
+            inputs = `<label for="valorA">Ingrese el valor de a:</label>
+                        <input type="number" id="valorA" name="valorA" class="form-control" required oninput="actualizarVistaPrevia('${funcion}')">
+                        <label for="valorB">Ingrese el valor de b:</label>
+                        <input type="number" id="valorB" name="valorB" class="form-control" required oninput="actualizarVistaPrevia('${funcion}')">
+                        <button type="button" class="btn btn-primary mt-2" onclick="calcularFuncion('${funcion}')">Calcular</button>`;
+            break;
     }
     inputContainer.innerHTML = inputs;
     document.getElementById("resultado").innerHTML = '';
@@ -145,6 +155,12 @@ function actualizarVistaPrevia(funcion) {
     } else if (funcion === 't sin(at)') {
         vistaPrevia.innerHTML = '\\( t sin({' + valorA + 't}) \\)';
         document.getElementById("formulaOriginal").innerHTML = '\\( t sin(at) \\)';
+    } else if (funcion === 'cos(at)sin(bt)') {
+        vistaPrevia.innerHTML = '\\( cos({' + valorA + 't})sin({' + valorB + 't}) \\)';
+        document.getElementById("formulaOriginal").innerHTML = '\\( cos(at)sin(bt) \\)';
+    } else if (funcion === 'sin(at)cos(bt)') {
+        vistaPrevia.innerHTML = '\\( sin({' + valorA + 't})cos({' + valorB + 't}) \\)';
+        document.getElementById("formulaOriginal").innerHTML = '\\( sin(at)cos(bt) \\)';
     } else if (funcion === 't cos(at)') {
         vistaPrevia.innerHTML = '\\( t cos({' + valorA + 't}) \\)';
         document.getElementById("formulaOriginal").innerHTML = '\\( t cos(at) \\)';
@@ -435,10 +451,20 @@ function calcularFuncion(funcion) {
             rd_transformada = '\\[ \\mathcal{L}\\{ sin(bt) \\} \\]' 
             resultado = '\\( \\frac{' + formatearNumero(parseFloat(valorB)) + '}{s^2 + ' + formatearNumero(vb) + '} \\)';
             break;
+        case 'cos(at)sin(bt)':
+            rd_sustitucion = '\\( \\frac{b}{s^2 + b^2} \\)';
+            rd_transformada = '\\[ \\mathcal{L}\\{ cos(at)sin(bt) \\} \\]' 
+            resultado = '\\( \\frac{' + formatearNumero(parseFloat(valorB)) + '}{s^2 + ' + formatearNumero(vb) + '} \\)';
+            break;
+        case 'sin(at)cos(bt)':
+            rd_sustitucion = '\\( \\frac{s^2 - a^2}{(s^2 + a^2)^2} - frac{a}{(s^2 + b^2)^2} \\) \\)';
+            rd_transformada = '\\[ \\mathcal{L}\\{ sin(at)cos(bt) \\} \\]' 
+            resultado = '\\( \\frac{s^2 - ' + formatearNumero(parseFloat(valorA)^2) + '}{(s^2 + ' + formatearNumero(parseFloat(valorA)^2) + ')^2} - frac{' + parseFloat(valorA) + '}{(s^2 + ' + formatearNumero(parseFloat(valorB)^2) + ')^2} \\)';
+            break;
         case 'sinh(bt)':
-            rd_sustitucion = '\\( \\frac{b}{s^2 - b^2} \\)';
+            rd_sustitucion = '\\( \\frac{ab}{(s^2 + (a + b)^2)(s^2 + (a - b))} \\)';
             rd_transformada = '\\[ \\mathcal{L}\\{ sinh(bt) \\} \\]' 
-            resultado = '\\( \\frac{' + formatearNumero(parseFloat(valorB)) + '}{s^2 - ' + formatearNumero(vb) + '} \\)';
+            resultado = '\\( \\frac{(' + (parseFloat(valorB)) * (parseFloat(valorA)) + '}{(s^2 + ' + parseFloat(valorA) + parseFloat(valorB) + ')^2)(s^2 + ' + parseFloat(valorA) - parseFloat(valorB) + ')}  \\)';
             break;
         case 'cosh(bt)':
             rd_sustitucion = '\\( \\frac{s}{s^2 - b^2} \\)';
