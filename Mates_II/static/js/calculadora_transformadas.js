@@ -207,15 +207,25 @@ function calcularFuncion(funcion) {
     var funcionF = document.getElementById("funcionF") ? document.getElementById("funcionF").value.trim() : null;
     var valorT = document.getElementById("valorT") ? document.getElementById("valorT").value.trim() : null;
 
+    vb = valorB**2
+    va = valorA**2
+    function formatearNumero(numero) {
+        if (Number.isInteger(numero)) {
+            return numero.toString(); // Retornar como string para evitar .toFixed(2)
+        } else {
+            return numero.toFixed(2); // Retornar con dos decimales
+        }
+    }
+
     switch (funcion) {
         case 't^n':
-            if (!valorN || parseFloat(valorN) === 0 || isNaN(parseFloat(valorN))) {
+            if (!valorN || parseInt(valorN) === 0 || isNaN(parseInt(valorN))) {
                 document.getElementById("resultado").innerHTML = "Por favor ingrese un número válido diferente de 0 para n.";
                 return;
             }
             break;
         case 'e^{at}':
-            if (!valorA || parseFloat(valorA) === 0 || isNaN(parseFloat(valorA))) {
+            if (!valorA || parseInt(valorA) === 0 || isNaN(parseInt(valorA))) {
                 document.getElementById("resultado").innerHTML = "Por favor ingrese un número válido diferente de 0 para a.";
                 return;
             }
@@ -224,38 +234,36 @@ function calcularFuncion(funcion) {
         case 'sin(bt)':
         case 'sinh(bt)':
         case 'cosh(bt)':
-            if (!valorB || parseFloat(valorB) === 0 || isNaN(parseFloat(valorB))) {
+            if (!valorB || parseInt(valorB) === 0 || isNaN(parseInt(valorB))) {
                 document.getElementById("resultado").innerHTML = "Por favor ingrese un número válido diferente de 0 para b.";
                 return;
             }
             break;
         case 'e^{at} cos(bt)':
         case 'e^{at} sin(bt)':
-            if ((!valorA || parseFloat(valorA) === 0 || isNaN(parseFloat(valorA))) || 
-                (!valorB || parseFloat(valorB) === 0 || isNaN(parseFloat(valorB)))) {
+            if ((!valorA || parseInt(valorA) === 0 || isNaN(parseInt(valorA))) || 
+                (!valorB || parseInt(valorB) === 0 || isNaN(parseInt(valorB)))) {
                 document.getElementById("resultado").innerHTML = "Por favor ingrese números válidos diferentes de 0 para a y b.";
                 return;
             }
             break;
-        case '\\delta(t - a)':
-        case 'u(t - a)':
         case 't e^{at}':
-            if (!valorA || parseFloat(valorA) === 0 || isNaN(parseFloat(valorA))) {
+            if (!valorA || parseInt(valorA) === 0 || isNaN(parseInt(valorA))) {
                 document.getElementById("resultado").innerHTML = "Por favor ingrese un número válido diferente de 0 para a.";
                 return;
             }
             break;
         case 't^n e^{at}':
-            if ((!valorN || parseFloat(valorN) === 0 || isNaN(parseFloat(valorN))) || 
-                (!valorA || parseFloat(valorA) === 0 || isNaN(parseFloat(valorA)))) {
+            if ((!valorN || parseInt(valorN) === 0 || isNaN(parseInt(valorN))) || 
+                (!valorA || parseInt(valorA) === 0 || isNaN(parseInt(valorA)))) {
                 document.getElementById("resultado").innerHTML = "Por favor ingrese números válidos diferentes de 0 para n y a.";
                 return;
             }
             break;
         case 'sinh(at) cosh(bt)':
         case 'cosh(at) sinh(bt)':
-            if ((!valorA || parseFloat(valorA) === 0 || isNaN(parseFloat(valorA))) || 
-                (!valorB || parseFloat(valorB) === 0 || isNaN(parseFloat(valorB)))) {
+            if ((!valorA || parseInt(valorA) === 0 || isNaN(parseInt(valorA))) || 
+                (!valorB || parseInt(valorB) === 0 || isNaN(parseInt(valorB)))) {
                 document.getElementById("resultado").innerHTML = "Por favor ingrese números válidos diferentes de 0 para a y b.";
                 return;
             }
@@ -274,23 +282,23 @@ function calcularFuncion(funcion) {
             }
             break;
         case 'e^{bt} t^n':
-            if ((!valorB || parseFloat(valorB) === 0 || isNaN(parseFloat(valorB))) || 
-                (!valorN || parseFloat(valorN) === 0 || isNaN(parseFloat(valorN)))) {
+            if ((!valorB || parseInt(valorB) === 0 || isNaN(parseInt(valorB))) || 
+                (!valorN || parseInt(valorN) === 0 || isNaN(parseInt(valorN)))) {
                 document.getElementById("resultado").innerHTML = "Por favor ingrese números válidos diferentes de 0 para b y n.";
                 return;
             }
             break;
         case 't sin(at)':
         case 't cos(at)':
-            if (!valorA || parseFloat(valorA) === 0 || isNaN(parseFloat(valorA))) {
+            if (!valorA || parseInt(valorA) === 0 || isNaN(parseInt(valorA))) {
                 document.getElementById("resultado").innerHTML = "Por favor ingrese un número válido diferente de 0 para a.";
                 return;
             }
             break;
         case 'sin(at + b)':
         case 'cos(at + b)':
-            if ((!valorA || parseFloat(valorA) === 0 || isNaN(parseFloat(valorA))) || 
-                (!valorB || parseFloat(valorB) === 0 || isNaN(parseFloat(valorB)))) {
+            if ((!valorA || parseInt(valorA) === 0 || isNaN(parseInt(valorA))) || 
+                (!valorB || parseInt(valorB) === 0 || isNaN(parseInt(valorB)))) {
                 document.getElementById("resultado").innerHTML = "Por favor ingrese números válidos diferentes de 0 para a y b.";
                 return;
             }
@@ -299,110 +307,164 @@ function calcularFuncion(funcion) {
 
     switch (funcion) {
         case '1':
+            rd_sustitucion = '\\( \\frac{1}{s} \\)';
+            rd_transformada = '\\[ \\mathcal{L}\\{1\\} \\]';
             resultado = '\\( \\frac{1}{s} \\)';
             break;
         case 't':
+            rd_sustitucion = '\\( \\frac{1}{s^{2}} \\)';
+            rd_transformada = '\\[ \\mathcal{L}\\{t\\} \\]';
             resultado = '\\( \\frac{1}{s^2} \\)';
             break;
         case 't^2':
+            rd_sustitucion = '\\( \\frac{2}{s^{3}} \\)';
+            rd_transformada = '\\[ \\mathcal{L}\\{t^2\\} \\]';
             resultado = '\\( \\frac{2}{s^3} \\)';
             break;
         case 't^n':
-            factorialN = 1;
-        
-        
-            for (let i = 1; i <= valorN; i++) {
+            rd_sustitucion = '\\(\\frac{n!}{s^{n+1}}\\)';
+            var factorialN = 1;
+            for (let i = 1; i <= parseInt(valorN); i++) {
                 factorialN *= i;
             }
-            
+            rd_transformada = '\\[ \\mathcal{L}\\{t^{' + valorN + '}\\} \\]';
             resultado = '\\( \\frac{' + factorialN + '}{s^{' + (parseInt(valorN) + 1) + '}} \\)';
             break;
         case 'e^{at}':
+            rd_sustitucion = '\\(\\frac{1}{s-a} \\)';
+            rd_transformada = '\\[ \\mathcal{L}\\{e^{' + valorA + 't}\\} \\]';
             resultado = '\\( \\frac{1}{s - ' + valorA + '} \\)';
             break;
         case 'cos(bt)':
-            resultado = '\\( \\frac{s}{s^2 + ' + valorB**2 + '} \\)';
+            rd_sustitucion = '\\( \\frac{s}{s^{2}+b^} \\)';
+            rd_transformada = '\\[ \\mathcal{L}\\{\\cos(' + valorB + 't)\\} \\]';
+            resultado = '\\( \\frac{s}{s^2 + ' + formatearNumero(vb) + '} \\)';
             break;
         case 'sin(bt)':
-            resultado = '\\( \\frac{' + valorB + '}{s^2 + ' + valorB**2 + '} \\)';
+            rd_sustitucion = '\\( \\sin(' + valorB + 't) \\)';
+            rd_transformada = '\\[ \\mathcal{L}\\{\\sin(' + valorB + 't)\\} \\]';
+            resultado = '\\( \\frac{' + formatearNumero(parseFloat(valorB)) + '}{s^2 + ' + formatearNumero(vb) + '} \\)';
             break;
         case 'sinh(bt)':
-            resultado = '\\( \\frac{' + valorB + '}{s^2 - ' + valorB**2 + '} \\)';
+            rd_sustitucion = '\\( \\sinh(' + valorB + 't) \\)';
+            rd_transformada = '\\[ \\mathcal{L}\\{\\sinh(' + valorB + 't)\\} \\]';
+            resultado = '\\( \\frac{' + formatearNumero(parseFloat(valorB)) + '}{s^2 - ' + formatearNumero(vb) + '} \\)';
             break;
         case 'cosh(bt)':
-            resultado = '\\( \\frac{s}{s^2 - ' + valorB**2 + '} \\)';
+            rd_sustitucion = '\\( \\cosh(' + valorB + 't) \\)';
+            rd_transformada = '\\[ \\mathcal{L}\\{\\cosh(' + valorB + 't)\\} \\]';
+            resultado = '\\( \\frac{s}{s^2 - ' + formatearNumero(vb) + '} \\)';
             break;
         case 'e^{at} cos(bt)':
-            resultado = '\\( \\frac{s - ' + valorA + '}{(s - ' + valorA + ')^2 + ' + valorB**2 + '} \\)';
+            rd_sustitucion = '\\( e^{' + valorA + 't} \\cos(' + valorB + 't) \\)';
+            rd_transformada = '\\[ \\mathcal{L}\\{e^{' + valorA + 't} \\cos(' + valorB + 't)\\} \\]';
+            resultado = '\\( \\frac{s - ' + valorA + '}{(s - ' + valorA + ')^2 + ' + formatearNumero(vb) + '} \\)';
             break;
         case 'e^{at} sin(bt)':
-            resultado = '\\( \\frac{' + valorB + '}{(s - ' + valorA + ')^2 + ' + valorB**2 + '} \\)';
+            rd_sustitucion = '\\( e^{' + valorA + 't} \\sin(' + valorB + 't) \\)';
+            rd_transformada = '\\[ \\mathcal{L}\\{e^{' + valorA + 't} \\sin(' + valorB + 't)\\} \\]';
+            resultado = '\\( \\frac{' + formatearNumero(parseFloat(valorB)) + '}{(s - ' + valorA + ')^2 + ' + formatearNumero(vb) + '} \\)';
             break;
-        case 'delta(t - a)':
-            resultado = '\\( e^{-' + valorA + 's} \\)';
-            break;
-        case 'u(t - a)':
-            resultado = '\\( \\frac{e^{-' + valorA + 's}}{s} \\)';
-            break;
-        case 'frac{1}{t}':
-            resultado = '\\( \\ln(s) \\)';
-            break;
-        case 't e^{at}':
-            resultado = '\\( \\frac{1}{(s - ' + valorA + ')^2} \\)';
-            break;
-        case 't^n e^{at}':
-             factorialN = 1;
-        
-        
-            for (let i = 1; i <= valorN; i++) {
-                factorialN *= i;
-            }
-
-            resultado = '\\( \\frac{' + factorialN + '}{(s - ' + valorA + ')^{' + (parseInt(valorN) + 1) + '}} \\)';
-            break;
-        case 'sinh(at) cosh(bt)':
-            resultado = '\\( \\frac{' + valorA + '}{s^2 - ' + valorA**2     + '} \\)';
-            break;
-        case 'cosh(at) sinh(bt)':
-            resultado = '\\( \\frac{s}{s^2 - ' + valorA**2 + '} \\)';
-            break;
-        case '\\int_{0}^{t} f(\\tau) d\\tau': //!!NO FUNCIONA
+        case '\\int_{0}^{t} f(\\tau) d\\tau':
+            rd_sustitucion = '\\( \\int_{0}^{t} f(\\tau) \\, d\\tau \\)';
+            rd_transformada = '\\[ \\mathcal{L}\\{\\int_{0}^{t} f(\\tau) \\, d\\tau\\} = \\frac{F(s)}{s} \\)';
             resultado = '\\( \\frac{F(s)}{s} \\)';
             break;
-        case 'f\'(t)'://!!NO FUNCIONA
+        case 'f\'(t)':
+            rd_sustitucion = '\\( f\'(t) \\)';
+            rd_transformada = '\\[ \\mathcal{L}\\{f\'(t)\\} = sF(s) - f(0) \\)';
             resultado = '\\( sF(s) - f(0) \\)';
             break;
-        case 'f\'\'(t)'://!!NO FUNCIONA
+        case 'f\'\'(t)':
+            rd_sustitucion = '\\( f\'\'(t) \\)';
+            rd_transformada = '\\[ \\mathcal{L}\\{f\'\'(t)\\} = s^2F(s) - sf(0) - f\'(0) \\)';
             resultado = '\\( s^2F(s) - sf(0) - f\'(0) \\)';
             break;
         case 'e^{bt} t^n':
-
-        factorialN = 1;
-        
-        
-        for (let i = 1; i <= valorN; i++) {
-            factorialN *= i;
-        }
-
-
-
+            rd_sustitucion = '\\( e^{' + valorB + 't} t^{' + valorN + '} \\)';
+            var factorialN = 1;
+            for (let i = 1; i <= parseInt(valorN); i++) {
+                factorialN *= i;
+            }
+            rd_transformada = '\\[ \\mathcal{L}\\{e^{' + valorB + 't} t^{' + valorN + '}\\} \\]';
             resultado = '\\( \\frac{' + factorialN + '}{(s - ' + valorB + ')^{' + (parseInt(valorN) + 1) + '}} \\)';
             break;
         case 't sin(at)':
-            resultado = '\\( \\frac{' + 2*valorA + 's}{(s^2 + ' + valorA**2 + ')^2} \\)';
+            rd_sustitucion = '\\( t \\sin(' + valorA + 't) \\)';
+            rd_transformada = '\\[ \\mathcal{L}\\{t \\sin(' + valorA + 't)\\} \\]';
+            resultado = '\\( \\frac{' + (2 * parseInt(valorA)) + 's}{(s^2 + ' + formatearNumero(va) + ')^2} \\)';
             break;
         case 't cos(at)':
-            resultado = '\\( \\frac{s^2 - ' + valorA**2 + '}{(s^2 + ' + valorA**2    + ')^2} \\)';
+            rd_sustitucion = '\\( t \\cos(' + valorA + 't) \\)';
+            rd_transformada = '\\[ \\mathcal{L}\\{t \\cos(' + valorA + 't)\\} \\]';
+            resultado = '\\( \\frac{s^2 - ' + formatearNumero(va) + '}{(s^2 + ' + formatearNumero(va) + ')^2} \\)';
             break;
         case 'sin(at + b)':
-            resultado = '\\( \\frac{' + valorA + ' \\cos(' + valorB + ') + s \\sin(' + valorB + ')}{s^2 + ' + valorA**2 + '} \\)';
+            rd_sustitucion = '\\( \\sin(' + valorA + 't + ' + valorB + ') \\)';
+            rd_transformada = '\\[ \\mathcal{L}\\{\\sin(' + valorA + 't + ' + valorB + ')\\} \\]';
+            resultado = '\\( \\frac{' + valorA + ' \\cos(' + valorB + ') + s \\sin(' + valorB + ')}{s^2 + ' + formatearNumero(va) + '} \\)';
             break;
         case 'cos(at + b)':
-             
-            resultado = '\\( \\frac{s \\cos(' + valorB + ') - ' + valorB + ' \\sin(' + valorB + ')}{s^2 + ' + valorA**2 + '} \\)';
+            rd_sustitucion = '\\( \\cos(' + valorA + 't + ' + valorB + ') \\)';
+            rd_transformada = '\\[ \\mathcal{L}\\{\\cos(' + valorA + 't + ' + valorB + ')\\} \\]';
+            resultado = '\\( \\frac{s \\cos(' + valorB + ') - ' + valorA + ' \\sin(' + valorB + ')}{s^2 + ' + formatearNumero(va) + '} \\)';
+            break;
+        case 'sinh(at) cosh(bt)':
+            rd_sustitucion = '\\( \\sinh(' + valorA + 't) \\cosh(' + valorB + 't) \\)';
+            rd_transformada = '\\[ \\mathcal{L}\\{\\sinh(' + valorA + 't) \\cosh(' + valorB + 't)\\} \\]';
+            resultado = '\\( \\frac{' + valorA + '}{s^2 - ' + formatearNumero(va) + '} \\)';
+            break;
+        case 'cosh(at) sinh(bt)':
+            rd_sustitucion = '\\( \\cosh(' + valorA + 't) \\sinh(' + valorB + 't) \\)';
+            rd_transformada = '\\[ \\mathcal{L}\\{\\cosh(' + valorA + 't) \\sinh(' + valorB + 't)\\} \\]';
+            resultado = '\\( \\frac{s}{s^2 - ' + formatearNumero(va) + '} \\)';
+            break;
+        case 'e^{bt} t^n':
+            rd_sustitucion = '\\( e^{' + valorB + 't} t^{' + valorN + '} \\)';
+            var factorialN = 1;
+            for (let i = 1; i <= parseInt(valorN); i++) {
+                factorialN *= i;
+            }
+            rd_transformada = '\\[ \\mathcal{L}\\{e^{' + valorB + 't} t^{' + valorN + '}\\} \\]';
+            resultado = '\\( \\frac{' + factorialN + '}{(s - ' + valorB + ')^{' + (parseInt(valorN) + 1) + '}} \\)';
+            break;
+        case 't sin(at)':
+            rd_sustitucion = '\\( t \\sin(' + valorA + 't) \\)';
+            rd_transformada = '\\[ \\mathcal{L}\\{t \\sin(' + valorA + 't)\\} \\]';
+            resultado = '\\( \\frac{' + (2 * parseInt(valorA)) + 's}{(s^2 + ' + formatearNumero(va) + ')^2} \\)';
+            break;
+        case 't cos(at)':
+            rd_sustitucion = '\\( t \\cos(' + valorA + 't) \\)';
+            rd_transformada = '\\[ \\mathcal{L}\\{t \\cos(' + valorA + 't)\\} \\]';
+            resultado = '\\( \\frac{s^2 - ' + formatearNumero(va) + '}{(s^2 + ' + formatearNumero(va) + ')^2} \\)';
+            break;
+        case 'sin(at + b)':
+            rd_sustitucion = '\\( \\sin(' + valorA + 't + ' + valorB + ') \\)';
+            rd_transformada = '\\[ \\mathcal{L}\\{\\sin(' + valorA + 't + ' + valorB + ')\\} \\]';
+            resultado = '\\( \\frac{' + valorA + ' \\cos(' + valorB + ') + s \\sin(' + valorB + ')}{s^2 + ' + formatearNumero(va) + '} \\)';
+            break;
+        case 'cos(at + b)':
+            rd_sustitucion = '\\( \\cos(' + valorA + 't + ' + valorB + ') \\)';
+            rd_transformada = '\\[ \\mathcal{L}\\{\\cos(' + valorA + 't + ' + valorB + ')\\} \\]';
+            resultado = '\\( \\frac{s \\cos(' + valorB + ') - ' + valorA + ' \\sin(' + valorB + ')}{s^2 + ' + formatearNumero(va) + '} \\)';
+            break;
+        case 'sinh(at) cosh(bt)':
+            rd_sustitucion = '\\( \\sinh(' + valorA + 't) \\cosh(' + valorB + 't) \\)';
+            rd_transformada = '\\[ \\mathcal{L}\\{\\sinh(' + valorA + 't) \\cosh(' + valorB + 't)\\} \\]';
+            resultado = '\\( \\frac{' + valorA + '}{s^2 - ' + formatearNumero(va) + '} \\)';
+            break;
+        case 'cosh(at) sinh(bt)':
+            rd_sustitucion = '\\( \\cosh(' + valorA + 't) \\sinh(' + valorB + 't) \\)';
+            rd_transformada = '\\[ \\mathcal{L}\\{\\cosh(' + valorA + 't) \\sinh(' + valorB + 't)\\} \\]';
+            resultado = '\\( \\frac{s}{s^2 - ' + formatearNumero(va) + '} \\)';
+            break;
+        default:
+            resultado = 'Transformación no definida';
             break;
     }
-
+    
+    document.getElementById("id_sustitucion").innerHTML = rd_sustitucion;
+    document.getElementById("id_transformada").innerHTML = rd_transformada;
     document.getElementById("resultado").innerHTML = resultado;
     MathJax.typeset();
 }
